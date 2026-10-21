@@ -1,0 +1,13 @@
+Facial Geometry Lab
+Copyright 2026 Carter Monaco
+
+The authored source is licensed under Apache License 2.0; see LICENSE.
+This public edition extracts the manual geometry, validation and report
+components from a larger private application. Automatic photo extraction,
+personal calibration and reference banks are omitted. The landmark adapter
+was removed and a newly authored synthetic demonstration was added.
+
+No photographs, facial datasets, model weights, reference-bank records or
+personal measurements are distributed. Demo coordinates are fictional
+schematic fixtures authored for this edition, not measurements of a person.
+Pydantic is a separately licensed dependency (MIT).

@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+.DS_Store
+# User inputs and real-person outputs never belong in this public repository.
+photos/
+captures/
+uploads/
+sessions/
+reports/
+bank/
+*.npz
+*.npy
+*.task
+*.tflite
+*.csv
+
+# Local credentials, environments, and caches
+!.env.example
+*.pem
+*.key
+credentials.json
+.venv
+.pytest_cache/

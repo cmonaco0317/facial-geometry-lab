@@ -1,0 +1,696 @@
+{
+  "provenance": "SYNTHETIC: fictional coordinates and independently invented rank inputs; no person or dataset",
+  "frontal": {
+    "method": "reviewed-frontal-v1",
+    "contract": "e9bc1845e443e1a0214049e86dd63a989c36a062cfd8d5606e501bc93729bade",
+    "revision": 1,
+    "measurements": [
+      {
+        "id": "reviewed_facial_index",
+        "label": "Reviewed facial height / width",
+        "region": "proportions",
+        "value": 1.7647,
+        "unit": "ratio",
+        "definition": "Mesh-top-to-chin vertical height / horizontal cheek span.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_fwhr",
+        "label": "Reviewed facial width-to-height ratio",
+        "region": "proportions",
+        "value": 1.2952,
+        "unit": "ratio",
+        "definition": "Horizontal cheek span / medial-brow-to-upper-lip vertical distance.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_upper_third",
+        "label": "Reviewed mesh upper segment share",
+        "region": "proportions",
+        "value": 0.275,
+        "unit": "ratio",
+        "definition": "Mesh-top-to-medial-brow segment / sum of three vertical segments.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_middle_third",
+        "label": "Reviewed middle segment share",
+        "region": "proportions",
+        "value": 0.3625,
+        "unit": "ratio",
+        "definition": "Medial-brow-to-nose-base segment / sum of three vertical segments.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_lower_third",
+        "label": "Reviewed lower segment share",
+        "region": "proportions",
+        "value": 0.3625,
+        "unit": "ratio",
+        "definition": "Nose-base-to-chin segment / sum of three vertical segments.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_middle_lower_ratio",
+        "label": "Reviewed middle / lower segment",
+        "region": "proportions",
+        "value": 1.0,
+        "unit": "ratio",
+        "definition": "Medial-brow-to-nose-base distance / nose-base-to-chin distance.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_forehead_ratio",
+        "label": "Reviewed forehead width / cheek width",
+        "region": "forehead",
+        "value": 0.7941,
+        "unit": "ratio",
+        "definition": "Horizontal mesh-forehead span / horizontal cheek span; not the hairline.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_jaw_ratio",
+        "label": "Reviewed jaw width / cheek width",
+        "region": "jaw",
+        "value": 0.7647,
+        "unit": "ratio",
+        "definition": "Horizontal visible lower-jaw landmark span / horizontal cheek span.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_chin_jaw_ratio",
+        "label": "Reviewed chin width / jaw width",
+        "region": "jaw",
+        "value": 0.3077,
+        "unit": "ratio",
+        "definition": "Horizontal chin landmark span / horizontal lower-jaw span.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_eye_spacing",
+        "label": "Reviewed eye spacing",
+        "region": "eyes",
+        "value": 0.2963,
+        "unit": "ratio",
+        "definition": "Horizontal inner-corner span / horizontal outer-corner span.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_eye_almondness",
+        "label": "Reviewed eye opening height / width",
+        "region": "eyes",
+        "value": 0.3947,
+        "unit": "ratio",
+        "definition": "Mean vertical eye opening / mean horizontal eye width.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_canthal_tilt",
+        "label": "Reviewed canthal tilt",
+        "region": "eyes",
+        "value": 8.9726,
+        "unit": "deg",
+        "definition": "Mean outer-corner elevation angle relative to inner corners; head roll affects it.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_brow_position",
+        "label": "Reviewed brow elevation / face height",
+        "region": "eyes",
+        "value": 0.1438,
+        "unit": "ratio",
+        "definition": "Mean eye-centre-to-brow-peak vertical elevation / mesh-top-to-chin height.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_alar_ratio",
+        "label": "Reviewed nose width / cheek width",
+        "region": "nose",
+        "value": 0.2059,
+        "unit": "ratio",
+        "definition": "Horizontal nose-wing landmark span / horizontal cheek span.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_naso_oral",
+        "label": "Reviewed nose width / mouth width",
+        "region": "nose",
+        "value": 0.5,
+        "unit": "ratio",
+        "definition": "Horizontal nose-wing landmark span / horizontal mouth-corner span.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_mouth_ratio",
+        "label": "Reviewed mouth width / cheek width",
+        "region": "lips",
+        "value": 0.4118,
+        "unit": "ratio",
+        "definition": "Horizontal mouth-corner span / horizontal cheek span.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_lip_lower_face",
+        "label": "Reviewed lip height / lower segment",
+        "region": "lips",
+        "value": 0.1724,
+        "unit": "ratio",
+        "definition": "Visible upper-to-lower lip vertical height / nose-base-to-chin distance.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "reviewed_philtrum_ratio",
+        "label": "Reviewed philtrum / lower segment",
+        "region": "lips",
+        "value": 0.2069,
+        "unit": "ratio",
+        "definition": "Nose-base-to-upper-lip vertical distance / nose-base-to-chin distance.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "hairline_facial_index",
+        "label": "Hairline-to-chin height / cheek width",
+        "region": "forehead",
+        "value": 1.6324,
+        "unit": "ratio",
+        "definition": "Visible central hairline-to-chin vertical height / horizontal cheek span. Separate from mesh height.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "hairline_upper_share",
+        "label": "Hairline upper segment share",
+        "region": "forehead",
+        "value": 0.2162,
+        "unit": "ratio",
+        "definition": "Hairline-to-medial-brow segment / sum of hairline, middle and lower vertical segments.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "hairline_middle_share",
+        "label": "Hairline-defined middle segment share",
+        "region": "forehead",
+        "value": 0.3919,
+        "unit": "ratio",
+        "definition": "Medial-brow-to-nose-base segment / sum of hairline, middle and lower vertical segments.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      },
+      {
+        "id": "hairline_lower_share",
+        "label": "Hairline-defined lower segment share",
+        "region": "forehead",
+        "value": 0.3919,
+        "unit": "ratio",
+        "definition": "Nose-base-to-chin segment / sum of hairline, middle and lower vertical segments.",
+        "percentile": null,
+        "method": "reviewed-frontal-v1"
+      }
+    ],
+    "warnings": [],
+    "diagram": {
+      "points": {
+        "mesh_top": [
+          0.5,
+          0.1
+        ],
+        "hairline": [
+          0.5,
+          0.16
+        ],
+        "forehead_a": [
+          0.23,
+          0.24
+        ],
+        "forehead_b": [
+          0.77,
+          0.24
+        ],
+        "brow_head_a": [
+          0.42,
+          0.32
+        ],
+        "brow_head_b": [
+          0.5800000000000001,
+          0.32
+        ],
+        "brow_peak_a": [
+          0.3,
+          0.29
+        ],
+        "brow_peak_b": [
+          0.7,
+          0.29
+        ],
+        "eye_outer_a": [
+          0.23,
+          0.39
+        ],
+        "eye_inner_a": [
+          0.42,
+          0.41
+        ],
+        "eye_inner_b": [
+          0.5800000000000001,
+          0.41
+        ],
+        "eye_outer_b": [
+          0.77,
+          0.39
+        ],
+        "eye_top_a": [
+          0.32,
+          0.38
+        ],
+        "eye_bottom_a": [
+          0.32,
+          0.43
+        ],
+        "eye_top_b": [
+          0.6799999999999999,
+          0.38
+        ],
+        "eye_bottom_b": [
+          0.6799999999999999,
+          0.43
+        ],
+        "eye_centre_a": [
+          0.32,
+          0.405
+        ],
+        "eye_centre_b": [
+          0.6799999999999999,
+          0.405
+        ],
+        "cheek_a": [
+          0.16,
+          0.53
+        ],
+        "cheek_b": [
+          0.84,
+          0.53
+        ],
+        "jaw_a": [
+          0.24,
+          0.75
+        ],
+        "jaw_b": [
+          0.76,
+          0.75
+        ],
+        "chin_a": [
+          0.42,
+          0.86
+        ],
+        "chin_b": [
+          0.5800000000000001,
+          0.86
+        ],
+        "chin": [
+          0.5,
+          0.9
+        ],
+        "nose_a": [
+          0.43,
+          0.59
+        ],
+        "nose_b": [
+          0.5700000000000001,
+          0.59
+        ],
+        "nose_base": [
+          0.5,
+          0.61
+        ],
+        "mouth_a": [
+          0.36,
+          0.69
+        ],
+        "mouth_b": [
+          0.64,
+          0.69
+        ],
+        "upper_lip": [
+          0.5,
+          0.67
+        ],
+        "lower_lip": [
+          0.5,
+          0.72
+        ]
+      },
+      "width": 400,
+      "height": 600
+    },
+    "note": "Reviewed 2D photo measurements. No matching manual-reference percentiles or calibrated uncertainty. Head pose and placement affect readings. These measurements have no reference-bank percentiles and do not infer depth."
+  },
+  "profile": {
+    "method": "manual-profile-v2",
+    "contract": "92d6bbf4e539b4cd4c5c669770b838e5fe14d802b1e7a620067d51fae7ac15d9",
+    "status": "user_reviewed",
+    "facing": "right",
+    "measurements": [
+      {
+        "id": "convexity",
+        "label": "Soft-tissue profile angle",
+        "unit": "deg",
+        "definition": "Internal angle at the nose base between bridge and forward chin (N\u2013Sn\u2013Pog).",
+        "requires": [
+          "nasion",
+          "subnasale",
+          "pogonion"
+        ],
+        "value": 176.368262
+      },
+      {
+        "id": "total_convexity",
+        "label": "Profile angle including nose",
+        "unit": "deg",
+        "definition": "Internal angle at the nose tip between bridge and forward chin (N\u2013Prn\u2013Pog).",
+        "requires": [
+          "nasion",
+          "tip",
+          "pogonion"
+        ],
+        "value": 117.023408
+      },
+      {
+        "id": "upper_eline",
+        "label": "Upper-lip offset from nose\u2013chin line",
+        "unit": "% N\u2013Me",
+        "definition": "Signed perpendicular distance from upper lip to tip\u2013chin line, divided by bridge-to-bottom-chin distance. Positive is forward.",
+        "requires": [
+          "nasion",
+          "tip",
+          "pogonion",
+          "menton",
+          "upper_lip"
+        ],
+        "value": -7.294112
+      },
+      {
+        "id": "lower_eline",
+        "label": "Lower-lip offset from nose\u2013chin line",
+        "unit": "% N\u2013Me",
+        "definition": "Signed perpendicular distance from lower lip to tip\u2013chin line, divided by bridge-to-bottom-chin distance. Positive is forward.",
+        "requires": [
+          "nasion",
+          "tip",
+          "pogonion",
+          "menton",
+          "lower_lip"
+        ],
+        "value": -5.835289
+      },
+      {
+        "id": "nasal_projection_ratio",
+        "label": "Custom nasal projection / face height",
+        "unit": "ratio",
+        "definition": "Unsigned perpendicular distance from Prn to the infinite N\u2013Sn line / Euclidean N\u2013Me distance.",
+        "requires": [
+          "nasion",
+          "tip",
+          "subnasale",
+          "menton"
+        ],
+        "value": 0.254148
+      },
+      {
+        "id": "nasal_length_ratio",
+        "label": "Nasal chord / face height",
+        "unit": "ratio",
+        "definition": "Euclidean N\u2013Prn distance / Euclidean N\u2013Me distance; a photo-space chord, not physical nose length.",
+        "requires": [
+          "nasion",
+          "tip",
+          "menton"
+        ],
+        "value": 0.453074
+      },
+      {
+        "id": "lower_face_ratio",
+        "label": "Lower-face chord / face height",
+        "unit": "ratio",
+        "definition": "Euclidean Sn\u2013Me distance / Euclidean N\u2013Me distance, not a projected vertical-third measure.",
+        "requires": [
+          "nasion",
+          "subnasale",
+          "menton"
+        ],
+        "value": 0.555952
+      },
+      {
+        "id": "lip_offset_difference",
+        "label": "Upper-minus-lower lip offset",
+        "unit": "% N\u2013Me",
+        "definition": "Upper minus lower signed offset from the same Prn\u2013Pog line, using Euclidean N\u2013Me normalization. Derived contrast, not independent evidence.",
+        "requires": [
+          "nasion",
+          "tip",
+          "menton",
+          "pogonion",
+          "upper_lip",
+          "lower_lip"
+        ],
+        "value": -1.458822
+      }
+    ],
+    "unavailable": {},
+    "diagram": {
+      "points": {
+        "nasion": [
+          0.48,
+          0.22
+        ],
+        "tip": [
+          0.79,
+          0.43
+        ],
+        "subnasale": [
+          0.56,
+          0.51
+        ],
+        "upper_lip": [
+          0.64,
+          0.58
+        ],
+        "lower_lip": [
+          0.62,
+          0.65
+        ],
+        "pogonion": [
+          0.61,
+          0.79
+        ],
+        "menton": [
+          0.51,
+          0.87
+        ]
+      },
+      "width": 400,
+      "height": 600
+    },
+    "warnings": [],
+    "note": "Two-dimensional soft-tissue readings from user-placed landmarks on one lateral photograph. Placement, head posture and perspective affect them. No calibrated uncertainty or bone-position diagnosis. These do not change the frontal geometry score. Facing is user-declared in the displayed image. Opposite-side views are separate observations, not a calibrated asymmetry test. All reference lengths are Euclidean; none uses a vertical world axis.",
+    "revision": 1
+  },
+  "composite": {
+    "version": "geometry-composite-v1",
+    "value": 75.3,
+    "scale": 100,
+    "coverage": 1.0,
+    "status": "complete",
+    "components": [
+      {
+        "id": "harmony",
+        "label": "Proportion balance",
+        "value": 83.3,
+        "weight": 0.4,
+        "status": "estimated",
+        "observed_proportions": 3,
+        "effective_weight": 0.4
+      },
+      {
+        "id": "symmetry",
+        "label": "Symmetry",
+        "value": 78.0,
+        "weight": 0.3,
+        "status": "estimated",
+        "observed_proportions": null,
+        "effective_weight": 0.3
+      },
+      {
+        "id": "averageness",
+        "label": "Shape typicality",
+        "value": 62.0,
+        "weight": 0.3,
+        "status": "estimated",
+        "observed_proportions": null,
+        "effective_weight": 0.3
+      }
+    ],
+    "missing": [],
+    "explanation": "A design-weighted summary of measured geometry, not a population percentile or a validated attractiveness rating. Higher means more central proportions, less measured asymmetry and greater reference-shape typicality. These components overlap. Dimorphism is descriptive and does not change the total.",
+    "uncertainty": "Not calibrated; photo quality is separate from the score."
+  },
+  "score_audit": {
+    "version": "score-audit-v1",
+    "contract": "e9705b748a85b275e3b071e77b1825f58851589dafcefd6754bd0feeb110ee35",
+    "headline": {
+      "version": "geometry-composite-v1",
+      "value": 75.3,
+      "scale": 100,
+      "coverage": 1.0,
+      "status": "complete",
+      "components": [
+        {
+          "id": "harmony",
+          "label": "Proportion balance",
+          "value": 83.3,
+          "weight": 0.4,
+          "status": "estimated",
+          "observed_proportions": 3,
+          "effective_weight": 0.4
+        },
+        {
+          "id": "symmetry",
+          "label": "Symmetry",
+          "value": 78.0,
+          "weight": 0.3,
+          "status": "estimated",
+          "observed_proportions": null,
+          "effective_weight": 0.3
+        },
+        {
+          "id": "averageness",
+          "label": "Shape typicality",
+          "value": 62.0,
+          "weight": 0.3,
+          "status": "estimated",
+          "observed_proportions": null,
+          "effective_weight": 0.3
+        }
+      ],
+      "missing": [],
+      "explanation": "A design-weighted summary of measured geometry, not a population percentile or a validated attractiveness rating. Higher means more central proportions, less measured asymmetry and greater reference-shape typicality. These components overlap. Dimorphism is descriptive and does not change the total.",
+      "uncertainty": "Not calibrated; photo quality is separate from the score."
+    },
+    "components": [
+      {
+        "id": "harmony",
+        "label": "Proportion balance",
+        "value": 83.3,
+        "weight": 0.4,
+        "status": "estimated",
+        "observed_proportions": 3,
+        "effective_weight": 0.4,
+        "contribution": 33.32
+      },
+      {
+        "id": "symmetry",
+        "label": "Symmetry",
+        "value": 78.0,
+        "weight": 0.3,
+        "status": "estimated",
+        "observed_proportions": null,
+        "effective_weight": 0.3,
+        "contribution": 23.4
+      },
+      {
+        "id": "averageness",
+        "label": "Shape typicality",
+        "value": 62.0,
+        "weight": 0.3,
+        "status": "estimated",
+        "observed_proportions": null,
+        "effective_weight": 0.3,
+        "contribution": 18.599999999999998
+      }
+    ],
+    "ratios": [
+      {
+        "id": "horizontal_balance",
+        "percentile": 60.0,
+        "centrality": 80.0,
+        "within_group_weight": 0.3333333333333333,
+        "effective_weight": 0.13333333333333333
+      },
+      {
+        "id": "midface_proportion",
+        "percentile": 40.0,
+        "centrality": 80.0,
+        "within_group_weight": 0.3333333333333333,
+        "effective_weight": 0.13333333333333333
+      },
+      {
+        "id": "vertical_balance",
+        "percentile": 45.0,
+        "centrality": 90.0,
+        "within_group_weight": 0.3333333333333333,
+        "effective_weight": 0.13333333333333333
+      }
+    ],
+    "harmony_ratio_ids": [
+      "horizontal_balance",
+      "midface_proportion",
+      "vertical_balance"
+    ],
+    "harmony_ratio_count": 3,
+    "leave_one_ratio_out": [
+      {
+        "id": "horizontal_balance",
+        "value": 76.0
+      },
+      {
+        "id": "midface_proportion",
+        "value": 76.0
+      },
+      {
+        "id": "vertical_balance",
+        "value": 74.0
+      }
+    ],
+    "leave_one_component_out": [
+      {
+        "id": "harmony",
+        "value": 70.0
+      },
+      {
+        "id": "symmetry",
+        "value": 74.2
+      },
+      {
+        "id": "averageness",
+        "value": 81.0
+      }
+    ],
+    "shadow_candidates": {
+      "baseline-v1": 75.3,
+      "equal-groups": 74.4,
+      "symmetry-downweighted": 73.2,
+      "without-typicality": 81.2
+    },
+    "decision": "Retain geometry-composite-v1. Independent development/held-out evidence does not yet justify a replacement.",
+    "replacement_justified": false,
+    "interpretation": "Component centrality overlaps. Leave-out results describe formula sensitivity, not expected personal change. No photo-quality penalty or profile contribution is added."
+  }
+}
