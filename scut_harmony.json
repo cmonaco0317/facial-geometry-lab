@@ -1,0 +1,1012 @@
+{
+  "_what": "does harmony correspond to what a human perceives? 5,500 SCUT faces, each with a mean rating from 60 volunteers.",
+  "_gated": "\u00a74.1(a) OVERRIDDEN by calibration_subject 2026-09-09, reversing \u00a76.4 (locked 2026-09-04). Harmony IS gated on rater agreement: Pearson r 95% CI lower bound > 0.1, within cohort, pre-registered BEFORE the correlation was computed. An axis must clear it in EVERY measurable cohort or it is REFUSED.",
+  "_what_harmony_now_means": "NOT geometric harmony \u2014 geometry that predicts the ratings of 60 Chinese volunteers aged 18-27. The neoclassical-canon literature no longer applies to it.",
+  "_aggregation_is_this_files_choice": "calibration_subject set the bar, not the aggregation across cohorts. The conservative reading is used: an axis must clear it everywhere it is measurable, or it is refused.",
+  "_cohort_mapping_is_a_judgement": {
+    "Asian -> east_asian": "JUDGEMENT. SCUT is from South China University of Technology; FairFace splits east_asian from southeast_asian and SCUT does not. southeast_asian sensitivity run.",
+    "Caucasian -> white": "JUDGEMENT. Closest label; FairFace carries middle_eastern separately.",
+    "age": "ASSUMED 20_29 \u2014 SCUT CARRIES NO AGE LABEL. If these faces skew older every percentile is against the wrong band. 30_39 sensitivity run."
+  },
+  "_coverage": "2 of 7 FairFace race labels, 4 of 62 cohorts, 1 of 4 age bands. This is not coverage of the bank.",
+  "_within_cohort": "SCUT's raters are 60 Chinese volunteers aged 18-27 and cross-race ratings differ systematically, so pooling would let rater behaviour masquerade as a geometry-beauty relationship. Every correlation is computed inside one (race x sex) cohort.",
+  "attrition": {
+    "raw": 5500,
+    "no_detect": 0,
+    "out_of_pose_gate": 260,
+    "not_at_rest": 497,
+    "kept": 4743
+  },
+  "n_measured": 4743,
+  "cohorts": {
+    "Asian/Female": {
+      "n": 1719,
+      "bank_cohort": "f_east_asian_20_29",
+      "axes": {
+        "harm__horizontal_balance": {
+          "n": 1719,
+          "r": 0.092,
+          "lo": 0.0446,
+          "hi": 0.1385,
+          "spearman": 0.0953,
+          "direction": "centre"
+        },
+        "harm__lip_balance": {
+          "n": 1719,
+          "r": -0.0027,
+          "lo": -0.051,
+          "hi": 0.0454,
+          "spearman": 0.0098,
+          "direction": "centre"
+        },
+        "harm__lower_face_split": {
+          "n": 1719,
+          "r": -0.0045,
+          "lo": -0.0524,
+          "hi": 0.043,
+          "spearman": -0.0054,
+          "direction": "centre"
+        },
+        "harm__midface_proportion": {
+          "n": 1719,
+          "r": 0.0067,
+          "lo": -0.0403,
+          "hi": 0.0536,
+          "spearman": 0.0059,
+          "direction": "centre"
+        },
+        "harm__nose_mouth_eye": {
+          "n": 1719,
+          "r": 0.3438,
+          "lo": 0.2997,
+          "hi": 0.387,
+          "spearman": 0.3476,
+          "direction": "low"
+        },
+        "harm__vertical_balance": {
+          "n": 1719,
+          "r": -0.426,
+          "lo": -0.4644,
+          "hi": -0.3863,
+          "spearman": -0.4589,
+          "direction": "centre"
+        },
+        "dim__lower_third": {
+          "n": 1719,
+          "r": -0.2744,
+          "lo": -0.3188,
+          "hi": -0.2291,
+          "spearman": -0.2866,
+          "direction": "centre"
+        }
+      },
+      "raw_value": {
+        "harm__horizontal_balance": {
+          "n": 1719,
+          "r": -0.2773,
+          "lo": -0.3191,
+          "hi": -0.2337,
+          "spearman": -0.2713
+        },
+        "harm__lip_balance": {
+          "n": 1719,
+          "r": -0.4582,
+          "lo": -0.4939,
+          "hi": -0.4213,
+          "spearman": -0.477
+        },
+        "harm__lower_face_split": {
+          "n": 1719,
+          "r": -0.1478,
+          "lo": -0.1945,
+          "hi": -0.1001,
+          "spearman": -0.1426
+        },
+        "harm__midface_proportion": {
+          "n": 1719,
+          "r": 0.0332,
+          "lo": -0.0171,
+          "hi": 0.0823,
+          "spearman": 0.036
+        },
+        "harm__nose_mouth_eye": {
+          "n": 1719,
+          "r": -0.3582,
+          "lo": -0.4011,
+          "hi": -0.3142,
+          "spearman": -0.3477
+        },
+        "harm__vertical_balance": {
+          "n": 1719,
+          "r": -0.4788,
+          "lo": -0.5165,
+          "hi": -0.4409,
+          "spearman": -0.4871
+        },
+        "dim__lower_third": {
+          "n": 1719,
+          "r": -0.2876,
+          "lo": -0.3336,
+          "hi": -0.2414,
+          "spearman": -0.2993
+        }
+      },
+      "linear_percentile_reported": {
+        "harm__horizontal_balance": {
+          "n": 1719,
+          "r": -0.2713,
+          "lo": -0.3138,
+          "hi": -0.2267,
+          "spearman": -0.2712
+        },
+        "harm__lip_balance": {
+          "n": 1719,
+          "r": -0.4593,
+          "lo": -0.4958,
+          "hi": -0.4217,
+          "spearman": -0.4769
+        },
+        "harm__lower_face_split": {
+          "n": 1719,
+          "r": -0.1606,
+          "lo": -0.2067,
+          "hi": -0.113,
+          "spearman": -0.1426
+        },
+        "harm__midface_proportion": {
+          "n": 1719,
+          "r": 0.061,
+          "lo": 0.0111,
+          "hi": 0.1095,
+          "spearman": 0.036
+        },
+        "harm__nose_mouth_eye": {
+          "n": 1719,
+          "r": -0.3438,
+          "lo": -0.387,
+          "hi": -0.2997,
+          "spearman": -0.3477
+        },
+        "harm__vertical_balance": {
+          "n": 1719,
+          "r": -0.4668,
+          "lo": -0.5053,
+          "hi": -0.428,
+          "spearman": -0.4869
+        },
+        "dim__lower_third": {
+          "n": 1719,
+          "r": -0.2967,
+          "lo": -0.3424,
+          "hi": -0.2502,
+          "spearman": -0.2994
+        }
+      },
+      "composite_mean_harmony_score": {
+        "n": 1719,
+        "r": 0.0686,
+        "lo": 0.0193,
+        "hi": 0.1165,
+        "spearman": 0.0542
+      },
+      "_positive_control": {
+        "note": "dimorphism-related geometry vs rated beauty. If this is also flat, a null on harmony says only that nothing survives this pipeline on this data.",
+        "r": {
+          "n": 1719,
+          "r": -0.2876,
+          "lo": -0.3336,
+          "hi": -0.2414,
+          "spearman": -0.2993
+        }
+      }
+    },
+    "Asian/Male": {
+      "n": 1658,
+      "bank_cohort": "m_east_asian_20_29",
+      "axes": {
+        "harm__horizontal_balance": {
+          "n": 1658,
+          "r": -0.0201,
+          "lo": -0.0676,
+          "hi": 0.0271,
+          "spearman": 0.0044,
+          "direction": "centre"
+        },
+        "harm__lip_balance": {
+          "n": 1658,
+          "r": 0.0186,
+          "lo": -0.0322,
+          "hi": 0.0696,
+          "spearman": 0.0646,
+          "direction": "centre"
+        },
+        "harm__lower_face_split": {
+          "n": 1658,
+          "r": 0.0077,
+          "lo": -0.0404,
+          "hi": 0.0564,
+          "spearman": 0.031,
+          "direction": "centre"
+        },
+        "harm__midface_proportion": {
+          "n": 1658,
+          "r": -0.1933,
+          "lo": -0.2381,
+          "hi": -0.1489,
+          "spearman": -0.1698,
+          "direction": "centre"
+        },
+        "harm__nose_mouth_eye": {
+          "n": 1658,
+          "r": 0.4078,
+          "lo": 0.3645,
+          "hi": 0.45,
+          "spearman": 0.4168,
+          "direction": "low"
+        },
+        "harm__vertical_balance": {
+          "n": 1658,
+          "r": -0.3876,
+          "lo": -0.4276,
+          "hi": -0.3462,
+          "spearman": -0.4138,
+          "direction": "centre"
+        },
+        "dim__lower_third": {
+          "n": 1658,
+          "r": -0.1603,
+          "lo": -0.2069,
+          "hi": -0.1132,
+          "spearman": -0.139,
+          "direction": "centre"
+        }
+      },
+      "raw_value": {
+        "harm__horizontal_balance": {
+          "n": 1658,
+          "r": -0.3827,
+          "lo": -0.4204,
+          "hi": -0.3449,
+          "spearman": -0.376
+        },
+        "harm__lip_balance": {
+          "n": 1658,
+          "r": -0.4563,
+          "lo": -0.4964,
+          "hi": -0.4157,
+          "spearman": -0.4401
+        },
+        "harm__lower_face_split": {
+          "n": 1658,
+          "r": -0.0883,
+          "lo": -0.1428,
+          "hi": -0.0289,
+          "spearman": -0.0471
+        },
+        "harm__midface_proportion": {
+          "n": 1658,
+          "r": 0.2568,
+          "lo": 0.2104,
+          "hi": 0.3031,
+          "spearman": 0.2355
+        },
+        "harm__nose_mouth_eye": {
+          "n": 1658,
+          "r": -0.4097,
+          "lo": -0.4517,
+          "hi": -0.3656,
+          "spearman": -0.4168
+        },
+        "harm__vertical_balance": {
+          "n": 1658,
+          "r": -0.4653,
+          "lo": -0.5054,
+          "hi": -0.4234,
+          "spearman": -0.4477
+        },
+        "dim__lower_third": {
+          "n": 1658,
+          "r": -0.1916,
+          "lo": -0.2389,
+          "hi": -0.1428,
+          "spearman": -0.1729
+        }
+      },
+      "linear_percentile_reported": {
+        "harm__horizontal_balance": {
+          "n": 1658,
+          "r": -0.3812,
+          "lo": -0.4209,
+          "hi": -0.3411,
+          "spearman": -0.3761
+        },
+        "harm__lip_balance": {
+          "n": 1658,
+          "r": -0.4689,
+          "lo": -0.5098,
+          "hi": -0.4271,
+          "spearman": -0.4402
+        },
+        "harm__lower_face_split": {
+          "n": 1658,
+          "r": -0.0437,
+          "lo": -0.0955,
+          "hi": 0.0088,
+          "spearman": -0.047
+        },
+        "harm__midface_proportion": {
+          "n": 1658,
+          "r": 0.2688,
+          "lo": 0.2278,
+          "hi": 0.3094,
+          "spearman": 0.2357
+        },
+        "harm__nose_mouth_eye": {
+          "n": 1658,
+          "r": -0.4078,
+          "lo": -0.45,
+          "hi": -0.3645,
+          "spearman": -0.4169
+        },
+        "harm__vertical_balance": {
+          "n": 1658,
+          "r": -0.4077,
+          "lo": -0.4451,
+          "hi": -0.3684,
+          "spearman": -0.4479
+        },
+        "dim__lower_third": {
+          "n": 1658,
+          "r": -0.1929,
+          "lo": -0.2367,
+          "hi": -0.148,
+          "spearman": -0.173
+        }
+      },
+      "composite_mean_harmony_score": {
+        "n": 1658,
+        "r": 0.0391,
+        "lo": -0.0108,
+        "hi": 0.0902,
+        "spearman": 0.0681
+      },
+      "_positive_control": {
+        "note": "dimorphism-related geometry vs rated beauty. If this is also flat, a null on harmony says only that nothing survives this pipeline on this data.",
+        "r": {
+          "n": 1658,
+          "r": -0.1916,
+          "lo": -0.2389,
+          "hi": -0.1428,
+          "spearman": -0.1729
+        }
+      }
+    },
+    "Caucasian/Female": {
+      "n": 667,
+      "bank_cohort": "f_white_20_29",
+      "axes": {
+        "harm__horizontal_balance": {
+          "n": 667,
+          "r": -0.0488,
+          "lo": -0.1224,
+          "hi": 0.0263,
+          "spearman": -0.0322,
+          "direction": "centre"
+        },
+        "harm__lip_balance": {
+          "n": 667,
+          "r": 0.2162,
+          "lo": 0.1446,
+          "hi": 0.2847,
+          "spearman": 0.1968,
+          "direction": "centre"
+        },
+        "harm__lower_face_split": {
+          "n": 667,
+          "r": -0.1573,
+          "lo": -0.2309,
+          "hi": -0.0834,
+          "spearman": -0.1462,
+          "direction": "centre"
+        },
+        "harm__midface_proportion": {
+          "n": 667,
+          "r": -0.0823,
+          "lo": -0.1573,
+          "hi": -0.0067,
+          "spearman": -0.0816,
+          "direction": "centre"
+        },
+        "harm__nose_mouth_eye": {
+          "n": 667,
+          "r": 0.6138,
+          "lo": 0.5629,
+          "hi": 0.6622,
+          "spearman": 0.5969,
+          "direction": "low"
+        },
+        "harm__vertical_balance": {
+          "n": 667,
+          "r": -0.456,
+          "lo": -0.5151,
+          "hi": -0.3948,
+          "spearman": -0.4712,
+          "direction": "centre"
+        },
+        "dim__lower_third": {
+          "n": 667,
+          "r": -0.3259,
+          "lo": -0.3914,
+          "hi": -0.2567,
+          "spearman": -0.3182,
+          "direction": "centre"
+        }
+      },
+      "raw_value": {
+        "harm__horizontal_balance": {
+          "n": 667,
+          "r": -0.209,
+          "lo": -0.2774,
+          "hi": -0.1397,
+          "spearman": -0.1975
+        },
+        "harm__lip_balance": {
+          "n": 667,
+          "r": 0.1758,
+          "lo": 0.1023,
+          "hi": 0.2474,
+          "spearman": 0.1741
+        },
+        "harm__lower_face_split": {
+          "n": 667,
+          "r": 0.2012,
+          "lo": 0.1271,
+          "hi": 0.2738,
+          "spearman": 0.1884
+        },
+        "harm__midface_proportion": {
+          "n": 667,
+          "r": 0.2143,
+          "lo": 0.1409,
+          "hi": 0.2857,
+          "spearman": 0.2087
+        },
+        "harm__nose_mouth_eye": {
+          "n": 667,
+          "r": -0.6099,
+          "lo": -0.6578,
+          "hi": -0.5588,
+          "spearman": -0.5968
+        },
+        "harm__vertical_balance": {
+          "n": 667,
+          "r": -0.5437,
+          "lo": -0.5936,
+          "hi": -0.492,
+          "spearman": -0.5568
+        },
+        "dim__lower_third": {
+          "n": 667,
+          "r": -0.5152,
+          "lo": -0.5688,
+          "hi": -0.4606,
+          "spearman": -0.525
+        }
+      },
+      "linear_percentile_reported": {
+        "harm__horizontal_balance": {
+          "n": 667,
+          "r": -0.2176,
+          "lo": -0.2842,
+          "hi": -0.1487,
+          "spearman": -0.1974
+        },
+        "harm__lip_balance": {
+          "n": 667,
+          "r": 0.1882,
+          "lo": 0.1133,
+          "hi": 0.2609,
+          "spearman": 0.1741
+        },
+        "harm__lower_face_split": {
+          "n": 667,
+          "r": 0.1995,
+          "lo": 0.1268,
+          "hi": 0.2707,
+          "spearman": 0.1884
+        },
+        "harm__midface_proportion": {
+          "n": 667,
+          "r": 0.2287,
+          "lo": 0.1555,
+          "hi": 0.2986,
+          "spearman": 0.2086
+        },
+        "harm__nose_mouth_eye": {
+          "n": 667,
+          "r": -0.6138,
+          "lo": -0.6622,
+          "hi": -0.5629,
+          "spearman": -0.5968
+        },
+        "harm__vertical_balance": {
+          "n": 667,
+          "r": -0.5174,
+          "lo": -0.567,
+          "hi": -0.4673,
+          "spearman": -0.5567
+        },
+        "dim__lower_third": {
+          "n": 667,
+          "r": -0.5142,
+          "lo": -0.5625,
+          "hi": -0.4645,
+          "spearman": -0.5249
+        }
+      },
+      "composite_mean_harmony_score": {
+        "n": 667,
+        "r": 0.2627,
+        "lo": 0.1924,
+        "hi": 0.3301,
+        "spearman": 0.2558
+      },
+      "_positive_control": {
+        "note": "dimorphism-related geometry vs rated beauty. If this is also flat, a null on harmony says only that nothing survives this pipeline on this data.",
+        "r": {
+          "n": 667,
+          "r": -0.5152,
+          "lo": -0.5688,
+          "hi": -0.4606,
+          "spearman": -0.525
+        }
+      }
+    },
+    "Caucasian/Male": {
+      "n": 699,
+      "bank_cohort": "m_white_20_29",
+      "axes": {
+        "harm__horizontal_balance": {
+          "n": 699,
+          "r": -0.0784,
+          "lo": -0.1528,
+          "hi": -0.0032,
+          "spearman": -0.0685,
+          "direction": "centre"
+        },
+        "harm__lip_balance": {
+          "n": 699,
+          "r": 0.1065,
+          "lo": 0.0307,
+          "hi": 0.1799,
+          "spearman": 0.0892,
+          "direction": "centre"
+        },
+        "harm__lower_face_split": {
+          "n": 699,
+          "r": 0.0805,
+          "lo": 0.0119,
+          "hi": 0.1509,
+          "spearman": 0.0667,
+          "direction": "centre"
+        },
+        "harm__midface_proportion": {
+          "n": 699,
+          "r": -0.2133,
+          "lo": -0.2817,
+          "hi": -0.1426,
+          "spearman": -0.1979,
+          "direction": "centre"
+        },
+        "harm__nose_mouth_eye": {
+          "n": 699,
+          "r": 0.3974,
+          "lo": 0.3377,
+          "hi": 0.4556,
+          "spearman": 0.361,
+          "direction": "low"
+        },
+        "harm__vertical_balance": {
+          "n": 699,
+          "r": -0.3154,
+          "lo": -0.3819,
+          "hi": -0.2444,
+          "spearman": -0.3098,
+          "direction": "centre"
+        },
+        "dim__lower_third": {
+          "n": 699,
+          "r": -0.156,
+          "lo": -0.2307,
+          "hi": -0.0812,
+          "spearman": -0.1422,
+          "direction": "centre"
+        }
+      },
+      "raw_value": {
+        "harm__horizontal_balance": {
+          "n": 699,
+          "r": -0.1795,
+          "lo": -0.2513,
+          "hi": -0.1062,
+          "spearman": -0.1761
+        },
+        "harm__lip_balance": {
+          "n": 699,
+          "r": -0.1029,
+          "lo": -0.1731,
+          "hi": -0.0294,
+          "spearman": -0.0868
+        },
+        "harm__lower_face_split": {
+          "n": 699,
+          "r": 0.0895,
+          "lo": 0.0235,
+          "hi": 0.1573,
+          "spearman": 0.102
+        },
+        "harm__midface_proportion": {
+          "n": 699,
+          "r": 0.3067,
+          "lo": 0.236,
+          "hi": 0.3727,
+          "spearman": 0.3075
+        },
+        "harm__nose_mouth_eye": {
+          "n": 699,
+          "r": -0.3814,
+          "lo": -0.436,
+          "hi": -0.3255,
+          "spearman": -0.3608
+        },
+        "harm__vertical_balance": {
+          "n": 699,
+          "r": -0.3801,
+          "lo": -0.4405,
+          "hi": -0.3153,
+          "spearman": -0.3634
+        },
+        "dim__lower_third": {
+          "n": 699,
+          "r": -0.2705,
+          "lo": -0.3346,
+          "hi": -0.2023,
+          "spearman": -0.2403
+        }
+      },
+      "linear_percentile_reported": {
+        "harm__horizontal_balance": {
+          "n": 699,
+          "r": -0.1817,
+          "lo": -0.2522,
+          "hi": -0.108,
+          "spearman": -0.1758
+        },
+        "harm__lip_balance": {
+          "n": 699,
+          "r": -0.0956,
+          "lo": -0.1654,
+          "hi": -0.0226,
+          "spearman": -0.0864
+        },
+        "harm__lower_face_split": {
+          "n": 699,
+          "r": 0.1345,
+          "lo": 0.0681,
+          "hi": 0.1999,
+          "spearman": 0.1021
+        },
+        "harm__midface_proportion": {
+          "n": 699,
+          "r": 0.3157,
+          "lo": 0.2511,
+          "hi": 0.3759,
+          "spearman": 0.3083
+        },
+        "harm__nose_mouth_eye": {
+          "n": 699,
+          "r": -0.3974,
+          "lo": -0.4556,
+          "hi": -0.3377,
+          "spearman": -0.3609
+        },
+        "harm__vertical_balance": {
+          "n": 699,
+          "r": -0.3564,
+          "lo": -0.4151,
+          "hi": -0.2937,
+          "spearman": -0.3636
+        },
+        "dim__lower_third": {
+          "n": 699,
+          "r": -0.2758,
+          "lo": -0.3398,
+          "hi": -0.2091,
+          "spearman": -0.2402
+        }
+      },
+      "composite_mean_harmony_score": {
+        "n": 699,
+        "r": 0.1264,
+        "lo": 0.0589,
+        "hi": 0.194,
+        "spearman": 0.1072
+      },
+      "_positive_control": {
+        "note": "dimorphism-related geometry vs rated beauty. If this is also flat, a null on harmony says only that nothing survives this pipeline on this data.",
+        "r": {
+          "n": 699,
+          "r": -0.2705,
+          "lo": -0.3346,
+          "hi": -0.2023,
+          "spearman": -0.2403
+        }
+      }
+    }
+  },
+  "bar": 0.1,
+  "gate_verdicts": {
+    "harm__horizontal_balance": {
+      "outcome": "REFUSED",
+      "failed_in": [
+        "Asian/Female",
+        "Asian/Male",
+        "Caucasian/Female",
+        "Caucasian/Male"
+      ],
+      "worst_lower_ci": -0.1528,
+      "best_r": 0.092,
+      "cohorts": {
+        "Asian/Female": {
+          "r": 0.092,
+          "lo": 0.0446,
+          "hi": 0.1385,
+          "n": 1719,
+          "clears": false
+        },
+        "Asian/Male": {
+          "r": -0.0201,
+          "lo": -0.0676,
+          "hi": 0.0271,
+          "n": 1658,
+          "clears": false
+        },
+        "Caucasian/Female": {
+          "r": -0.0488,
+          "lo": -0.1224,
+          "hi": 0.0263,
+          "n": 667,
+          "clears": false
+        },
+        "Caucasian/Male": {
+          "r": -0.0784,
+          "lo": -0.1528,
+          "hi": -0.0032,
+          "n": 699,
+          "clears": false
+        }
+      }
+    },
+    "harm__lip_balance": {
+      "outcome": "REFUSED",
+      "failed_in": [
+        "Asian/Female",
+        "Asian/Male",
+        "Caucasian/Male"
+      ],
+      "worst_lower_ci": -0.051,
+      "best_r": 0.2162,
+      "cohorts": {
+        "Asian/Female": {
+          "r": -0.0027,
+          "lo": -0.051,
+          "hi": 0.0454,
+          "n": 1719,
+          "clears": false
+        },
+        "Asian/Male": {
+          "r": 0.0186,
+          "lo": -0.0322,
+          "hi": 0.0696,
+          "n": 1658,
+          "clears": false
+        },
+        "Caucasian/Female": {
+          "r": 0.2162,
+          "lo": 0.1446,
+          "hi": 0.2847,
+          "n": 667,
+          "clears": true
+        },
+        "Caucasian/Male": {
+          "r": 0.1065,
+          "lo": 0.0307,
+          "hi": 0.1799,
+          "n": 699,
+          "clears": false
+        }
+      }
+    },
+    "harm__lower_face_split": {
+      "outcome": "REFUSED",
+      "failed_in": [
+        "Asian/Female",
+        "Asian/Male",
+        "Caucasian/Female",
+        "Caucasian/Male"
+      ],
+      "worst_lower_ci": -0.2309,
+      "best_r": 0.0805,
+      "cohorts": {
+        "Asian/Female": {
+          "r": -0.0045,
+          "lo": -0.0524,
+          "hi": 0.043,
+          "n": 1719,
+          "clears": false
+        },
+        "Asian/Male": {
+          "r": 0.0077,
+          "lo": -0.0404,
+          "hi": 0.0564,
+          "n": 1658,
+          "clears": false
+        },
+        "Caucasian/Female": {
+          "r": -0.1573,
+          "lo": -0.2309,
+          "hi": -0.0834,
+          "n": 667,
+          "clears": false
+        },
+        "Caucasian/Male": {
+          "r": 0.0805,
+          "lo": 0.0119,
+          "hi": 0.1509,
+          "n": 699,
+          "clears": false
+        }
+      }
+    },
+    "harm__midface_proportion": {
+      "outcome": "REFUSED",
+      "failed_in": [
+        "Asian/Female",
+        "Asian/Male",
+        "Caucasian/Female",
+        "Caucasian/Male"
+      ],
+      "worst_lower_ci": -0.2817,
+      "best_r": 0.0067,
+      "cohorts": {
+        "Asian/Female": {
+          "r": 0.0067,
+          "lo": -0.0403,
+          "hi": 0.0536,
+          "n": 1719,
+          "clears": false
+        },
+        "Asian/Male": {
+          "r": -0.1933,
+          "lo": -0.2381,
+          "hi": -0.1489,
+          "n": 1658,
+          "clears": false
+        },
+        "Caucasian/Female": {
+          "r": -0.0823,
+          "lo": -0.1573,
+          "hi": -0.0067,
+          "n": 667,
+          "clears": false
+        },
+        "Caucasian/Male": {
+          "r": -0.2133,
+          "lo": -0.2817,
+          "hi": -0.1426,
+          "n": 699,
+          "clears": false
+        }
+      }
+    },
+    "harm__nose_mouth_eye": {
+      "outcome": "passes",
+      "failed_in": [],
+      "worst_lower_ci": 0.2997,
+      "best_r": 0.6138,
+      "cohorts": {
+        "Asian/Female": {
+          "r": 0.3438,
+          "lo": 0.2997,
+          "hi": 0.387,
+          "n": 1719,
+          "clears": true
+        },
+        "Asian/Male": {
+          "r": 0.4078,
+          "lo": 0.3645,
+          "hi": 0.45,
+          "n": 1658,
+          "clears": true
+        },
+        "Caucasian/Female": {
+          "r": 0.6138,
+          "lo": 0.5629,
+          "hi": 0.6622,
+          "n": 667,
+          "clears": true
+        },
+        "Caucasian/Male": {
+          "r": 0.3974,
+          "lo": 0.3377,
+          "hi": 0.4556,
+          "n": 699,
+          "clears": true
+        }
+      }
+    },
+    "harm__vertical_balance": {
+      "outcome": "REFUSED",
+      "failed_in": [
+        "Asian/Female",
+        "Asian/Male",
+        "Caucasian/Female",
+        "Caucasian/Male"
+      ],
+      "worst_lower_ci": -0.5151,
+      "best_r": -0.3154,
+      "cohorts": {
+        "Asian/Female": {
+          "r": -0.426,
+          "lo": -0.4644,
+          "hi": -0.3863,
+          "n": 1719,
+          "clears": false
+        },
+        "Asian/Male": {
+          "r": -0.3876,
+          "lo": -0.4276,
+          "hi": -0.3462,
+          "n": 1658,
+          "clears": false
+        },
+        "Caucasian/Female": {
+          "r": -0.456,
+          "lo": -0.5151,
+          "hi": -0.3948,
+          "n": 667,
+          "clears": false
+        },
+        "Caucasian/Male": {
+          "r": -0.3154,
+          "lo": -0.3819,
+          "hi": -0.2444,
+          "n": 699,
+          "clears": false
+        }
+      }
+    }
+  },
+  "refused_axes": [
+    "harm__horizontal_balance",
+    "harm__lip_balance",
+    "harm__lower_face_split",
+    "harm__midface_proportion",
+    "harm__vertical_balance"
+  ],
+  "surviving_axes": [
+    "harm__nose_mouth_eye"
+  ],
+  "sensitivities": {
+    "primary (Asian->east_asian, band 20_29)": [
+      "harm__nose_mouth_eye"
+    ],
+    "race (Asian->southeast_asian)": [
+      "harm__nose_mouth_eye"
+    ],
+    "age (band 30_39)": [
+      "harm__nose_mouth_eye"
+    ]
+  },
+  "verdict_is_robust_to_the_mapping": true
+}

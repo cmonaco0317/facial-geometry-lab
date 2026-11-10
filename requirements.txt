@@ -1,1 +1,8 @@
+matplotlib==3.11.0
+mediapipe==0.10.35
+numpy==2.4.6
+opencv-contrib-python==4.13.0.92
+scipy==1.17.1
 pydantic==2.14.1
+limits==5.8.0
+cryptography==50.0.2

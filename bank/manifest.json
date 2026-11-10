@@ -1,0 +1,72 @@
+{
+  "_what": "The 84-cell FairFace adult reference bank (20-29 through 70+) \u2014 OBJECTIVE-ACCURACY.md \u00a75. This file is the DECLARATION; build_bank.py is the only thing that reads it, and one command rebuilds every cohort from it. Adult 18-19 is intentionally absent because FairFace's 10-19 label cannot exclude minors.",
+  "_licence": "FairFace is CC BY 4.0 (Karkkainen & Joo, WACV 2021). A copyright permission is not biometric consent; photographs are landmarked and PURGED in the same pass, and no image is retained or redistributed.",
+  "_label_honesty": "FairFace race labels are annotator judgements about photographs. Every surface naming a cohort must say 'faces labelled X', never 'people of ethnicity X'.",
+  "version": 2,
+  "created": "2026-09-07",
+  "updated": "2026-09-18",
+  "source": {
+    "registry_id": "fairface",
+    "dataset": "HuggingFaceM4/FairFace",
+    "config": "1.25",
+    "splits": [
+      "train",
+      "validation"
+    ],
+    "shards": [
+      "train_0.parquet",
+      "train_1.parquet",
+      "train_2.parquet",
+      "train_3.parquet",
+      "validation_0.parquet"
+    ],
+    "image_px": 448
+  },
+  "schema": {
+    "race": [
+      "East Asian",
+      "Indian",
+      "Black",
+      "White",
+      "Middle Eastern",
+      "Latino_Hispanic",
+      "Southeast Asian"
+    ],
+    "age_index_to_band": {
+      "3": "20_29",
+      "4": "30_39",
+      "5": "40_49",
+      "6": "50_59",
+      "7": "60_69",
+      "8": "70_plus"
+    },
+    "gender_index_to_sex": {
+      "0": "m",
+      "1": "f"
+    },
+    "_verified": "read from the dataset's own /first-rows features on 2026-08-23 and re-verified against the parquet on 2026-09-07, never assumed"
+  },
+  "gate": {
+    "pose": "analyze_averageness2.is_frontal \u2014 |yaw|<=14, |pitch|<=16, |roll|<=25",
+    "at_rest": "averageness_band.posture_ok \u2014 the subject's own mouth-posture gate",
+    "resolution": "NOT APPLIED \u2014 see _resolution_disclosure",
+    "_resolution_disclosure": "The subject's gate requires IPD >= 120px (intake.MIN_IPD_PX) and the averageness path >= 280px (averageness_band.MIN_IPD_PX_OUTER). FairFace 448px crops give a median IPD of 66-67px, so ZERO faces from this source can meet it and the shipped 825-face bank never did either (measured 2026-09-07: race_landmarks.npz medians 66.5-69.8px). Applying the resolution leg would empty the bank; dropping it silently would be the mismatch it exists to prevent. It is therefore RECORDED as unmet and carried as claim `bank-resolution-mismatch-is-measured-not-hidden`."
+  },
+  "depth": {
+    "target_faces_per_cohort": 650,
+    "sizing_target": 370,
+    "floor": 150,
+    "_measured": "\u00a75.4 \u2014 bootstrap interval width ~= 192/sqrt(n): 150 -> 15.4pp, 370 -> 10pp, 650 -> 7.5pp",
+    "thin_rule": "below the floor, widen the age band one adjacent adult step and RENAME the cohort to say so; if still below, the report refuses to place a subject on cohort-ranked axes and prints n. Never cross into FairFace 10-19 and never make a silent substitution."
+  },
+  "identity_clustering": {
+    "registry_id": "opencv_sface_2021dec",
+    "model_path": "models/sface/face_recognition_sface_2021dec.onnx",
+    "documented_cosine_threshold": 0.363,
+    "operational_cosine_threshold": 0.6,
+    "perceptual_hash_hamming_threshold": 0,
+    "minimum_identity_retention_ratio": 0.5,
+    "_threshold_disclosure": "The documented pair-verification threshold is recorded as 0.363. On the 2026-09-18 FairFace rebuild, using 0.363 as an all-pairs graph edge caused chance edges to percolate and collapsed 27,218 eligible faces into 89 components. That generation was rejected. The operational all-pairs threshold is therefore the stricter 0.600; a catastrophic-compression guard stops promotion if any base cell retains under half of its eligible rows.",
+    "_rule": "Within each demographic pool, exact-byte and exact-pHash duplicates collapse first; geometrically aligned SFace cosine edges at the disclosed operational threshold then form connected components. The 150 floor counts components, not image rows. Only deterministic cluster ids and representative reduced geometry enter the bank; embeddings are purged."
+  }
+}

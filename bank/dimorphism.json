@@ -1,0 +1,7057 @@
+{
+  "_what": "within-cohort dimorphism AUC with a bootstrapped 95% CI, per feature per cohort.",
+  "_threshold": {
+    "established_ci_low_above": 0.55,
+    "contradicted_ci_high_below": 0.5,
+    "_preregistered": "OBJECTIVE-ACCURACY.md \u00a73.1, 2026-09-04, before any dataset was downloaded"
+  },
+  "bank_instrument_digest": "564237ef83140cf92e7e2cef",
+  "n_bootstrap": 2000,
+  "cohorts": {
+    "black_20_29": {
+      "face_width": {
+        "auc": 0.5402,
+        "ci": [
+          0.5053,
+          0.572
+        ],
+        "p": 0.02247,
+        "verdict": "underpowered",
+        "n_male": 473,
+        "n_female": 626,
+        "cohort_band": [
+          1.8863,
+          2.4091
+        ],
+        "pooled_sd": 0.09751,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6094,
+        "ci": [
+          0.576,
+          0.6405
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 473,
+        "n_female": 626,
+        "cohort_band": [
+          1.6278,
+          1.8212
+        ],
+        "pooled_sd": 0.09197,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.55,
+        "ci": [
+          0.5152,
+          0.5851
+        ],
+        "p": 0.004449,
+        "verdict": "underpowered",
+        "n_male": 473,
+        "n_female": 626,
+        "cohort_band": [
+          0.1772,
+          0.2226
+        ],
+        "pooled_sd": 0.01002,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5601,
+        "ci": [
+          0.5251,
+          0.595
+        ],
+        "p": 0.000641,
+        "verdict": "underpowered",
+        "n_male": 473,
+        "n_female": 626,
+        "cohort_band": [
+          0.8539,
+          1.2913
+        ],
+        "pooled_sd": 0.10727,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6556,
+        "ci": [
+          0.622,
+          0.6888
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 473,
+        "n_female": 626,
+        "cohort_band": [
+          0.712,
+          0.8083
+        ],
+        "pooled_sd": 0.06703,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5534,
+        "ci": [
+          0.5188,
+          0.588
+        ],
+        "p": 0.002391,
+        "verdict": "underpowered",
+        "n_male": 473,
+        "n_female": 626,
+        "cohort_band": [
+          0.1875,
+          0.5794
+        ],
+        "pooled_sd": 0.08508,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5697,
+        "ci": [
+          0.536,
+          0.6064
+        ],
+        "p": 7.4e-05,
+        "verdict": "underpowered",
+        "n_male": 473,
+        "n_female": 626,
+        "cohort_band": [
+          0.1308,
+          0.5337
+        ],
+        "pooled_sd": 0.11979,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "black_30_39": {
+      "face_width": {
+        "auc": 0.5505,
+        "ci": [
+          0.5149,
+          0.5857
+        ],
+        "p": 0.005974,
+        "verdict": "underpowered",
+        "n_male": 456,
+        "n_female": 540,
+        "cohort_band": [
+          1.9658,
+          2.3815
+        ],
+        "pooled_sd": 0.10092,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6108,
+        "ci": [
+          0.5757,
+          0.6462
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 456,
+        "n_female": 540,
+        "cohort_band": [
+          1.6603,
+          1.8493
+        ],
+        "pooled_sd": 0.09572,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5639,
+        "ci": [
+          0.5272,
+          0.5991
+        ],
+        "p": 0.000507,
+        "verdict": "underpowered",
+        "n_male": 456,
+        "n_female": 540,
+        "cohort_band": [
+          0.1799,
+          0.2147
+        ],
+        "pooled_sd": 0.0099,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.4855,
+        "ci": [
+          0.4504,
+          0.5219
+        ],
+        "p": 0.429883,
+        "verdict": "underpowered",
+        "n_male": 456,
+        "n_female": 540,
+        "cohort_band": [
+          -0.1633,
+          2.3454
+        ],
+        "pooled_sd": 0.1079,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6771,
+        "ci": [
+          0.6436,
+          0.7095
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 456,
+        "n_female": 540,
+        "cohort_band": [
+          0.7197,
+          0.8084
+        ],
+        "pooled_sd": 0.06783,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5852,
+        "ci": [
+          0.5507,
+          0.6198
+        ],
+        "p": 4e-06,
+        "verdict": "established",
+        "n_male": 456,
+        "n_female": 540,
+        "cohort_band": [
+          0.2419,
+          0.5024
+        ],
+        "pooled_sd": 0.08947,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5796,
+        "ci": [
+          0.5446,
+          0.6138
+        ],
+        "p": 1.5e-05,
+        "verdict": "underpowered",
+        "n_male": 456,
+        "n_female": 540,
+        "cohort_band": [
+          0.1445,
+          0.518
+        ],
+        "pooled_sd": 0.12712,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "black_40_49": {
+      "face_width": {
+        "auc": 0.6056,
+        "ci": [
+          0.5607,
+          0.6517
+        ],
+        "p": 1.1e-05,
+        "verdict": "established",
+        "n_male": 291,
+        "n_female": 286,
+        "cohort_band": [
+          2.0971,
+          2.2797
+        ],
+        "pooled_sd": 0.0947,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6748,
+        "ci": [
+          0.6322,
+          0.7165
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 291,
+        "n_female": 286,
+        "cohort_band": [
+          1.7182,
+          1.8342
+        ],
+        "pooled_sd": 0.09513,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5844,
+        "ci": [
+          0.5359,
+          0.6324
+        ],
+        "p": 0.000448,
+        "verdict": "underpowered",
+        "n_male": 291,
+        "n_female": 286,
+        "cohort_band": [
+          0.1805,
+          0.2098
+        ],
+        "pooled_sd": 0.01051,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5378,
+        "ci": [
+          0.4915,
+          0.5856
+        ],
+        "p": 0.11571,
+        "verdict": "underpowered",
+        "n_male": 291,
+        "n_female": 286,
+        "cohort_band": [
+          0.653,
+          1.5406
+        ],
+        "pooled_sd": 0.10819,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6507,
+        "ci": [
+          0.6049,
+          0.6939
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 291,
+        "n_female": 286,
+        "cohort_band": [
+          0.7203,
+          0.819
+        ],
+        "pooled_sd": 0.06485,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5664,
+        "ci": [
+          0.5182,
+          0.6131
+        ],
+        "p": 0.005802,
+        "verdict": "underpowered",
+        "n_male": 291,
+        "n_female": 286,
+        "cohort_band": [
+          0.207,
+          0.4896
+        ],
+        "pooled_sd": 0.08387,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5987,
+        "ci": [
+          0.5554,
+          0.6427
+        ],
+        "p": 4.1e-05,
+        "verdict": "established",
+        "n_male": 291,
+        "n_female": 286,
+        "cohort_band": [
+          0.1922,
+          0.49
+        ],
+        "pooled_sd": 0.118,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "black_50_59": {
+      "face_width": {
+        "auc": 0.5154,
+        "ci": [
+          0.4496,
+          0.5836
+        ],
+        "p": 0.651511,
+        "verdict": "underpowered",
+        "n_male": 131,
+        "n_female": 159,
+        "cohort_band": [
+          1.3219,
+          3.0555
+        ],
+        "pooled_sd": 0.09841,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.639,
+        "ci": [
+          0.5768,
+          0.7013
+        ],
+        "p": 4.6e-05,
+        "verdict": "established",
+        "n_male": 131,
+        "n_female": 159,
+        "cohort_band": [
+          1.7046,
+          1.857
+        ],
+        "pooled_sd": 0.09195,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.4885,
+        "ci": [
+          0.4188,
+          0.5549
+        ],
+        "p": 0.737717,
+        "verdict": "underpowered",
+        "n_male": 131,
+        "n_female": 159,
+        "cohort_band": [
+          0.1464,
+          0.2415
+        ],
+        "pooled_sd": 0.00938,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.4777,
+        "ci": [
+          0.4149,
+          0.5446
+        ],
+        "p": 0.513839,
+        "verdict": "underpowered",
+        "n_male": 131,
+        "n_female": 159,
+        "cohort_band": [
+          0.6404,
+          1.5522
+        ],
+        "pooled_sd": 0.10428,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6728,
+        "ci": [
+          0.611,
+          0.7322
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 131,
+        "n_female": 159,
+        "cohort_band": [
+          0.7411,
+          0.8225
+        ],
+        "pooled_sd": 0.06213,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.643,
+        "ci": [
+          0.5779,
+          0.7084
+        ],
+        "p": 2.8e-05,
+        "verdict": "established",
+        "n_male": 131,
+        "n_female": 159,
+        "cohort_band": [
+          0.2516,
+          0.384
+        ],
+        "pooled_sd": 0.08151,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5615,
+        "ci": [
+          0.4955,
+          0.628
+        ],
+        "p": 0.071699,
+        "verdict": "underpowered",
+        "n_male": 131,
+        "n_female": 159,
+        "cohort_band": [
+          0.081,
+          0.5808
+        ],
+        "pooled_sd": 0.11839,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "black_50_59_to_60_69": {
+      "face_width": {
+        "auc": 0.5165,
+        "ci": [
+          0.4611,
+          0.5768
+        ],
+        "p": 0.575604,
+        "verdict": "underpowered",
+        "n_male": 178,
+        "n_female": 211,
+        "cohort_band": [
+          1.5054,
+          2.868
+        ],
+        "pooled_sd": 0.09718,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6161,
+        "ci": [
+          0.5611,
+          0.6718
+        ],
+        "p": 8e-05,
+        "verdict": "established",
+        "n_male": 178,
+        "n_female": 211,
+        "cohort_band": [
+          1.684,
+          1.8695
+        ],
+        "pooled_sd": 0.09187,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.4724,
+        "ci": [
+          0.4122,
+          0.5324
+        ],
+        "p": 0.349094,
+        "verdict": "underpowered",
+        "n_male": 178,
+        "n_female": 211,
+        "cohort_band": [
+          0.167,
+          0.2204
+        ],
+        "pooled_sd": 0.00971,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.4924,
+        "ci": [
+          0.4333,
+          0.5509
+        ],
+        "p": 0.796787,
+        "verdict": "underpowered",
+        "n_male": 178,
+        "n_female": 211,
+        "cohort_band": [
+          0.4,
+          1.778
+        ],
+        "pooled_sd": 0.10862,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6805,
+        "ci": [
+          0.6261,
+          0.7307
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 178,
+        "n_female": 211,
+        "cohort_band": [
+          0.7451,
+          0.8247
+        ],
+        "pooled_sd": 0.06281,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6219,
+        "ci": [
+          0.5674,
+          0.6769
+        ],
+        "p": 3.4e-05,
+        "verdict": "established",
+        "n_male": 178,
+        "n_female": 211,
+        "cohort_band": [
+          0.2296,
+          0.4003
+        ],
+        "pooled_sd": 0.08301,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5764,
+        "ci": [
+          0.5195,
+          0.6335
+        ],
+        "p": 0.009447,
+        "verdict": "underpowered",
+        "n_male": 178,
+        "n_female": 211,
+        "cohort_band": [
+          0.134,
+          0.5157
+        ],
+        "pooled_sd": 0.11584,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "black_60_69": {
+      "face_width": {
+        "auc": 0.5167,
+        "ci": [
+          0.4063,
+          0.6293
+        ],
+        "p": 0.772186,
+        "verdict": "underpowered",
+        "n_male": 50,
+        "n_female": 54,
+        "cohort_band": [
+          1.6931,
+          2.6699
+        ],
+        "pooled_sd": 0.09389,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5581,
+        "ci": [
+          0.4404,
+          0.6682
+        ],
+        "p": 0.308588,
+        "verdict": "underpowered",
+        "n_male": 50,
+        "n_female": 54,
+        "cohort_band": [
+          1.5843,
+          1.9485
+        ],
+        "pooled_sd": 0.0927,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.4293,
+        "ci": [
+          0.3222,
+          0.5463
+        ],
+        "p": 0.2152,
+        "verdict": "underpowered",
+        "n_male": 50,
+        "n_female": 54,
+        "cohort_band": [
+          0.1794,
+          0.2054
+        ],
+        "pooled_sd": 0.01065,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.533,
+        "ci": [
+          0.4222,
+          0.6452
+        ],
+        "p": 0.564763,
+        "verdict": "underpowered",
+        "n_male": 50,
+        "n_female": 54,
+        "cohort_band": [
+          -1.1752,
+          3.3136
+        ],
+        "pooled_sd": 0.11817,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6926,
+        "ci": [
+          0.5848,
+          0.8008
+        ],
+        "p": 0.000725,
+        "verdict": "established",
+        "n_male": 50,
+        "n_female": 54,
+        "cohort_band": [
+          0.7579,
+          0.8334
+        ],
+        "pooled_sd": 0.06397,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5544,
+        "ci": [
+          0.4411,
+          0.6726
+        ],
+        "p": 0.340525,
+        "verdict": "underpowered",
+        "n_male": 50,
+        "n_female": 54,
+        "cohort_band": [
+          -0.129,
+          0.7416
+        ],
+        "pooled_sd": 0.08588,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.6137,
+        "ci": [
+          0.5037,
+          0.7222
+        ],
+        "p": 0.046142,
+        "verdict": "underpowered",
+        "n_male": 50,
+        "n_female": 54,
+        "cohort_band": [
+          0.1848,
+          0.4494
+        ],
+        "pooled_sd": 0.11603,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "black_60_69_to_70_plus": {
+      "face_width": {
+        "auc": 0.5415,
+        "ci": [
+          0.441,
+          0.6353
+        ],
+        "p": 0.398667,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 75,
+        "cohort_band": [
+          1.9768,
+          2.3822
+        ],
+        "pooled_sd": 0.09892,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5518,
+        "ci": [
+          0.4537,
+          0.6453
+        ],
+        "p": 0.292379,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 75,
+        "cohort_band": [
+          1.5642,
+          1.9674
+        ],
+        "pooled_sd": 0.09607,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.4609,
+        "ci": [
+          0.3598,
+          0.5623
+        ],
+        "p": 0.427273,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 75,
+        "cohort_band": [
+          0.1636,
+          0.2231
+        ],
+        "pooled_sd": 0.01121,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5077,
+        "ci": [
+          0.4125,
+          0.6041
+        ],
+        "p": 0.877141,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 75,
+        "cohort_band": [
+          0.283,
+          1.8526
+        ],
+        "pooled_sd": 0.11586,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6486,
+        "ci": [
+          0.5573,
+          0.7346
+        ],
+        "p": 0.002486,
+        "verdict": "established",
+        "n_male": 65,
+        "n_female": 75,
+        "cohort_band": [
+          0.7455,
+          0.8449
+        ],
+        "pooled_sd": 0.06541,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5327,
+        "ci": [
+          0.4367,
+          0.6285
+        ],
+        "p": 0.506472,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 75,
+        "cohort_band": [
+          -0.543,
+          1.1556
+        ],
+        "pooled_sd": 0.09384,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.6443,
+        "ci": [
+          0.5506,
+          0.7335
+        ],
+        "p": 0.003311,
+        "verdict": "established",
+        "n_male": 65,
+        "n_female": 75,
+        "cohort_band": [
+          0.2102,
+          0.4171
+        ],
+        "pooled_sd": 0.11774,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "black_70_plus": {
+      "face_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 15,
+        "n_female": 24
+      },
+      "jaw_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 15,
+        "n_female": 24
+      },
+      "eye_size": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 15,
+        "n_female": 24
+      },
+      "lower_third": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 15,
+        "n_female": 24
+      },
+      "nose_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 15,
+        "n_female": 24
+      },
+      "lip_height": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 15,
+        "n_female": 24
+      },
+      "brow_gap": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 15,
+        "n_female": 24
+      }
+    },
+    "east_asian_20_29": {
+      "face_width": {
+        "auc": 0.6198,
+        "ci": [
+          0.5925,
+          0.6479
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 620,
+        "n_female": 983,
+        "cohort_band": [
+          2.1475,
+          2.3195
+        ],
+        "pooled_sd": 0.09001,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6138,
+        "ci": [
+          0.5858,
+          0.6425
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 620,
+        "n_female": 983,
+        "cohort_band": [
+          1.6985,
+          1.8843
+        ],
+        "pooled_sd": 0.08976,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5813,
+        "ci": [
+          0.5528,
+          0.6104
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 620,
+        "n_female": 983,
+        "cohort_band": [
+          0.1721,
+          0.2009
+        ],
+        "pooled_sd": 0.0102,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6409,
+        "ci": [
+          0.6126,
+          0.6675
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 620,
+        "n_female": 983,
+        "cohort_band": [
+          0.9799,
+          1.1599
+        ],
+        "pooled_sd": 0.10383,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.659,
+        "ci": [
+          0.6318,
+          0.6853
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 620,
+        "n_female": 983,
+        "cohort_band": [
+          0.7151,
+          0.8034
+        ],
+        "pooled_sd": 0.06302,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.576,
+        "ci": [
+          0.5456,
+          0.6049
+        ],
+        "p": 0.0,
+        "verdict": "underpowered",
+        "n_male": 620,
+        "n_female": 983,
+        "cohort_band": [
+          0.2164,
+          0.4826
+        ],
+        "pooled_sd": 0.0853,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.3904,
+        "ci": [
+          0.3621,
+          0.4179
+        ],
+        "p": 0.0,
+        "verdict": "contradicted",
+        "n_male": 620,
+        "n_female": 983,
+        "cohort_band": [
+          0.2486,
+          0.4865
+        ],
+        "pooled_sd": 0.10989,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "east_asian_30_39": {
+      "face_width": {
+        "auc": 0.6353,
+        "ci": [
+          0.5974,
+          0.6695
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 436,
+        "n_female": 455,
+        "cohort_band": [
+          2.1805,
+          2.3405
+        ],
+        "pooled_sd": 0.09148,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6349,
+        "ci": [
+          0.5988,
+          0.6717
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 436,
+        "n_female": 455,
+        "cohort_band": [
+          1.7404,
+          1.9042
+        ],
+        "pooled_sd": 0.0928,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5828,
+        "ci": [
+          0.5444,
+          0.6191
+        ],
+        "p": 1.9e-05,
+        "verdict": "underpowered",
+        "n_male": 436,
+        "n_female": 455,
+        "cohort_band": [
+          0.1693,
+          0.1987
+        ],
+        "pooled_sd": 0.01033,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.603,
+        "ci": [
+          0.5665,
+          0.64
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 436,
+        "n_female": 455,
+        "cohort_band": [
+          0.962,
+          1.1968
+        ],
+        "pooled_sd": 0.1004,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.705,
+        "ci": [
+          0.6706,
+          0.7383
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 436,
+        "n_female": 455,
+        "cohort_band": [
+          0.728,
+          0.7954
+        ],
+        "pooled_sd": 0.06156,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6244,
+        "ci": [
+          0.5862,
+          0.6612
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 436,
+        "n_female": 455,
+        "cohort_band": [
+          0.2573,
+          0.4281
+        ],
+        "pooled_sd": 0.08383,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.3961,
+        "ci": [
+          0.3589,
+          0.4339
+        ],
+        "p": 0.0,
+        "verdict": "contradicted",
+        "n_male": 436,
+        "n_female": 455,
+        "cohort_band": [
+          0.2482,
+          0.5023
+        ],
+        "pooled_sd": 0.10622,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "east_asian_40_49": {
+      "face_width": {
+        "auc": 0.5967,
+        "ci": [
+          0.5349,
+          0.658
+        ],
+        "p": 0.001984,
+        "verdict": "underpowered",
+        "n_male": 204,
+        "n_female": 147,
+        "cohort_band": [
+          2.163,
+          2.4033
+        ],
+        "pooled_sd": 0.09034,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6138,
+        "ci": [
+          0.5567,
+          0.6711
+        ],
+        "p": 0.000275,
+        "verdict": "established",
+        "n_male": 204,
+        "n_female": 147,
+        "cohort_band": [
+          1.7475,
+          1.9382
+        ],
+        "pooled_sd": 0.09099,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.543,
+        "ci": [
+          0.4843,
+          0.6061
+        ],
+        "p": 0.169829,
+        "verdict": "underpowered",
+        "n_male": 204,
+        "n_female": 147,
+        "cohort_band": [
+          0.1602,
+          0.2043
+        ],
+        "pooled_sd": 0.0102,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5583,
+        "ci": [
+          0.4962,
+          0.6224
+        ],
+        "p": 0.062282,
+        "verdict": "underpowered",
+        "n_male": 204,
+        "n_female": 147,
+        "cohort_band": [
+          0.8457,
+          1.3224
+        ],
+        "pooled_sd": 0.1005,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6765,
+        "ci": [
+          0.6189,
+          0.7319
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 204,
+        "n_female": 147,
+        "cohort_band": [
+          0.7245,
+          0.8015
+        ],
+        "pooled_sd": 0.06024,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6146,
+        "ci": [
+          0.5549,
+          0.6739
+        ],
+        "p": 0.000249,
+        "verdict": "established",
+        "n_male": 204,
+        "n_female": 147,
+        "cohort_band": [
+          0.2492,
+          0.3985
+        ],
+        "pooled_sd": 0.07923,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.3629,
+        "ci": [
+          0.305,
+          0.4251
+        ],
+        "p": 1.2e-05,
+        "verdict": "contradicted",
+        "n_male": 204,
+        "n_female": 147,
+        "cohort_band": [
+          0.3009,
+          0.5156
+        ],
+        "pooled_sd": 0.11362,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "east_asian_40_49_to_50_59": {
+      "face_width": {
+        "auc": 0.5795,
+        "ci": [
+          0.5288,
+          0.6286
+        ],
+        "p": 0.001555,
+        "verdict": "underpowered",
+        "n_male": 323,
+        "n_female": 224,
+        "cohort_band": [
+          2.1478,
+          2.4239
+        ],
+        "pooled_sd": 0.09158,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6006,
+        "ci": [
+          0.553,
+          0.648
+        ],
+        "p": 6.3e-05,
+        "verdict": "established",
+        "n_male": 323,
+        "n_female": 224,
+        "cohort_band": [
+          1.7367,
+          1.9505
+        ],
+        "pooled_sd": 0.09129,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5344,
+        "ci": [
+          0.4855,
+          0.5845
+        ],
+        "p": 0.171162,
+        "verdict": "underpowered",
+        "n_male": 323,
+        "n_female": 224,
+        "cohort_band": [
+          0.1556,
+          0.2088
+        ],
+        "pooled_sd": 0.01011,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5721,
+        "ci": [
+          0.523,
+          0.6226
+        ],
+        "p": 0.004114,
+        "verdict": "underpowered",
+        "n_male": 323,
+        "n_female": 224,
+        "cohort_band": [
+          0.9188,
+          1.2523
+        ],
+        "pooled_sd": 0.0973,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6484,
+        "ci": [
+          0.6034,
+          0.6944
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 323,
+        "n_female": 224,
+        "cohort_band": [
+          0.7218,
+          0.8133
+        ],
+        "pooled_sd": 0.06032,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6067,
+        "ci": [
+          0.5583,
+          0.6543
+        ],
+        "p": 2.2e-05,
+        "verdict": "established",
+        "n_male": 323,
+        "n_female": 224,
+        "cohort_band": [
+          0.2412,
+          0.4005
+        ],
+        "pooled_sd": 0.07898,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.3623,
+        "ci": [
+          0.3177,
+          0.4096
+        ],
+        "p": 0.0,
+        "verdict": "contradicted",
+        "n_male": 323,
+        "n_female": 224,
+        "cohort_band": [
+          0.3017,
+          0.5173
+        ],
+        "pooled_sd": 0.11397,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "east_asian_50_59": {
+      "face_width": {
+        "auc": 0.5621,
+        "ci": [
+          0.4817,
+          0.6413
+        ],
+        "p": 0.126796,
+        "verdict": "underpowered",
+        "n_male": 133,
+        "n_female": 82,
+        "cohort_band": [
+          2.1312,
+          2.4583
+        ],
+        "pooled_sd": 0.0957,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5822,
+        "ci": [
+          0.5069,
+          0.6562
+        ],
+        "p": 0.043032,
+        "verdict": "underpowered",
+        "n_male": 133,
+        "n_female": 82,
+        "cohort_band": [
+          1.7127,
+          1.9873
+        ],
+        "pooled_sd": 0.09558,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5371,
+        "ci": [
+          0.4605,
+          0.6169
+        ],
+        "p": 0.361266,
+        "verdict": "underpowered",
+        "n_male": 133,
+        "n_female": 82,
+        "cohort_band": [
+          0.1526,
+          0.2106
+        ],
+        "pooled_sd": 0.01024,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5863,
+        "ci": [
+          0.5084,
+          0.664
+        ],
+        "p": 0.033779,
+        "verdict": "underpowered",
+        "n_male": 133,
+        "n_female": 82,
+        "cohort_band": [
+          0.9709,
+          1.2071
+        ],
+        "pooled_sd": 0.09353,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5955,
+        "ci": [
+          0.5163,
+          0.6717
+        ],
+        "p": 0.01874,
+        "verdict": "underpowered",
+        "n_male": 133,
+        "n_female": 82,
+        "cohort_band": [
+          0.7046,
+          0.8474
+        ],
+        "pooled_sd": 0.05928,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5839,
+        "ci": [
+          0.505,
+          0.66
+        ],
+        "p": 0.039015,
+        "verdict": "underpowered",
+        "n_male": 133,
+        "n_female": 82,
+        "cohort_band": [
+          0.2116,
+          0.4151
+        ],
+        "pooled_sd": 0.07851,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.3597,
+        "ci": [
+          0.2844,
+          0.4364
+        ],
+        "p": 0.000556,
+        "verdict": "contradicted",
+        "n_male": 133,
+        "n_female": 82,
+        "cohort_band": [
+          0.3056,
+          0.5188
+        ],
+        "pooled_sd": 0.11392,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "east_asian_50_59_to_60_69": {
+      "face_width": {
+        "auc": 0.5788,
+        "ci": [
+          0.5148,
+          0.6451
+        ],
+        "p": 0.018529,
+        "verdict": "underpowered",
+        "n_male": 190,
+        "n_female": 123,
+        "cohort_band": [
+          2.1396,
+          2.4407
+        ],
+        "pooled_sd": 0.09598,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5833,
+        "ci": [
+          0.5216,
+          0.6462
+        ],
+        "p": 0.012805,
+        "verdict": "underpowered",
+        "n_male": 190,
+        "n_female": 123,
+        "cohort_band": [
+          1.7191,
+          1.9774
+        ],
+        "pooled_sd": 0.09638,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5445,
+        "ci": [
+          0.4769,
+          0.6119
+        ],
+        "p": 0.183751,
+        "verdict": "underpowered",
+        "n_male": 190,
+        "n_female": 123,
+        "cohort_band": [
+          0.149,
+          0.2143
+        ],
+        "pooled_sd": 0.01091,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5552,
+        "ci": [
+          0.4858,
+          0.6187
+        ],
+        "p": 0.098888,
+        "verdict": "underpowered",
+        "n_male": 190,
+        "n_female": 123,
+        "cohort_band": [
+          0.9225,
+          1.2622
+        ],
+        "pooled_sd": 0.09718,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5811,
+        "ci": [
+          0.5165,
+          0.648
+        ],
+        "p": 0.015408,
+        "verdict": "underpowered",
+        "n_male": 190,
+        "n_female": 123,
+        "cohort_band": [
+          0.6958,
+          0.8649
+        ],
+        "pooled_sd": 0.06212,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5792,
+        "ci": [
+          0.5154,
+          0.6448
+        ],
+        "p": 0.017963,
+        "verdict": "underpowered",
+        "n_male": 190,
+        "n_female": 123,
+        "cohort_band": [
+          0.1909,
+          0.4238
+        ],
+        "pooled_sd": 0.08012,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.3945,
+        "ci": [
+          0.3296,
+          0.4606
+        ],
+        "p": 0.001617,
+        "verdict": "contradicted",
+        "n_male": 190,
+        "n_female": 123,
+        "cohort_band": [
+          0.2675,
+          0.5828
+        ],
+        "pooled_sd": 0.11752,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "east_asian_60_69": {
+      "face_width": {
+        "auc": 0.6125,
+        "ci": [
+          0.5033,
+          0.7205
+        ],
+        "p": 0.05054,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 42,
+        "cohort_band": [
+          2.1478,
+          2.42
+        ],
+        "pooled_sd": 0.0952,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.578,
+        "ci": [
+          0.4641,
+          0.693
+        ],
+        "p": 0.175202,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 42,
+        "cohort_band": [
+          1.6973,
+          1.9991
+        ],
+        "pooled_sd": 0.10077,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5418,
+        "ci": [
+          0.4304,
+          0.6597
+        ],
+        "p": 0.46901,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 42,
+        "cohort_band": [
+          0.119,
+          0.2442
+        ],
+        "pooled_sd": 0.01236,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.4813,
+        "ci": [
+          0.3674,
+          0.5982
+        ],
+        "p": 0.747322,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 42,
+        "cohort_band": [
+          -18.2447,
+          20.4482
+        ],
+        "pooled_sd": 0.10644,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5557,
+        "ci": [
+          0.4425,
+          0.6714
+        ],
+        "p": 0.333784,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 42,
+        "cohort_band": [
+          0.6769,
+          0.8991
+        ],
+        "pooled_sd": 0.06644,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.578,
+        "ci": [
+          0.4571,
+          0.6901
+        ],
+        "p": 0.175202,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 42,
+        "cohort_band": [
+          0.1581,
+          0.4333
+        ],
+        "pooled_sd": 0.08175,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.4458,
+        "ci": [
+          0.3333,
+          0.5648
+        ],
+        "p": 0.346705,
+        "verdict": "underpowered",
+        "n_male": 65,
+        "n_female": 42,
+        "cohort_band": [
+          0.0979,
+          0.81
+        ],
+        "pooled_sd": 0.12371,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "east_asian_60_69_to_70_plus": {
+      "face_width": {
+        "auc": 0.5659,
+        "ci": [
+          0.4712,
+          0.6621
+        ],
+        "p": 0.182159,
+        "verdict": "underpowered",
+        "n_male": 85,
+        "n_female": 58,
+        "cohort_band": [
+          2.0273,
+          2.5445
+        ],
+        "pooled_sd": 0.09409,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5164,
+        "ci": [
+          0.4185,
+          0.6097
+        ],
+        "p": 0.740671,
+        "verdict": "underpowered",
+        "n_male": 85,
+        "n_female": 58,
+        "cohort_band": [
+          1.365,
+          2.3315
+        ],
+        "pooled_sd": 0.1011,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.4576,
+        "ci": [
+          0.3612,
+          0.5595
+        ],
+        "p": 0.391324,
+        "verdict": "underpowered",
+        "n_male": 85,
+        "n_female": 58,
+        "cohort_band": [
+          0.1505,
+          0.2115
+        ],
+        "pooled_sd": 0.01195,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.4611,
+        "ci": [
+          0.3604,
+          0.5574
+        ],
+        "p": 0.431091,
+        "verdict": "underpowered",
+        "n_male": 85,
+        "n_female": 58,
+        "cohort_band": [
+          0.5456,
+          1.6205
+        ],
+        "pooled_sd": 0.10957,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5631,
+        "ci": [
+          0.4629,
+          0.655
+        ],
+        "p": 0.201751,
+        "verdict": "underpowered",
+        "n_male": 85,
+        "n_female": 58,
+        "cohort_band": [
+          0.6804,
+          0.8962
+        ],
+        "pooled_sd": 0.06636,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5986,
+        "ci": [
+          0.4988,
+          0.6915
+        ],
+        "p": 0.045927,
+        "verdict": "underpowered",
+        "n_male": 85,
+        "n_female": 58,
+        "cohort_band": [
+          0.1861,
+          0.3897
+        ],
+        "pooled_sd": 0.08057,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.4765,
+        "ci": [
+          0.3791,
+          0.5712
+        ],
+        "p": 0.634885,
+        "verdict": "underpowered",
+        "n_male": 85,
+        "n_female": 58,
+        "cohort_band": [
+          -0.4872,
+          1.3663
+        ],
+        "pooled_sd": 0.12898,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "east_asian_70_plus": {
+      "face_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 21,
+        "n_female": 18
+      },
+      "jaw_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 21,
+        "n_female": 18
+      },
+      "eye_size": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 21,
+        "n_female": 18
+      },
+      "lower_third": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 21,
+        "n_female": 18
+      },
+      "nose_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 21,
+        "n_female": 18
+      },
+      "lip_height": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 21,
+        "n_female": 18
+      },
+      "brow_gap": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 21,
+        "n_female": 18
+      }
+    },
+    "indian_20_29": {
+      "face_width": {
+        "auc": 0.5475,
+        "ci": [
+          0.5123,
+          0.5809
+        ],
+        "p": 0.007815,
+        "verdict": "underpowered",
+        "n_male": 487,
+        "n_female": 564,
+        "cohort_band": [
+          1.9989,
+          2.4026
+        ],
+        "pooled_sd": 0.08997,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.627,
+        "ci": [
+          0.5927,
+          0.6613
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 487,
+        "n_female": 564,
+        "cohort_band": [
+          1.6972,
+          1.8509
+        ],
+        "pooled_sd": 0.08649,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5773,
+        "ci": [
+          0.5443,
+          0.6109
+        ],
+        "p": 1.5e-05,
+        "verdict": "underpowered",
+        "n_male": 487,
+        "n_female": 564,
+        "cohort_band": [
+          0.1852,
+          0.2133
+        ],
+        "pooled_sd": 0.01017,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5861,
+        "ci": [
+          0.5517,
+          0.6201
+        ],
+        "p": 1e-06,
+        "verdict": "established",
+        "n_male": 487,
+        "n_female": 564,
+        "cohort_band": [
+          0.9181,
+          1.1679
+        ],
+        "pooled_sd": 0.09491,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6402,
+        "ci": [
+          0.6082,
+          0.6742
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 487,
+        "n_female": 564,
+        "cohort_band": [
+          0.7014,
+          0.807
+        ],
+        "pooled_sd": 0.06594,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5948,
+        "ci": [
+          0.5603,
+          0.6288
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 487,
+        "n_female": 564,
+        "cohort_band": [
+          0.2274,
+          0.4377
+        ],
+        "pooled_sd": 0.07561,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5649,
+        "ci": [
+          0.5314,
+          0.6003
+        ],
+        "p": 0.000281,
+        "verdict": "underpowered",
+        "n_male": 487,
+        "n_female": 564,
+        "cohort_band": [
+          0.0891,
+          0.4547
+        ],
+        "pooled_sd": 0.12053,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "indian_30_39": {
+      "face_width": {
+        "auc": 0.6612,
+        "ci": [
+          0.6274,
+          0.6952
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 551,
+        "n_female": 436,
+        "cohort_band": [
+          2.164,
+          2.2888
+        ],
+        "pooled_sd": 0.09004,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.7269,
+        "ci": [
+          0.6948,
+          0.7579
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 551,
+        "n_female": 436,
+        "cohort_band": [
+          1.7607,
+          1.8475
+        ],
+        "pooled_sd": 0.08815,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6251,
+        "ci": [
+          0.5892,
+          0.6603
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 551,
+        "n_female": 436,
+        "cohort_band": [
+          0.1874,
+          0.2051
+        ],
+        "pooled_sd": 0.0097,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6232,
+        "ci": [
+          0.5885,
+          0.6571
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 551,
+        "n_female": 436,
+        "cohort_band": [
+          0.9644,
+          1.1456
+        ],
+        "pooled_sd": 0.09413,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6101,
+        "ci": [
+          0.5762,
+          0.6438
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 551,
+        "n_female": 436,
+        "cohort_band": [
+          0.6926,
+          0.8232
+        ],
+        "pooled_sd": 0.06525,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6139,
+        "ci": [
+          0.5784,
+          0.6487
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 551,
+        "n_female": 436,
+        "cohort_band": [
+          0.2346,
+          0.4003
+        ],
+        "pooled_sd": 0.07732,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5699,
+        "ci": [
+          0.5333,
+          0.6047
+        ],
+        "p": 0.000159,
+        "verdict": "underpowered",
+        "n_male": 551,
+        "n_female": 436,
+        "cohort_band": [
+          0.0895,
+          0.4458
+        ],
+        "pooled_sd": 0.1222,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "indian_40_49": {
+      "face_width": {
+        "auc": 0.585,
+        "ci": [
+          0.5421,
+          0.6272
+        ],
+        "p": 0.000191,
+        "verdict": "underpowered",
+        "n_male": 388,
+        "n_female": 275,
+        "cohort_band": [
+          2.0947,
+          2.3718
+        ],
+        "pooled_sd": 0.09806,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.663,
+        "ci": [
+          0.6215,
+          0.7059
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 388,
+        "n_female": 275,
+        "cohort_band": [
+          1.7468,
+          1.8819
+        ],
+        "pooled_sd": 0.09257,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5793,
+        "ci": [
+          0.5351,
+          0.6241
+        ],
+        "p": 0.000498,
+        "verdict": "underpowered",
+        "n_male": 388,
+        "n_female": 275,
+        "cohort_band": [
+          0.1791,
+          0.2084
+        ],
+        "pooled_sd": 0.01015,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5966,
+        "ci": [
+          0.5535,
+          0.6396
+        ],
+        "p": 2.2e-05,
+        "verdict": "established",
+        "n_male": 388,
+        "n_female": 275,
+        "cohort_band": [
+          0.9377,
+          1.1782
+        ],
+        "pooled_sd": 0.09568,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6142,
+        "ci": [
+          0.5681,
+          0.6563
+        ],
+        "p": 1e-06,
+        "verdict": "established",
+        "n_male": 388,
+        "n_female": 275,
+        "cohort_band": [
+          0.7083,
+          0.8384
+        ],
+        "pooled_sd": 0.06654,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6126,
+        "ci": [
+          0.5714,
+          0.6564
+        ],
+        "p": 1e-06,
+        "verdict": "established",
+        "n_male": 388,
+        "n_female": 275,
+        "cohort_band": [
+          0.2219,
+          0.3767
+        ],
+        "pooled_sd": 0.07542,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5232,
+        "ci": [
+          0.4785,
+          0.5666
+        ],
+        "p": 0.3083,
+        "verdict": "underpowered",
+        "n_male": 388,
+        "n_female": 275,
+        "cohort_band": [
+          -0.3089,
+          0.8424
+        ],
+        "pooled_sd": 0.12346,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "indian_50_59": {
+      "face_width": {
+        "auc": 0.6103,
+        "ci": [
+          0.5527,
+          0.666
+        ],
+        "p": 0.000211,
+        "verdict": "established",
+        "n_male": 251,
+        "n_female": 151,
+        "cohort_band": [
+          2.1503,
+          2.3354
+        ],
+        "pooled_sd": 0.09598,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6787,
+        "ci": [
+          0.6204,
+          0.7312
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 251,
+        "n_female": 151,
+        "cohort_band": [
+          1.7677,
+          1.8786
+        ],
+        "pooled_sd": 0.09197,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.599,
+        "ci": [
+          0.5402,
+          0.6539
+        ],
+        "p": 0.000888,
+        "verdict": "underpowered",
+        "n_male": 251,
+        "n_female": 151,
+        "cohort_band": [
+          0.1821,
+          0.2023
+        ],
+        "pooled_sd": 0.0099,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6277,
+        "ci": [
+          0.5744,
+          0.6826
+        ],
+        "p": 1.8e-05,
+        "verdict": "established",
+        "n_male": 251,
+        "n_female": 151,
+        "cohort_band": [
+          0.9681,
+          1.1442
+        ],
+        "pooled_sd": 0.09314,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5709,
+        "ci": [
+          0.5114,
+          0.6274
+        ],
+        "p": 0.017235,
+        "verdict": "underpowered",
+        "n_male": 251,
+        "n_female": 151,
+        "cohort_band": [
+          0.6854,
+          0.8747
+        ],
+        "pooled_sd": 0.06515,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6316,
+        "ci": [
+          0.5729,
+          0.6842
+        ],
+        "p": 1e-05,
+        "verdict": "established",
+        "n_male": 251,
+        "n_female": 151,
+        "cohort_band": [
+          0.2213,
+          0.3439
+        ],
+        "pooled_sd": 0.06873,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.542,
+        "ci": [
+          0.4816,
+          0.6005
+        ],
+        "p": 0.158479,
+        "verdict": "underpowered",
+        "n_male": 251,
+        "n_female": 151,
+        "cohort_band": [
+          -0.0759,
+          0.6273
+        ],
+        "pooled_sd": 0.11984,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "indian_50_59_to_60_69": {
+      "face_width": {
+        "auc": 0.616,
+        "ci": [
+          0.5684,
+          0.6625
+        ],
+        "p": 2e-06,
+        "verdict": "established",
+        "n_male": 341,
+        "n_female": 237,
+        "cohort_band": [
+          2.142,
+          2.3304
+        ],
+        "pooled_sd": 0.09725,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6752,
+        "ci": [
+          0.6289,
+          0.719
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 341,
+        "n_female": 237,
+        "cohort_band": [
+          1.7606,
+          1.8786
+        ],
+        "pooled_sd": 0.09421,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6026,
+        "ci": [
+          0.5536,
+          0.6489
+        ],
+        "p": 2.7e-05,
+        "verdict": "established",
+        "n_male": 341,
+        "n_female": 237,
+        "cohort_band": [
+          0.1817,
+          0.2022
+        ],
+        "pooled_sd": 0.00987,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6036,
+        "ci": [
+          0.5561,
+          0.6488
+        ],
+        "p": 2.2e-05,
+        "verdict": "established",
+        "n_male": 341,
+        "n_female": 237,
+        "cohort_band": [
+          0.9365,
+          1.1664
+        ],
+        "pooled_sd": 0.09648,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5953,
+        "ci": [
+          0.5484,
+          0.6427
+        ],
+        "p": 9.6e-05,
+        "verdict": "underpowered",
+        "n_male": 341,
+        "n_female": 237,
+        "cohort_band": [
+          0.7108,
+          0.8602
+        ],
+        "pooled_sd": 0.06604,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6287,
+        "ci": [
+          0.5803,
+          0.6763
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 341,
+        "n_female": 237,
+        "cohort_band": [
+          0.216,
+          0.3415
+        ],
+        "pooled_sd": 0.07048,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5478,
+        "ci": [
+          0.5014,
+          0.5949
+        ],
+        "p": 0.050436,
+        "verdict": "underpowered",
+        "n_male": 341,
+        "n_female": 237,
+        "cohort_band": [
+          -0.0869,
+          0.6431
+        ],
+        "pooled_sd": 0.12294,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "indian_60_69": {
+      "face_width": {
+        "auc": 0.6096,
+        "ci": [
+          0.5315,
+          0.6863
+        ],
+        "p": 0.008396,
+        "verdict": "underpowered",
+        "n_male": 105,
+        "n_female": 90,
+        "cohort_band": [
+          2.1083,
+          2.3355
+        ],
+        "pooled_sd": 0.09925,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6608,
+        "ci": [
+          0.5823,
+          0.7311
+        ],
+        "p": 0.00011,
+        "verdict": "established",
+        "n_male": 105,
+        "n_female": 90,
+        "cohort_band": [
+          1.7432,
+          1.8805
+        ],
+        "pooled_sd": 0.0986,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5987,
+        "ci": [
+          0.5192,
+          0.673
+        ],
+        "p": 0.017619,
+        "verdict": "underpowered",
+        "n_male": 105,
+        "n_female": 90,
+        "cohort_band": [
+          0.179,
+          0.2049
+        ],
+        "pooled_sd": 0.01043,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5522,
+        "ci": [
+          0.4745,
+          0.6325
+        ],
+        "p": 0.209994,
+        "verdict": "underpowered",
+        "n_male": 105,
+        "n_female": 90,
+        "cohort_band": [
+          0.7883,
+          1.2879
+        ],
+        "pooled_sd": 0.10141,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6576,
+        "ci": [
+          0.5802,
+          0.7296
+        ],
+        "p": 0.000151,
+        "verdict": "established",
+        "n_male": 105,
+        "n_female": 90,
+        "cohort_band": [
+          0.7526,
+          0.8431
+        ],
+        "pooled_sd": 0.06504,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6414,
+        "ci": [
+          0.562,
+          0.7183
+        ],
+        "p": 0.000676,
+        "verdict": "established",
+        "n_male": 105,
+        "n_female": 90,
+        "cohort_band": [
+          0.2103,
+          0.3237
+        ],
+        "pooled_sd": 0.07235,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5496,
+        "ci": [
+          0.468,
+          0.6333
+        ],
+        "p": 0.233067,
+        "verdict": "underpowered",
+        "n_male": 105,
+        "n_female": 90,
+        "cohort_band": [
+          -0.2766,
+          0.8407
+        ],
+        "pooled_sd": 0.12821,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "indian_60_69_to_70_plus": {
+      "face_width": {
+        "auc": 0.5997,
+        "ci": [
+          0.5349,
+          0.6666
+        ],
+        "p": 0.003941,
+        "verdict": "underpowered",
+        "n_male": 141,
+        "n_female": 139,
+        "cohort_band": [
+          2.0877,
+          2.3333
+        ],
+        "pooled_sd": 0.10175,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6466,
+        "ci": [
+          0.5824,
+          0.71
+        ],
+        "p": 2.2e-05,
+        "verdict": "established",
+        "n_male": 141,
+        "n_female": 139,
+        "cohort_band": [
+          1.7276,
+          1.8771
+        ],
+        "pooled_sd": 0.09656,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5708,
+        "ci": [
+          0.5062,
+          0.6319
+        ],
+        "p": 0.040477,
+        "verdict": "underpowered",
+        "n_male": 141,
+        "n_female": 139,
+        "cohort_band": [
+          0.1717,
+          0.2135
+        ],
+        "pooled_sd": 0.01085,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5578,
+        "ci": [
+          0.4911,
+          0.6228
+        ],
+        "p": 0.094729,
+        "verdict": "underpowered",
+        "n_male": 141,
+        "n_female": 139,
+        "cohort_band": [
+          0.8016,
+          1.2551
+        ],
+        "pooled_sd": 0.10764,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6422,
+        "ci": [
+          0.5798,
+          0.703
+        ],
+        "p": 3.9e-05,
+        "verdict": "established",
+        "n_male": 141,
+        "n_female": 139,
+        "cohort_band": [
+          0.7523,
+          0.8541
+        ],
+        "pooled_sd": 0.06509,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5708,
+        "ci": [
+          0.5014,
+          0.6398
+        ],
+        "p": 0.040621,
+        "verdict": "underpowered",
+        "n_male": 141,
+        "n_female": 139,
+        "cohort_band": [
+          0.1468,
+          0.3754
+        ],
+        "pooled_sd": 0.07507,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5532,
+        "ci": [
+          0.4865,
+          0.6211
+        ],
+        "p": 0.124021,
+        "verdict": "underpowered",
+        "n_male": 141,
+        "n_female": 139,
+        "cohort_band": [
+          -0.1084,
+          0.6598
+        ],
+        "pooled_sd": 0.13529,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "indian_70_plus": {
+      "face_width": {
+        "auc": 0.5494,
+        "ci": [
+          0.4325,
+          0.6619
+        ],
+        "p": 0.420347,
+        "verdict": "underpowered",
+        "n_male": 39,
+        "n_female": 54,
+        "cohort_band": [
+          1.9858,
+          2.3823
+        ],
+        "pooled_sd": 0.10168,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5722,
+        "ci": [
+          0.4525,
+          0.6857
+        ],
+        "p": 0.238186,
+        "verdict": "underpowered",
+        "n_male": 39,
+        "n_female": 54,
+        "cohort_band": [
+          1.627,
+          1.9292
+        ],
+        "pooled_sd": 0.08527,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5114,
+        "ci": [
+          0.3903,
+          0.6296
+        ],
+        "p": 0.854826,
+        "verdict": "underpowered",
+        "n_male": 39,
+        "n_female": 54,
+        "cohort_band": [
+          0.0353,
+          0.3536
+        ],
+        "pooled_sd": 0.01128,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5328,
+        "ci": [
+          0.4012,
+          0.6529
+        ],
+        "p": 0.593812,
+        "verdict": "underpowered",
+        "n_male": 39,
+        "n_female": 54,
+        "cohort_band": [
+          0.5699,
+          1.4302
+        ],
+        "pooled_sd": 0.11736,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6557,
+        "ci": [
+          0.5356,
+          0.7678
+        ],
+        "p": 0.010778,
+        "verdict": "underpowered",
+        "n_male": 39,
+        "n_female": 54,
+        "cohort_band": [
+          0.7606,
+          0.8637
+        ],
+        "pooled_sd": 0.06529,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.4639,
+        "ci": [
+          0.3433,
+          0.5855
+        ],
+        "p": 0.556653,
+        "verdict": "underpowered",
+        "n_male": 39,
+        "n_female": 54,
+        "cohort_band": [
+          -0.0045,
+          0.5069
+        ],
+        "pooled_sd": 0.07716,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5575,
+        "ci": [
+          0.4378,
+          0.6671
+        ],
+        "p": 0.348154,
+        "verdict": "underpowered",
+        "n_male": 39,
+        "n_female": 54,
+        "cohort_band": [
+          -0.0014,
+          0.5335
+        ],
+        "pooled_sd": 0.15438,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "latino_hispanic_20_29": {
+      "face_width": {
+        "auc": 0.5956,
+        "ci": [
+          0.5635,
+          0.6277
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 517,
+        "n_female": 731,
+        "cohort_band": [
+          2.0957,
+          2.3268
+        ],
+        "pooled_sd": 0.09466,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6328,
+        "ci": [
+          0.6007,
+          0.6641
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 517,
+        "n_female": 731,
+        "cohort_band": [
+          1.7052,
+          1.8636
+        ],
+        "pooled_sd": 0.09145,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6064,
+        "ci": [
+          0.5753,
+          0.6371
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 517,
+        "n_female": 731,
+        "cohort_band": [
+          0.1838,
+          0.206
+        ],
+        "pooled_sd": 0.01011,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5852,
+        "ci": [
+          0.5535,
+          0.6163
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 517,
+        "n_female": 731,
+        "cohort_band": [
+          0.9469,
+          1.2369
+        ],
+        "pooled_sd": 0.10618,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.7093,
+        "ci": [
+          0.6797,
+          0.7371
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 517,
+        "n_female": 731,
+        "cohort_band": [
+          0.7067,
+          0.7785
+        ],
+        "pooled_sd": 0.06591,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.65,
+        "ci": [
+          0.6179,
+          0.6806
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 517,
+        "n_female": 731,
+        "cohort_band": [
+          0.2742,
+          0.4146
+        ],
+        "pooled_sd": 0.08354,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5377,
+        "ci": [
+          0.5069,
+          0.5693
+        ],
+        "p": 0.023257,
+        "verdict": "underpowered",
+        "n_male": 517,
+        "n_female": 731,
+        "cohort_band": [
+          -0.0755,
+          0.6538
+        ],
+        "pooled_sd": 0.12009,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "latino_hispanic_30_39": {
+      "face_width": {
+        "auc": 0.6312,
+        "ci": [
+          0.5986,
+          0.6621
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 553,
+        "n_female": 584,
+        "cohort_band": [
+          2.1509,
+          2.3116
+        ],
+        "pooled_sd": 0.09342,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6632,
+        "ci": [
+          0.6324,
+          0.6949
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 553,
+        "n_female": 584,
+        "cohort_band": [
+          1.7434,
+          1.87
+        ],
+        "pooled_sd": 0.09181,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6124,
+        "ci": [
+          0.5793,
+          0.6438
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 553,
+        "n_female": 584,
+        "cohort_band": [
+          0.1823,
+          0.2021
+        ],
+        "pooled_sd": 0.01014,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5169,
+        "ci": [
+          0.4831,
+          0.5486
+        ],
+        "p": 0.322818,
+        "verdict": "underpowered",
+        "n_male": 553,
+        "n_female": 584,
+        "cohort_band": [
+          0.4657,
+          1.7243
+        ],
+        "pooled_sd": 0.10063,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.7118,
+        "ci": [
+          0.6813,
+          0.7405
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 553,
+        "n_female": 584,
+        "cohort_band": [
+          0.7115,
+          0.7794
+        ],
+        "pooled_sd": 0.06569,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6575,
+        "ci": [
+          0.6258,
+          0.6882
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 553,
+        "n_female": 584,
+        "cohort_band": [
+          0.2674,
+          0.3869
+        ],
+        "pooled_sd": 0.07768,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5608,
+        "ci": [
+          0.5279,
+          0.595
+        ],
+        "p": 0.000389,
+        "verdict": "underpowered",
+        "n_male": 553,
+        "n_female": 584,
+        "cohort_band": [
+          0.0891,
+          0.5038
+        ],
+        "pooled_sd": 0.1212,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "latino_hispanic_40_49": {
+      "face_width": {
+        "auc": 0.5937,
+        "ci": [
+          0.5515,
+          0.6336
+        ],
+        "p": 1.1e-05,
+        "verdict": "established",
+        "n_male": 410,
+        "n_female": 333,
+        "cohort_band": [
+          2.1183,
+          2.3812
+        ],
+        "pooled_sd": 0.10095,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6496,
+        "ci": [
+          0.6099,
+          0.6889
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 410,
+        "n_female": 333,
+        "cohort_band": [
+          1.7582,
+          1.8977
+        ],
+        "pooled_sd": 0.0941,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5735,
+        "ci": [
+          0.5339,
+          0.6159
+        ],
+        "p": 0.000562,
+        "verdict": "underpowered",
+        "n_male": 410,
+        "n_female": 333,
+        "cohort_band": [
+          0.173,
+          0.2067
+        ],
+        "pooled_sd": 0.01051,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5056,
+        "ci": [
+          0.4644,
+          0.5478
+        ],
+        "p": 0.792732,
+        "verdict": "underpowered",
+        "n_male": 410,
+        "n_female": 333,
+        "cohort_band": [
+          -0.9747,
+          3.1835
+        ],
+        "pooled_sd": 0.10387,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6902,
+        "ci": [
+          0.6509,
+          0.7273
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 410,
+        "n_female": 333,
+        "cohort_band": [
+          0.717,
+          0.7948
+        ],
+        "pooled_sd": 0.0663,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6782,
+        "ci": [
+          0.6418,
+          0.7146
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 410,
+        "n_female": 333,
+        "cohort_band": [
+          0.2559,
+          0.3484
+        ],
+        "pooled_sd": 0.07662,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.6345,
+        "ci": [
+          0.5949,
+          0.6728
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 410,
+        "n_female": 333,
+        "cohort_band": [
+          0.2095,
+          0.3972
+        ],
+        "pooled_sd": 0.11167,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "latino_hispanic_50_59": {
+      "face_width": {
+        "auc": 0.5952,
+        "ci": [
+          0.5402,
+          0.6512
+        ],
+        "p": 0.000785,
+        "verdict": "underpowered",
+        "n_male": 261,
+        "n_female": 173,
+        "cohort_band": [
+          2.1465,
+          2.3627
+        ],
+        "pooled_sd": 0.09944,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6604,
+        "ci": [
+          0.6079,
+          0.7115
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 261,
+        "n_female": 173,
+        "cohort_band": [
+          1.7713,
+          1.9002
+        ],
+        "pooled_sd": 0.09315,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5859,
+        "ci": [
+          0.5313,
+          0.6435
+        ],
+        "p": 0.002423,
+        "verdict": "underpowered",
+        "n_male": 261,
+        "n_female": 173,
+        "cohort_band": [
+          0.1753,
+          0.1994
+        ],
+        "pooled_sd": 0.00981,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5717,
+        "ci": [
+          0.5173,
+          0.6258
+        ],
+        "p": 0.011427,
+        "verdict": "underpowered",
+        "n_male": 261,
+        "n_female": 173,
+        "cohort_band": [
+          0.9219,
+          1.2717
+        ],
+        "pooled_sd": 0.10589,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.7159,
+        "ci": [
+          0.6661,
+          0.7631
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 261,
+        "n_female": 173,
+        "cohort_band": [
+          0.7403,
+          0.8056
+        ],
+        "pooled_sd": 0.06362,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.642,
+        "ci": [
+          0.5902,
+          0.6948
+        ],
+        "p": 1e-06,
+        "verdict": "established",
+        "n_male": 261,
+        "n_female": 173,
+        "cohort_band": [
+          0.2068,
+          0.3418
+        ],
+        "pooled_sd": 0.07822,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5959,
+        "ci": [
+          0.5388,
+          0.6496
+        ],
+        "p": 0.000711,
+        "verdict": "underpowered",
+        "n_male": 261,
+        "n_female": 173,
+        "cohort_band": [
+          0.1921,
+          0.4458
+        ],
+        "pooled_sd": 0.11435,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "latino_hispanic_50_59_to_60_69": {
+      "face_width": {
+        "auc": 0.5839,
+        "ci": [
+          0.5373,
+          0.631
+        ],
+        "p": 0.000578,
+        "verdict": "underpowered",
+        "n_male": 335,
+        "n_female": 242,
+        "cohort_band": [
+          2.1282,
+          2.3799
+        ],
+        "pooled_sd": 0.10018,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6512,
+        "ci": [
+          0.6052,
+          0.6965
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 335,
+        "n_female": 242,
+        "cohort_band": [
+          1.7646,
+          1.9059
+        ],
+        "pooled_sd": 0.09404,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5745,
+        "ci": [
+          0.5269,
+          0.6213
+        ],
+        "p": 0.002241,
+        "verdict": "underpowered",
+        "n_male": 335,
+        "n_female": 242,
+        "cohort_band": [
+          0.1733,
+          0.2016
+        ],
+        "pooled_sd": 0.00995,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5541,
+        "ci": [
+          0.5074,
+          0.6018
+        ],
+        "p": 0.02657,
+        "verdict": "underpowered",
+        "n_male": 335,
+        "n_female": 242,
+        "cohort_band": [
+          0.8469,
+          1.3373
+        ],
+        "pooled_sd": 0.10653,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6954,
+        "ci": [
+          0.6507,
+          0.7383
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 335,
+        "n_female": 242,
+        "cohort_band": [
+          0.7412,
+          0.8141
+        ],
+        "pooled_sd": 0.0644,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6256,
+        "ci": [
+          0.5778,
+          0.6711
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 335,
+        "n_female": 242,
+        "cohort_band": [
+          0.19,
+          0.3452
+        ],
+        "pooled_sd": 0.08044,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5773,
+        "ci": [
+          0.5305,
+          0.6254
+        ],
+        "p": 0.001526,
+        "verdict": "underpowered",
+        "n_male": 335,
+        "n_female": 242,
+        "cohort_band": [
+          0.1578,
+          0.4766
+        ],
+        "pooled_sd": 0.11376,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "latino_hispanic_60_69": {
+      "face_width": {
+        "auc": 0.5571,
+        "ci": [
+          0.4696,
+          0.6427
+        ],
+        "p": 0.21674,
+        "verdict": "underpowered",
+        "n_male": 84,
+        "n_female": 74,
+        "cohort_band": [
+          2.0537,
+          2.4451
+        ],
+        "pooled_sd": 0.10083,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6338,
+        "ci": [
+          0.5476,
+          0.7151
+        ],
+        "p": 0.003763,
+        "verdict": "underpowered",
+        "n_male": 84,
+        "n_female": 74,
+        "cohort_band": [
+          1.7452,
+          1.9179
+        ],
+        "pooled_sd": 0.0955,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5394,
+        "ci": [
+          0.4477,
+          0.6273
+        ],
+        "p": 0.39424,
+        "verdict": "underpowered",
+        "n_male": 84,
+        "n_female": 74,
+        "cohort_band": [
+          0.1643,
+          0.2112
+        ],
+        "pooled_sd": 0.01017,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.4973,
+        "ci": [
+          0.4078,
+          0.5904
+        ],
+        "p": 0.954152,
+        "verdict": "underpowered",
+        "n_male": 84,
+        "n_female": 74,
+        "cohort_band": [
+          -0.2036,
+          2.3547
+        ],
+        "pooled_sd": 0.10464,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6689,
+        "ci": [
+          0.5861,
+          0.7486
+        ],
+        "p": 0.000255,
+        "verdict": "established",
+        "n_male": 84,
+        "n_female": 74,
+        "cohort_band": [
+          0.7488,
+          0.8297
+        ],
+        "pooled_sd": 0.06362,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6419,
+        "ci": [
+          0.5497,
+          0.7272
+        ],
+        "p": 0.002129,
+        "verdict": "underpowered",
+        "n_male": 84,
+        "n_female": 74,
+        "cohort_band": [
+          0.1791,
+          0.316
+        ],
+        "pooled_sd": 0.08181,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5254,
+        "ci": [
+          0.4332,
+          0.6116
+        ],
+        "p": 0.58314,
+        "verdict": "underpowered",
+        "n_male": 84,
+        "n_female": 74,
+        "cohort_band": [
+          -0.1362,
+          0.7555
+        ],
+        "pooled_sd": 0.1102,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "latino_hispanic_60_69_to_70_plus": {
+      "face_width": {
+        "auc": 0.5688,
+        "ci": [
+          0.4829,
+          0.6502
+        ],
+        "p": 0.109621,
+        "verdict": "underpowered",
+        "n_male": 95,
+        "n_female": 87,
+        "cohort_band": [
+          2.066,
+          2.4156
+        ],
+        "pooled_sd": 0.10033,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6247,
+        "ci": [
+          0.5396,
+          0.7071
+        ],
+        "p": 0.003717,
+        "verdict": "underpowered",
+        "n_male": 95,
+        "n_female": 87,
+        "cohort_band": [
+          1.734,
+          1.9141
+        ],
+        "pooled_sd": 0.09521,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5504,
+        "ci": [
+          0.4674,
+          0.6312
+        ],
+        "p": 0.241295,
+        "verdict": "underpowered",
+        "n_male": 95,
+        "n_female": 87,
+        "cohort_band": [
+          0.17,
+          0.2063
+        ],
+        "pooled_sd": 0.01009,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5045,
+        "ci": [
+          0.4197,
+          0.5862
+        ],
+        "p": 0.916996,
+        "verdict": "underpowered",
+        "n_male": 95,
+        "n_female": 87,
+        "cohort_band": [
+          -5.9967,
+          8.1351
+        ],
+        "pooled_sd": 0.10437,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6483,
+        "ci": [
+          0.5635,
+          0.7256
+        ],
+        "p": 0.00056,
+        "verdict": "established",
+        "n_male": 95,
+        "n_female": 87,
+        "cohort_band": [
+          0.7428,
+          0.8389
+        ],
+        "pooled_sd": 0.0644,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6111,
+        "ci": [
+          0.5305,
+          0.6904
+        ],
+        "p": 0.009717,
+        "verdict": "underpowered",
+        "n_male": 95,
+        "n_female": 87,
+        "cohort_band": [
+          0.1561,
+          0.3294
+        ],
+        "pooled_sd": 0.08147,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5118,
+        "ci": [
+          0.4285,
+          0.5921
+        ],
+        "p": 0.784683,
+        "verdict": "underpowered",
+        "n_male": 95,
+        "n_female": 87,
+        "cohort_band": [
+          -0.4756,
+          1.0949
+        ],
+        "pooled_sd": 0.11191,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "latino_hispanic_70_plus": {
+      "face_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 11,
+        "n_female": 16
+      },
+      "jaw_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 11,
+        "n_female": 16
+      },
+      "eye_size": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 11,
+        "n_female": 16
+      },
+      "lower_third": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 11,
+        "n_female": 16
+      },
+      "nose_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 11,
+        "n_female": 16
+      },
+      "lip_height": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 11,
+        "n_female": 16
+      },
+      "brow_gap": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 11,
+        "n_female": 16
+      }
+    },
+    "middle_eastern_20_29": {
+      "face_width": {
+        "auc": 0.6246,
+        "ci": [
+          0.5812,
+          0.6683
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 354,
+        "n_female": 273,
+        "cohort_band": [
+          2.1275,
+          2.2972
+        ],
+        "pooled_sd": 0.09681,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6511,
+        "ci": [
+          0.6088,
+          0.6927
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 354,
+        "n_female": 273,
+        "cohort_band": [
+          1.7144,
+          1.8542
+        ],
+        "pooled_sd": 0.09424,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6502,
+        "ci": [
+          0.6083,
+          0.6918
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 354,
+        "n_female": 273,
+        "cohort_band": [
+          0.1899,
+          0.2045
+        ],
+        "pooled_sd": 0.0102,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6353,
+        "ci": [
+          0.5903,
+          0.6813
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 354,
+        "n_female": 273,
+        "cohort_band": [
+          0.9726,
+          1.1853
+        ],
+        "pooled_sd": 0.11068,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6873,
+        "ci": [
+          0.6449,
+          0.728
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 354,
+        "n_female": 273,
+        "cohort_band": [
+          0.7166,
+          0.7942
+        ],
+        "pooled_sd": 0.06488,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5906,
+        "ci": [
+          0.5454,
+          0.6355
+        ],
+        "p": 9.9e-05,
+        "verdict": "underpowered",
+        "n_male": 354,
+        "n_female": 273,
+        "cohort_band": [
+          0.2183,
+          0.4276
+        ],
+        "pooled_sd": 0.08126,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.542,
+        "ci": [
+          0.4956,
+          0.589
+        ],
+        "p": 0.071199,
+        "verdict": "underpowered",
+        "n_male": 354,
+        "n_female": 273,
+        "cohort_band": [
+          -0.0207,
+          0.5687
+        ],
+        "pooled_sd": 0.12649,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "middle_eastern_30_39": {
+      "face_width": {
+        "auc": 0.6705,
+        "ci": [
+          0.6242,
+          0.7143
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 537,
+        "n_female": 194,
+        "cohort_band": [
+          2.1648,
+          2.2876
+        ],
+        "pooled_sd": 0.09532,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6752,
+        "ci": [
+          0.6321,
+          0.7189
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 537,
+        "n_female": 194,
+        "cohort_band": [
+          1.7511,
+          1.8686
+        ],
+        "pooled_sd": 0.09119,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6807,
+        "ci": [
+          0.6354,
+          0.7246
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 537,
+        "n_female": 194,
+        "cohort_band": [
+          0.1888,
+          0.201
+        ],
+        "pooled_sd": 0.01042,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5549,
+        "ci": [
+          0.5054,
+          0.6054
+        ],
+        "p": 0.023254,
+        "verdict": "underpowered",
+        "n_male": 537,
+        "n_female": 194,
+        "cohort_band": [
+          0.8794,
+          1.3139
+        ],
+        "pooled_sd": 0.10344,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6666,
+        "ci": [
+          0.6211,
+          0.7131
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 537,
+        "n_female": 194,
+        "cohort_band": [
+          0.7111,
+          0.7923
+        ],
+        "pooled_sd": 0.06311,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6292,
+        "ci": [
+          0.5846,
+          0.6762
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 537,
+        "n_female": 194,
+        "cohort_band": [
+          0.2389,
+          0.3856
+        ],
+        "pooled_sd": 0.08135,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.541,
+        "ci": [
+          0.495,
+          0.59
+        ],
+        "p": 0.089955,
+        "verdict": "underpowered",
+        "n_male": 537,
+        "n_female": 194,
+        "cohort_band": [
+          0.0089,
+          0.5786
+        ],
+        "pooled_sd": 0.12831,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "middle_eastern_40_49": {
+      "face_width": {
+        "auc": 0.749,
+        "ci": [
+          0.6942,
+          0.8049
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 333,
+        "n_female": 108,
+        "cohort_band": [
+          2.1925,
+          2.2808
+        ],
+        "pooled_sd": 0.09925,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.782,
+        "ci": [
+          0.7326,
+          0.8311
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 333,
+        "n_female": 108,
+        "cohort_band": [
+          1.7789,
+          1.8551
+        ],
+        "pooled_sd": 0.09643,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6923,
+        "ci": [
+          0.6339,
+          0.7458
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 333,
+        "n_female": 108,
+        "cohort_band": [
+          0.1868,
+          0.1989
+        ],
+        "pooled_sd": 0.01081,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6173,
+        "ci": [
+          0.5565,
+          0.6763
+        ],
+        "p": 0.000249,
+        "verdict": "established",
+        "n_male": 333,
+        "n_female": 108,
+        "cohort_band": [
+          0.9841,
+          1.2053
+        ],
+        "pooled_sd": 0.10618,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6246,
+        "ci": [
+          0.5607,
+          0.6878
+        ],
+        "p": 9.9e-05,
+        "verdict": "established",
+        "n_male": 333,
+        "n_female": 108,
+        "cohort_band": [
+          0.7081,
+          0.8233
+        ],
+        "pooled_sd": 0.06318,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.644,
+        "ci": [
+          0.5856,
+          0.7042
+        ],
+        "p": 7e-06,
+        "verdict": "established",
+        "n_male": 333,
+        "n_female": 108,
+        "cohort_band": [
+          0.2182,
+          0.3734
+        ],
+        "pooled_sd": 0.08326,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5888,
+        "ci": [
+          0.5284,
+          0.6456
+        ],
+        "p": 0.005555,
+        "verdict": "underpowered",
+        "n_male": 333,
+        "n_female": 108,
+        "cohort_band": [
+          0.1232,
+          0.4797
+        ],
+        "pooled_sd": 0.12726,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "middle_eastern_50_59": {
+      "face_width": {
+        "auc": 0.6974,
+        "ci": [
+          0.6239,
+          0.7688
+        ],
+        "p": 4e-06,
+        "verdict": "established",
+        "n_male": 238,
+        "n_female": 57,
+        "cohort_band": [
+          2.1952,
+          2.3059
+        ],
+        "pooled_sd": 0.09431,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6967,
+        "ci": [
+          0.6218,
+          0.7666
+        ],
+        "p": 4e-06,
+        "verdict": "established",
+        "n_male": 238,
+        "n_female": 57,
+        "cohort_band": [
+          1.7813,
+          1.8859
+        ],
+        "pooled_sd": 0.09489,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.66,
+        "ci": [
+          0.5798,
+          0.7359
+        ],
+        "p": 0.000175,
+        "verdict": "established",
+        "n_male": 238,
+        "n_female": 57,
+        "cohort_band": [
+          0.1838,
+          0.1962
+        ],
+        "pooled_sd": 0.00943,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.533,
+        "ci": [
+          0.4538,
+          0.6165
+        ],
+        "p": 0.439172,
+        "verdict": "underpowered",
+        "n_male": 238,
+        "n_female": 57,
+        "cohort_band": [
+          0.8604,
+          1.3314
+        ],
+        "pooled_sd": 0.10177,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.684,
+        "ci": [
+          0.6001,
+          0.7591
+        ],
+        "p": 1.6e-05,
+        "verdict": "established",
+        "n_male": 238,
+        "n_female": 57,
+        "cohort_band": [
+          0.7299,
+          0.8
+        ],
+        "pooled_sd": 0.06213,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6656,
+        "ci": [
+          0.5863,
+          0.745
+        ],
+        "p": 0.000104,
+        "verdict": "established",
+        "n_male": 238,
+        "n_female": 57,
+        "cohort_band": [
+          0.2288,
+          0.3191
+        ],
+        "pooled_sd": 0.06871,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.6059,
+        "ci": [
+          0.5219,
+          0.683
+        ],
+        "p": 0.013081,
+        "verdict": "underpowered",
+        "n_male": 238,
+        "n_female": 57,
+        "cohort_band": [
+          0.1655,
+          0.4333
+        ],
+        "pooled_sd": 0.11436,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "middle_eastern_50_59_to_60_69": {
+      "face_width": {
+        "auc": 0.6625,
+        "ci": [
+          0.5949,
+          0.725
+        ],
+        "p": 2e-06,
+        "verdict": "established",
+        "n_male": 361,
+        "n_female": 89,
+        "cohort_band": [
+          2.1984,
+          2.3336
+        ],
+        "pooled_sd": 0.09631,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6748,
+        "ci": [
+          0.6122,
+          0.7284
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 361,
+        "n_female": 89,
+        "cohort_band": [
+          1.7858,
+          1.9105
+        ],
+        "pooled_sd": 0.09709,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6081,
+        "ci": [
+          0.5417,
+          0.6716
+        ],
+        "p": 0.001575,
+        "verdict": "underpowered",
+        "n_male": 361,
+        "n_female": 89,
+        "cohort_band": [
+          0.1785,
+          0.197
+        ],
+        "pooled_sd": 0.00995,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5111,
+        "ci": [
+          0.4443,
+          0.5751
+        ],
+        "p": 0.74665,
+        "verdict": "underpowered",
+        "n_male": 361,
+        "n_female": 89,
+        "cohort_band": [
+          0.7079,
+          1.4931
+        ],
+        "pooled_sd": 0.09916,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6477,
+        "ci": [
+          0.5843,
+          0.7143
+        ],
+        "p": 1.6e-05,
+        "verdict": "established",
+        "n_male": 361,
+        "n_female": 89,
+        "cohort_band": [
+          0.7319,
+          0.8129
+        ],
+        "pooled_sd": 0.06082,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6389,
+        "ci": [
+          0.573,
+          0.7035
+        ],
+        "p": 4.9e-05,
+        "verdict": "established",
+        "n_male": 361,
+        "n_female": 89,
+        "cohort_band": [
+          0.2052,
+          0.322
+        ],
+        "pooled_sd": 0.07214,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5723,
+        "ci": [
+          0.5054,
+          0.6375
+        ],
+        "p": 0.034438,
+        "verdict": "underpowered",
+        "n_male": 361,
+        "n_female": 89,
+        "cohort_band": [
+          0.0705,
+          0.5218
+        ],
+        "pooled_sd": 0.11918,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "middle_eastern_60_69": {
+      "face_width": {
+        "auc": 0.6128,
+        "ci": [
+          0.5032,
+          0.7175
+        ],
+        "p": 0.040332,
+        "verdict": "underpowered",
+        "n_male": 134,
+        "n_female": 35,
+        "cohort_band": [
+          2.203,
+          2.3847
+        ],
+        "pooled_sd": 0.09575,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6625,
+        "ci": [
+          0.5633,
+          0.7595
+        ],
+        "p": 0.003134,
+        "verdict": "established",
+        "n_male": 134,
+        "n_female": 35,
+        "cohort_band": [
+          1.7998,
+          1.9422
+        ],
+        "pooled_sd": 0.09788,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5475,
+        "ci": [
+          0.4441,
+          0.6529
+        ],
+        "p": 0.388029,
+        "verdict": "underpowered",
+        "n_male": 134,
+        "n_female": 35,
+        "cohort_band": [
+          0.1638,
+          0.2033
+        ],
+        "pooled_sd": 0.01006,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.49,
+        "ci": [
+          0.3829,
+          0.5881
+        ],
+        "p": 0.85684,
+        "verdict": "underpowered",
+        "n_male": 134,
+        "n_female": 35,
+        "cohort_band": [
+          0.1951,
+          2.018
+        ],
+        "pooled_sd": 0.09695,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5893,
+        "ci": [
+          0.4744,
+          0.69
+        ],
+        "p": 0.104464,
+        "verdict": "underpowered",
+        "n_male": 134,
+        "n_female": 35,
+        "cohort_band": [
+          0.7228,
+          0.8477
+        ],
+        "pooled_sd": 0.05786,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6164,
+        "ci": [
+          0.5132,
+          0.7145
+        ],
+        "p": 0.03432,
+        "verdict": "underpowered",
+        "n_male": 134,
+        "n_female": 35,
+        "cohort_band": [
+          0.1683,
+          0.3296
+        ],
+        "pooled_sd": 0.07605,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5418,
+        "ci": [
+          0.4337,
+          0.6486
+        ],
+        "p": 0.448182,
+        "verdict": "underpowered",
+        "n_male": 134,
+        "n_female": 35,
+        "cohort_band": [
+          -0.184,
+          0.7848
+        ],
+        "pooled_sd": 0.13019,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "middle_eastern_60_69_to_70_plus": {
+      "face_width": {
+        "auc": 0.64,
+        "ci": [
+          0.5504,
+          0.73
+        ],
+        "p": 0.002305,
+        "verdict": "established",
+        "n_male": 168,
+        "n_female": 52,
+        "cohort_band": [
+          2.1963,
+          2.3593
+        ],
+        "pooled_sd": 0.09901,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6512,
+        "ci": [
+          0.5705,
+          0.7298
+        ],
+        "p": 0.000994,
+        "verdict": "established",
+        "n_male": 168,
+        "n_female": 52,
+        "cohort_band": [
+          1.7799,
+          1.9413
+        ],
+        "pooled_sd": 0.09813,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.572,
+        "ci": [
+          0.4825,
+          0.6601
+        ],
+        "p": 0.117136,
+        "verdict": "underpowered",
+        "n_male": 168,
+        "n_female": 52,
+        "cohort_band": [
+          0.1654,
+          0.2056
+        ],
+        "pooled_sd": 0.01087,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5674,
+        "ci": [
+          0.4789,
+          0.6573
+        ],
+        "p": 0.142326,
+        "verdict": "underpowered",
+        "n_male": 168,
+        "n_female": 52,
+        "cohort_band": [
+          0.9412,
+          1.2255
+        ],
+        "pooled_sd": 0.09824,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5837,
+        "ci": [
+          0.4975,
+          0.6689
+        ],
+        "p": 0.068576,
+        "verdict": "underpowered",
+        "n_male": 168,
+        "n_female": 52,
+        "cohort_band": [
+          0.7218,
+          0.8645
+        ],
+        "pooled_sd": 0.059,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5705,
+        "ci": [
+          0.4854,
+          0.6584
+        ],
+        "p": 0.124907,
+        "verdict": "underpowered",
+        "n_male": 168,
+        "n_female": 52,
+        "cohort_band": [
+          0.1129,
+          0.365
+        ],
+        "pooled_sd": 0.07303,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5279,
+        "ci": [
+          0.4424,
+          0.6179
+        ],
+        "p": 0.543806,
+        "verdict": "underpowered",
+        "n_male": 168,
+        "n_female": 52,
+        "cohort_band": [
+          -0.2187,
+          0.803
+        ],
+        "pooled_sd": 0.12729,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "middle_eastern_70_plus": {
+      "face_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 39,
+        "n_female": 17
+      },
+      "jaw_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 39,
+        "n_female": 17
+      },
+      "eye_size": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 39,
+        "n_female": 17
+      },
+      "lower_third": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 39,
+        "n_female": 17
+      },
+      "nose_width": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 39,
+        "n_female": 17
+      },
+      "lip_height": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 39,
+        "n_female": 17
+      },
+      "brow_gap": {
+        "verdict": "underpowered",
+        "why": "fewer than 20 per sex",
+        "n_male": 39,
+        "n_female": 17
+      }
+    },
+    "southeast_asian_20_29": {
+      "face_width": {
+        "auc": 0.581,
+        "ci": [
+          0.5495,
+          0.6129
+        ],
+        "p": 1e-06,
+        "verdict": "underpowered",
+        "n_male": 578,
+        "n_female": 683,
+        "cohort_band": [
+          2.0824,
+          2.3449
+        ],
+        "pooled_sd": 0.08961,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5499,
+        "ci": [
+          0.5173,
+          0.5804
+        ],
+        "p": 0.002241,
+        "verdict": "underpowered",
+        "n_male": 578,
+        "n_female": 683,
+        "cohort_band": [
+          1.5869,
+          1.973
+        ],
+        "pooled_sd": 0.0906,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5795,
+        "ci": [
+          0.5478,
+          0.6107
+        ],
+        "p": 1e-06,
+        "verdict": "underpowered",
+        "n_male": 578,
+        "n_female": 683,
+        "cohort_band": [
+          0.1769,
+          0.2042
+        ],
+        "pooled_sd": 0.01014,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6254,
+        "ci": [
+          0.5939,
+          0.6553
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 578,
+        "n_female": 683,
+        "cohort_band": [
+          0.9686,
+          1.1579
+        ],
+        "pooled_sd": 0.09921,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6486,
+        "ci": [
+          0.6163,
+          0.6789
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 578,
+        "n_female": 683,
+        "cohort_band": [
+          0.7056,
+          0.8079
+        ],
+        "pooled_sd": 0.06553,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5368,
+        "ci": [
+          0.5063,
+          0.5685
+        ],
+        "p": 0.024166,
+        "verdict": "underpowered",
+        "n_male": 578,
+        "n_female": 683,
+        "cohort_band": [
+          -0.0136,
+          0.7312
+        ],
+        "pooled_sd": 0.08037,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.4973,
+        "ci": [
+          0.4646,
+          0.5287
+        ],
+        "p": 0.868658,
+        "verdict": "underpowered",
+        "n_male": 578,
+        "n_female": 683,
+        "cohort_band": [
+          -7.7646,
+          8.4062
+        ],
+        "pooled_sd": 0.1141,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "southeast_asian_30_39": {
+      "face_width": {
+        "auc": 0.6065,
+        "ci": [
+          0.5672,
+          0.6443
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 439,
+        "n_female": 374,
+        "cohort_band": [
+          2.1265,
+          2.3313
+        ],
+        "pooled_sd": 0.09503,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5941,
+        "ci": [
+          0.5552,
+          0.6345
+        ],
+        "p": 4e-06,
+        "verdict": "established",
+        "n_male": 439,
+        "n_female": 374,
+        "cohort_band": [
+          1.6823,
+          1.9087
+        ],
+        "pooled_sd": 0.09477,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5535,
+        "ci": [
+          0.5137,
+          0.5938
+        ],
+        "p": 0.008482,
+        "verdict": "underpowered",
+        "n_male": 439,
+        "n_female": 374,
+        "cohort_band": [
+          0.1665,
+          0.2121
+        ],
+        "pooled_sd": 0.01045,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5874,
+        "ci": [
+          0.5485,
+          0.6275
+        ],
+        "p": 1.7e-05,
+        "verdict": "underpowered",
+        "n_male": 439,
+        "n_female": 374,
+        "cohort_band": [
+          0.9227,
+          1.2126
+        ],
+        "pooled_sd": 0.10932,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6442,
+        "ci": [
+          0.6058,
+          0.6797
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 439,
+        "n_female": 374,
+        "cohort_band": [
+          0.7132,
+          0.8203
+        ],
+        "pooled_sd": 0.06642,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5738,
+        "ci": [
+          0.5329,
+          0.6131
+        ],
+        "p": 0.000284,
+        "verdict": "underpowered",
+        "n_male": 439,
+        "n_female": 374,
+        "cohort_band": [
+          0.2018,
+          0.4931
+        ],
+        "pooled_sd": 0.08365,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5065,
+        "ci": [
+          0.4658,
+          0.5468
+        ],
+        "p": 0.747929,
+        "verdict": "underpowered",
+        "n_male": 439,
+        "n_female": 374,
+        "cohort_band": [
+          -0.4744,
+          1.1435
+        ],
+        "pooled_sd": 0.11475,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "southeast_asian_40_49": {
+      "face_width": {
+        "auc": 0.5853,
+        "ci": [
+          0.5328,
+          0.6374
+        ],
+        "p": 0.002165,
+        "verdict": "underpowered",
+        "n_male": 264,
+        "n_female": 183,
+        "cohort_band": [
+          2.1251,
+          2.3762
+        ],
+        "pooled_sd": 0.09492,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5643,
+        "ci": [
+          0.5109,
+          0.6156
+        ],
+        "p": 0.020758,
+        "verdict": "underpowered",
+        "n_male": 264,
+        "n_female": 183,
+        "cohort_band": [
+          1.6539,
+          1.9798
+        ],
+        "pooled_sd": 0.09618,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5532,
+        "ci": [
+          0.496,
+          0.6074
+        ],
+        "p": 0.055715,
+        "verdict": "underpowered",
+        "n_male": 264,
+        "n_female": 183,
+        "cohort_band": [
+          0.1643,
+          0.2094
+        ],
+        "pooled_sd": 0.01068,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5372,
+        "ci": [
+          0.4841,
+          0.592
+        ],
+        "p": 0.180517,
+        "verdict": "underpowered",
+        "n_male": 264,
+        "n_female": 183,
+        "cohort_band": [
+          0.6689,
+          1.4823
+        ],
+        "pooled_sd": 0.10328,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6103,
+        "ci": [
+          0.5577,
+          0.6615
+        ],
+        "p": 7.2e-05,
+        "verdict": "established",
+        "n_male": 264,
+        "n_female": 183,
+        "cohort_band": [
+          0.7145,
+          0.8426
+        ],
+        "pooled_sd": 0.06461,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.585,
+        "ci": [
+          0.5321,
+          0.6381
+        ],
+        "p": 0.002241,
+        "verdict": "underpowered",
+        "n_male": 264,
+        "n_female": 183,
+        "cohort_band": [
+          0.2273,
+          0.4228
+        ],
+        "pooled_sd": 0.0823,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5042,
+        "ci": [
+          0.4501,
+          0.5563
+        ],
+        "p": 0.878973,
+        "verdict": "underpowered",
+        "n_male": 264,
+        "n_female": 183,
+        "cohort_band": [
+          -2.7671,
+          3.4703
+        ],
+        "pooled_sd": 0.11343,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "southeast_asian_40_49_to_50_59": {
+      "face_width": {
+        "auc": 0.5769,
+        "ci": [
+          0.5331,
+          0.6188
+        ],
+        "p": 0.000621,
+        "verdict": "underpowered",
+        "n_male": 382,
+        "n_female": 291,
+        "cohort_band": [
+          2.1033,
+          2.4014
+        ],
+        "pooled_sd": 0.09676,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5584,
+        "ci": [
+          0.5168,
+          0.6009
+        ],
+        "p": 0.00939,
+        "verdict": "underpowered",
+        "n_male": 382,
+        "n_female": 291,
+        "cohort_band": [
+          1.6322,
+          2.009
+        ],
+        "pooled_sd": 0.09618,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5389,
+        "ci": [
+          0.4947,
+          0.5835
+        ],
+        "p": 0.083722,
+        "verdict": "underpowered",
+        "n_male": 382,
+        "n_female": 291,
+        "cohort_band": [
+          0.1545,
+          0.2184
+        ],
+        "pooled_sd": 0.01081,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5495,
+        "ci": [
+          0.5052,
+          0.5911
+        ],
+        "p": 0.027826,
+        "verdict": "underpowered",
+        "n_male": 382,
+        "n_female": 291,
+        "cohort_band": [
+          0.7914,
+          1.3673
+        ],
+        "pooled_sd": 0.10282,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5839,
+        "ci": [
+          0.5405,
+          0.6266
+        ],
+        "p": 0.00019,
+        "verdict": "underpowered",
+        "n_male": 382,
+        "n_female": 291,
+        "cohort_band": [
+          0.6964,
+          0.8673
+        ],
+        "pooled_sd": 0.06378,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5656,
+        "ci": [
+          0.5226,
+          0.6094
+        ],
+        "p": 0.003504,
+        "verdict": "underpowered",
+        "n_male": 382,
+        "n_female": 291,
+        "cohort_band": [
+          0.1812,
+          0.4602
+        ],
+        "pooled_sd": 0.08327,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.518,
+        "ci": [
+          0.4753,
+          0.5611
+        ],
+        "p": 0.424517,
+        "verdict": "underpowered",
+        "n_male": 382,
+        "n_female": 291,
+        "cohort_band": [
+          -0.3611,
+          1.0779
+        ],
+        "pooled_sd": 0.11319,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "southeast_asian_50_59": {
+      "face_width": {
+        "auc": 0.5726,
+        "ci": [
+          0.5011,
+          0.6447
+        ],
+        "p": 0.048928,
+        "verdict": "underpowered",
+        "n_male": 129,
+        "n_female": 118,
+        "cohort_band": [
+          2.0838,
+          2.4245
+        ],
+        "pooled_sd": 0.10002,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5614,
+        "ci": [
+          0.49,
+          0.6352
+        ],
+        "p": 0.095688,
+        "verdict": "underpowered",
+        "n_male": 129,
+        "n_female": 118,
+        "cohort_band": [
+          1.6337,
+          2.0216
+        ],
+        "pooled_sd": 0.09493,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5286,
+        "ci": [
+          0.4541,
+          0.5953
+        ],
+        "p": 0.438533,
+        "verdict": "underpowered",
+        "n_male": 129,
+        "n_female": 118,
+        "cohort_band": [
+          0.131,
+          0.2406
+        ],
+        "pooled_sd": 0.01092,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5771,
+        "ci": [
+          0.5083,
+          0.6486
+        ],
+        "p": 0.036577,
+        "verdict": "underpowered",
+        "n_male": 129,
+        "n_female": 118,
+        "cohort_band": [
+          0.9214,
+          1.2537
+        ],
+        "pooled_sd": 0.09871,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5335,
+        "ci": [
+          0.4631,
+          0.6066
+        ],
+        "p": 0.363671,
+        "verdict": "underpowered",
+        "n_male": 129,
+        "n_female": 118,
+        "cohort_band": [
+          0.5551,
+          1.0189
+        ],
+        "pooled_sd": 0.06097,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5351,
+        "ci": [
+          0.4627,
+          0.6062
+        ],
+        "p": 0.340608,
+        "verdict": "underpowered",
+        "n_male": 129,
+        "n_female": 118,
+        "cohort_band": [
+          -0.1263,
+          0.751
+        ],
+        "pooled_sd": 0.08321,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5307,
+        "ci": [
+          0.4575,
+          0.6021
+        ],
+        "p": 0.404557,
+        "verdict": "underpowered",
+        "n_male": 129,
+        "n_female": 118,
+        "cohort_band": [
+          -0.0486,
+          0.7822
+        ],
+        "pooled_sd": 0.11342,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "southeast_asian_50_59_to_60_69": {
+      "face_width": {
+        "auc": 0.5761,
+        "ci": [
+          0.5202,
+          0.6324
+        ],
+        "p": 0.009362,
+        "verdict": "underpowered",
+        "n_male": 213,
+        "n_female": 180,
+        "cohort_band": [
+          2.0942,
+          2.4138
+        ],
+        "pooled_sd": 0.0993,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5753,
+        "ci": [
+          0.5178,
+          0.6299
+        ],
+        "p": 0.010091,
+        "verdict": "underpowered",
+        "n_male": 213,
+        "n_female": 180,
+        "cohort_band": [
+          1.6597,
+          1.9865
+        ],
+        "pooled_sd": 0.0961,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5021,
+        "ci": [
+          0.4441,
+          0.5563
+        ],
+        "p": 0.943511,
+        "verdict": "underpowered",
+        "n_male": 213,
+        "n_female": 180,
+        "cohort_band": [
+          -0.0152,
+          0.3863
+        ],
+        "pooled_sd": 0.01095,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5838,
+        "ci": [
+          0.5244,
+          0.6389
+        ],
+        "p": 0.004217,
+        "verdict": "underpowered",
+        "n_male": 213,
+        "n_female": 180,
+        "cohort_band": [
+          0.9258,
+          1.2252
+        ],
+        "pooled_sd": 0.10469,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5811,
+        "ci": [
+          0.5227,
+          0.6376
+        ],
+        "p": 0.005596,
+        "verdict": "underpowered",
+        "n_male": 213,
+        "n_female": 180,
+        "cohort_band": [
+          0.7026,
+          0.8805
+        ],
+        "pooled_sd": 0.06181,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5597,
+        "ci": [
+          0.5027,
+          0.6176
+        ],
+        "p": 0.04138,
+        "verdict": "underpowered",
+        "n_male": 213,
+        "n_female": 180,
+        "cohort_band": [
+          0.1149,
+          0.4934
+        ],
+        "pooled_sd": 0.08617,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5618,
+        "ci": [
+          0.5083,
+          0.6161
+        ],
+        "p": 0.034848,
+        "verdict": "underpowered",
+        "n_male": 213,
+        "n_female": 180,
+        "cohort_band": [
+          0.154,
+          0.5729
+        ],
+        "pooled_sd": 0.12307,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "southeast_asian_60_69": {
+      "face_width": {
+        "auc": 0.5825,
+        "ci": [
+          0.4911,
+          0.6715
+        ],
+        "p": 0.081813,
+        "verdict": "underpowered",
+        "n_male": 88,
+        "n_female": 65,
+        "cohort_band": [
+          2.1105,
+          2.3924
+        ],
+        "pooled_sd": 0.09819,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6026,
+        "ci": [
+          0.5131,
+          0.6934
+        ],
+        "p": 0.03041,
+        "verdict": "underpowered",
+        "n_male": 88,
+        "n_female": 65,
+        "cohort_band": [
+          1.6883,
+          1.938
+        ],
+        "pooled_sd": 0.09704,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.4566,
+        "ci": [
+          0.3654,
+          0.5462
+        ],
+        "p": 0.360981,
+        "verdict": "underpowered",
+        "n_male": 88,
+        "n_female": 65,
+        "cohort_band": [
+          0.1623,
+          0.2083
+        ],
+        "pooled_sd": 0.01087,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6,
+        "ci": [
+          0.5126,
+          0.6911
+        ],
+        "p": 0.034914,
+        "verdict": "underpowered",
+        "n_male": 88,
+        "n_female": 65,
+        "cohort_band": [
+          0.9341,
+          1.1731
+        ],
+        "pooled_sd": 0.1115,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6519,
+        "ci": [
+          0.5584,
+          0.7418
+        ],
+        "p": 0.001348,
+        "verdict": "established",
+        "n_male": 88,
+        "n_female": 65,
+        "cohort_band": [
+          0.7541,
+          0.8445
+        ],
+        "pooled_sd": 0.06215,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5934,
+        "ci": [
+          0.5058,
+          0.6853
+        ],
+        "p": 0.048942,
+        "verdict": "underpowered",
+        "n_male": 88,
+        "n_female": 65,
+        "cohort_band": [
+          0.1792,
+          0.401
+        ],
+        "pooled_sd": 0.08803,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.6068,
+        "ci": [
+          0.522,
+          0.6935
+        ],
+        "p": 0.024241,
+        "verdict": "underpowered",
+        "n_male": 88,
+        "n_female": 65,
+        "cohort_band": [
+          0.2228,
+          0.4934
+        ],
+        "pooled_sd": 0.13526,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "southeast_asian_60_69_to_70_plus": {
+      "face_width": {
+        "auc": 0.6013,
+        "ci": [
+          0.5291,
+          0.6745
+        ],
+        "p": 0.007584,
+        "verdict": "underpowered",
+        "n_male": 118,
+        "n_female": 115,
+        "cohort_band": [
+          2.1313,
+          2.358
+        ],
+        "pooled_sd": 0.09956,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5861,
+        "ci": [
+          0.5148,
+          0.658
+        ],
+        "p": 0.023232,
+        "verdict": "underpowered",
+        "n_male": 118,
+        "n_female": 115,
+        "cohort_band": [
+          1.6637,
+          1.9544
+        ],
+        "pooled_sd": 0.09695,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.4754,
+        "ci": [
+          0.4025,
+          0.5491
+        ],
+        "p": 0.516779,
+        "verdict": "underpowered",
+        "n_male": 118,
+        "n_female": 115,
+        "cohort_band": [
+          0.1466,
+          0.2243
+        ],
+        "pooled_sd": 0.011,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5951,
+        "ci": [
+          0.5231,
+          0.6703
+        ],
+        "p": 0.012117,
+        "verdict": "underpowered",
+        "n_male": 118,
+        "n_female": 115,
+        "cohort_band": [
+          0.9293,
+          1.1709
+        ],
+        "pooled_sd": 0.10701,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6066,
+        "ci": [
+          0.5319,
+          0.6755
+        ],
+        "p": 0.004954,
+        "verdict": "underpowered",
+        "n_male": 118,
+        "n_female": 115,
+        "cohort_band": [
+          0.7348,
+          0.8628
+        ],
+        "pooled_sd": 0.06232,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5629,
+        "ci": [
+          0.4886,
+          0.636
+        ],
+        "p": 0.09747,
+        "verdict": "underpowered",
+        "n_male": 118,
+        "n_female": 115,
+        "cohort_band": [
+          0.1008,
+          0.4667
+        ],
+        "pooled_sd": 0.08847,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5722,
+        "ci": [
+          0.5006,
+          0.6461
+        ],
+        "p": 0.056893,
+        "verdict": "underpowered",
+        "n_male": 118,
+        "n_female": 115,
+        "cohort_band": [
+          0.156,
+          0.5684
+        ],
+        "pooled_sd": 0.14259,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "southeast_asian_70_plus": {
+      "face_width": {
+        "auc": 0.6234,
+        "ci": [
+          0.4938,
+          0.7469
+        ],
+        "p": 0.061671,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 52,
+        "cohort_band": [
+          2.1437,
+          2.3273
+        ],
+        "pooled_sd": 0.10137,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5347,
+        "ci": [
+          0.3951,
+          0.66
+        ],
+        "p": 0.601343,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 52,
+        "cohort_band": [
+          1.5273,
+          2.0771
+        ],
+        "pooled_sd": 0.09746,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.523,
+        "ci": [
+          0.3958,
+          0.6439
+        ],
+        "p": 0.731142,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 52,
+        "cohort_band": [
+          0.1061,
+          0.2638
+        ],
+        "pooled_sd": 0.01163,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5546,
+        "ci": [
+          0.4268,
+          0.6818
+        ],
+        "p": 0.410102,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 52,
+        "cohort_band": [
+          0.8803,
+          1.2034
+        ],
+        "pooled_sd": 0.09728,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.513,
+        "ci": [
+          0.3796,
+          0.6396
+        ],
+        "p": 0.846971,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 52,
+        "cohort_band": [
+          0.4575,
+          1.1285
+        ],
+        "pooled_sd": 0.06125,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5236,
+        "ci": [
+          0.3834,
+          0.6533
+        ],
+        "p": 0.724073,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 52,
+        "cohort_band": [
+          -0.2493,
+          0.793
+        ],
+        "pooled_sd": 0.08854,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5087,
+        "ci": [
+          0.3772,
+          0.6396
+        ],
+        "p": 0.898871,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 52,
+        "cohort_band": [
+          -0.8133,
+          1.5647
+        ],
+        "pooled_sd": 0.15475,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "white_20_29": {
+      "face_width": {
+        "auc": 0.6048,
+        "ci": [
+          0.5786,
+          0.6309
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 684,
+        "n_female": 1104,
+        "cohort_band": [
+          2.1141,
+          2.3284
+        ],
+        "pooled_sd": 0.09522,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6218,
+        "ci": [
+          0.593,
+          0.6498
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 684,
+        "n_female": 1104,
+        "cohort_band": [
+          1.7064,
+          1.8812
+        ],
+        "pooled_sd": 0.0938,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5793,
+        "ci": [
+          0.5517,
+          0.6046
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 684,
+        "n_female": 1104,
+        "cohort_band": [
+          0.1791,
+          0.2095
+        ],
+        "pooled_sd": 0.0108,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6292,
+        "ci": [
+          0.6032,
+          0.6561
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 684,
+        "n_female": 1104,
+        "cohort_band": [
+          1.0039,
+          1.2112
+        ],
+        "pooled_sd": 0.1119,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6725,
+        "ci": [
+          0.6474,
+          0.6969
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 684,
+        "n_female": 1104,
+        "cohort_band": [
+          0.6884,
+          0.7753
+        ],
+        "pooled_sd": 0.06585,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6389,
+        "ci": [
+          0.612,
+          0.6646
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 684,
+        "n_female": 1104,
+        "cohort_band": [
+          0.2513,
+          0.4127
+        ],
+        "pooled_sd": 0.08619,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5074,
+        "ci": [
+          0.4805,
+          0.5351
+        ],
+        "p": 0.599773,
+        "verdict": "underpowered",
+        "n_male": 684,
+        "n_female": 1104,
+        "cohort_band": [
+          -1.412,
+          1.9685
+        ],
+        "pooled_sd": 0.12914,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "white_30_39": {
+      "face_width": {
+        "auc": 0.645,
+        "ci": [
+          0.6186,
+          0.6725
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 770,
+        "n_female": 769,
+        "cohort_band": [
+          2.1571,
+          2.3253
+        ],
+        "pooled_sd": 0.10506,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6718,
+        "ci": [
+          0.646,
+          0.6978
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 770,
+        "n_female": 769,
+        "cohort_band": [
+          1.7481,
+          1.8855
+        ],
+        "pooled_sd": 0.10393,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.6193,
+        "ci": [
+          0.5905,
+          0.6469
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 770,
+        "n_female": 769,
+        "cohort_band": [
+          0.1815,
+          0.2033
+        ],
+        "pooled_sd": 0.0113,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.576,
+        "ci": [
+          0.5481,
+          0.6041
+        ],
+        "p": 0.0,
+        "verdict": "underpowered",
+        "n_male": 770,
+        "n_female": 769,
+        "cohort_band": [
+          0.9452,
+          1.2926
+        ],
+        "pooled_sd": 0.11405,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6837,
+        "ci": [
+          0.6584,
+          0.7087
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 770,
+        "n_female": 769,
+        "cohort_band": [
+          0.6666,
+          0.7945
+        ],
+        "pooled_sd": 0.08126,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6793,
+        "ci": [
+          0.652,
+          0.7042
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 770,
+        "n_female": 769,
+        "cohort_band": [
+          0.2584,
+          0.3763
+        ],
+        "pooled_sd": 0.08609,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5362,
+        "ci": [
+          0.5076,
+          0.5647
+        ],
+        "p": 0.013973,
+        "verdict": "underpowered",
+        "n_male": 770,
+        "n_female": 769,
+        "cohort_band": [
+          -0.0961,
+          0.6483
+        ],
+        "pooled_sd": 0.12579,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "white_40_49": {
+      "face_width": {
+        "auc": 0.642,
+        "ci": [
+          0.6021,
+          0.6791
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 480,
+        "n_female": 327,
+        "cohort_band": [
+          2.1769,
+          2.3457
+        ],
+        "pooled_sd": 0.10512,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6795,
+        "ci": [
+          0.6423,
+          0.7162
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 480,
+        "n_female": 327,
+        "cohort_band": [
+          1.7769,
+          1.8998
+        ],
+        "pooled_sd": 0.09908,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5934,
+        "ci": [
+          0.5536,
+          0.6319
+        ],
+        "p": 6e-06,
+        "verdict": "established",
+        "n_male": 480,
+        "n_female": 327,
+        "cohort_band": [
+          0.1759,
+          0.2026
+        ],
+        "pooled_sd": 0.01058,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5357,
+        "ci": [
+          0.4949,
+          0.5772
+        ],
+        "p": 0.084549,
+        "verdict": "underpowered",
+        "n_male": 480,
+        "n_female": 327,
+        "cohort_band": [
+          0.8001,
+          1.4415
+        ],
+        "pooled_sd": 0.10835,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.7024,
+        "ci": [
+          0.6655,
+          0.7382
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 480,
+        "n_female": 327,
+        "cohort_band": [
+          0.6992,
+          0.7747
+        ],
+        "pooled_sd": 0.06898,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.7051,
+        "ci": [
+          0.6674,
+          0.7402
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 480,
+        "n_female": 327,
+        "cohort_band": [
+          0.2502,
+          0.3433
+        ],
+        "pooled_sd": 0.08046,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5621,
+        "ci": [
+          0.5196,
+          0.6016
+        ],
+        "p": 0.002731,
+        "verdict": "underpowered",
+        "n_male": 480,
+        "n_female": 327,
+        "cohort_band": [
+          0.0382,
+          0.5375
+        ],
+        "pooled_sd": 0.1208,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "white_50_59": {
+      "face_width": {
+        "auc": 0.6282,
+        "ci": [
+          0.5801,
+          0.6737
+        ],
+        "p": 1e-06,
+        "verdict": "established",
+        "n_male": 344,
+        "n_female": 194,
+        "cohort_band": [
+          2.1575,
+          2.3837
+        ],
+        "pooled_sd": 0.10882,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6214,
+        "ci": [
+          0.5713,
+          0.6683
+        ],
+        "p": 3e-06,
+        "verdict": "established",
+        "n_male": 344,
+        "n_female": 194,
+        "cohort_band": [
+          1.7395,
+          1.955
+        ],
+        "pooled_sd": 0.10368,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5519,
+        "ci": [
+          0.503,
+          0.602
+        ],
+        "p": 0.045575,
+        "verdict": "underpowered",
+        "n_male": 344,
+        "n_female": 194,
+        "cohort_band": [
+          0.1505,
+          0.2238
+        ],
+        "pooled_sd": 0.01166,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5811,
+        "ci": [
+          0.5327,
+          0.6309
+        ],
+        "p": 0.001778,
+        "verdict": "underpowered",
+        "n_male": 344,
+        "n_female": 194,
+        "cohort_band": [
+          0.894,
+          1.3549
+        ],
+        "pooled_sd": 0.113,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.7224,
+        "ci": [
+          0.6773,
+          0.7659
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 344,
+        "n_female": 194,
+        "cohort_band": [
+          0.7016,
+          0.768
+        ],
+        "pooled_sd": 0.06556,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.6658,
+        "ci": [
+          0.6189,
+          0.7086
+        ],
+        "p": 0.0,
+        "verdict": "established",
+        "n_male": 344,
+        "n_female": 194,
+        "cohort_band": [
+          0.2258,
+          0.3437
+        ],
+        "pooled_sd": 0.08007,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5183,
+        "ci": [
+          0.4689,
+          0.5691
+        ],
+        "p": 0.481205,
+        "verdict": "underpowered",
+        "n_male": 344,
+        "n_female": 194,
+        "cohort_band": [
+          -0.2108,
+          0.795
+        ],
+        "pooled_sd": 0.12895,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "white_60_69": {
+      "face_width": {
+        "auc": 0.5795,
+        "ci": [
+          0.5057,
+          0.6519
+        ],
+        "p": 0.042909,
+        "verdict": "underpowered",
+        "n_male": 169,
+        "n_female": 80,
+        "cohort_band": [
+          2.1356,
+          2.4251
+        ],
+        "pooled_sd": 0.11092,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.572,
+        "ci": [
+          0.4939,
+          0.645
+        ],
+        "p": 0.066611,
+        "verdict": "underpowered",
+        "n_male": 169,
+        "n_female": 80,
+        "cohort_band": [
+          1.7023,
+          2.0122
+        ],
+        "pooled_sd": 0.10747,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5202,
+        "ci": [
+          0.4433,
+          0.6024
+        ],
+        "p": 0.607636,
+        "verdict": "underpowered",
+        "n_male": 169,
+        "n_female": 80,
+        "cohort_band": [
+          0.112,
+          0.2587
+        ],
+        "pooled_sd": 0.0109,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.6073,
+        "ci": [
+          0.5265,
+          0.6857
+        ],
+        "p": 0.006275,
+        "verdict": "underpowered",
+        "n_male": 169,
+        "n_female": 80,
+        "cohort_band": [
+          0.989,
+          1.2317
+        ],
+        "pooled_sd": 0.10478,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.637,
+        "ci": [
+          0.5605,
+          0.7076
+        ],
+        "p": 0.000485,
+        "verdict": "established",
+        "n_male": 169,
+        "n_female": 80,
+        "cohort_band": [
+          0.6944,
+          0.8039
+        ],
+        "pooled_sd": 0.06628,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5831,
+        "ci": [
+          0.514,
+          0.6601
+        ],
+        "p": 0.034266,
+        "verdict": "underpowered",
+        "n_male": 169,
+        "n_female": 80,
+        "cohort_band": [
+          0.1506,
+          0.3702
+        ],
+        "pooled_sd": 0.08,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.533,
+        "ci": [
+          0.4568,
+          0.6064
+        ],
+        "p": 0.401233,
+        "verdict": "underpowered",
+        "n_male": 169,
+        "n_female": 80,
+        "cohort_band": [
+          -0.2862,
+          0.8597
+        ],
+        "pooled_sd": 0.12448,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "white_60_69_to_70_plus": {
+      "face_width": {
+        "auc": 0.596,
+        "ci": [
+          0.5303,
+          0.6598
+        ],
+        "p": 0.005101,
+        "verdict": "underpowered",
+        "n_male": 199,
+        "n_female": 111,
+        "cohort_band": [
+          2.1385,
+          2.4148
+        ],
+        "pooled_sd": 0.11135,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.5873,
+        "ci": [
+          0.5212,
+          0.6532
+        ],
+        "p": 0.01087,
+        "verdict": "underpowered",
+        "n_male": 199,
+        "n_female": 111,
+        "cohort_band": [
+          1.7028,
+          2.0002
+        ],
+        "pooled_sd": 0.10758,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5269,
+        "ci": [
+          0.4586,
+          0.5927
+        ],
+        "p": 0.433187,
+        "verdict": "underpowered",
+        "n_male": 199,
+        "n_female": 111,
+        "cohort_band": [
+          0.1233,
+          0.2482
+        ],
+        "pooled_sd": 0.01067,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5969,
+        "ci": [
+          0.5293,
+          0.662
+        ],
+        "p": 0.004679,
+        "verdict": "underpowered",
+        "n_male": 199,
+        "n_female": 111,
+        "cohort_band": [
+          0.9631,
+          1.2493
+        ],
+        "pooled_sd": 0.1077,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.6276,
+        "ci": [
+          0.5605,
+          0.6909
+        ],
+        "p": 0.000195,
+        "verdict": "established",
+        "n_male": 199,
+        "n_female": 111,
+        "cohort_band": [
+          0.6902,
+          0.8048
+        ],
+        "pooled_sd": 0.06547,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.5796,
+        "ci": [
+          0.5101,
+          0.645
+        ],
+        "p": 0.020153,
+        "verdict": "underpowered",
+        "n_male": 199,
+        "n_female": 111,
+        "cohort_band": [
+          0.1472,
+          0.3722
+        ],
+        "pooled_sd": 0.08114,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5249,
+        "ci": [
+          0.4592,
+          0.5931
+        ],
+        "p": 0.468087,
+        "verdict": "underpowered",
+        "n_male": 199,
+        "n_female": 111,
+        "cohort_band": [
+          -0.7031,
+          1.2685
+        ],
+        "pooled_sd": 0.12536,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    },
+    "white_70_plus": {
+      "face_width": {
+        "auc": 0.6443,
+        "ci": [
+          0.4991,
+          0.7751
+        ],
+        "p": 0.043563,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 36,
+        "cohort_band": [
+          2.1219,
+          2.4026
+        ],
+        "pooled_sd": 0.11439,
+        "label": "Face width / eye spacing",
+        "higher_in": "M"
+      },
+      "jaw_width": {
+        "auc": 0.6156,
+        "ci": [
+          0.4713,
+          0.7545
+        ],
+        "p": 0.106122,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 36,
+        "cohort_band": [
+          1.6087,
+          2.0542
+        ],
+        "pooled_sd": 0.10428,
+        "label": "Jaw width / eye spacing",
+        "higher_in": "M"
+      },
+      "eye_size": {
+        "auc": 0.5403,
+        "ci": [
+          0.3961,
+          0.6837
+        ],
+        "p": 0.575764,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 36,
+        "cohort_band": [
+          -0.0764,
+          0.4505
+        ],
+        "pooled_sd": 0.00968,
+        "label": "Eye width / face width",
+        "higher_in": "F"
+      },
+      "lower_third": {
+        "auc": 0.5027,
+        "ci": [
+          0.3494,
+          0.6595
+        ],
+        "p": 0.974921,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 36,
+        "cohort_band": [
+          0.4916,
+          1.6856
+        ],
+        "pooled_sd": 0.11496,
+        "label": "Lower-face height / eye spacing",
+        "higher_in": "M"
+      },
+      "nose_width": {
+        "auc": 0.5547,
+        "ci": [
+          0.4122,
+          0.6891
+        ],
+        "p": 0.446788,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 36,
+        "cohort_band": [
+          0.6209,
+          0.856
+        ],
+        "pooled_sd": 0.06297,
+        "label": "Nose width / mouth width",
+        "higher_in": "M"
+      },
+      "lip_height": {
+        "auc": 0.569,
+        "ci": [
+          0.4194,
+          0.7052
+        ],
+        "p": 0.33606,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 36,
+        "cohort_band": [
+          0.1379,
+          0.377
+        ],
+        "pooled_sd": 0.08608,
+        "label": "Lip height / lower-face height",
+        "higher_in": "F"
+      },
+      "brow_gap": {
+        "auc": 0.5609,
+        "ci": [
+          0.4229,
+          0.7025
+        ],
+        "p": 0.39599,
+        "verdict": "underpowered",
+        "n_male": 31,
+        "n_female": 36,
+        "cohort_band": [
+          -0.0809,
+          0.6341
+        ],
+        "pooled_sd": 0.13132,
+        "label": "Brow-to-eyelid gap / eye width",
+        "higher_in": "F"
+      }
+    }
+  },
+  "pooled_for_contrast": {
+    "face_width": {
+      "pooled_auc": 0.6188,
+      "pooled_ci": [
+        0.6131,
+        0.626
+      ],
+      "median_within_cohort_auc": 0.596,
+      "inflation_from_pooling": 0.0228,
+      "n_cohorts": 53,
+      "established_in": 20
+    },
+    "jaw_width": {
+      "pooled_auc": 0.6486,
+      "pooled_ci": [
+        0.6423,
+        0.6549
+      ],
+      "median_within_cohort_auc": 0.6218,
+      "inflation_from_pooling": 0.0268,
+      "n_cohorts": 53,
+      "established_in": 33
+    },
+    "eye_size": {
+      "pooled_auc": 0.5863,
+      "pooled_ci": [
+        0.5799,
+        0.5928
+      ],
+      "median_within_cohort_auc": 0.5535,
+      "inflation_from_pooling": 0.0328,
+      "n_cohorts": 53,
+      "established_in": 12
+    },
+    "lower_third": {
+      "pooled_auc": 0.5771,
+      "pooled_ci": [
+        0.5706,
+        0.5842
+      ],
+      "median_within_cohort_auc": 0.5583,
+      "inflation_from_pooling": 0.0188,
+      "n_cohorts": 53,
+      "established_in": 12
+    },
+    "nose_width": {
+      "pooled_auc": 0.6602,
+      "pooled_ci": [
+        0.6539,
+        0.6659
+      ],
+      "median_within_cohort_auc": 0.6486,
+      "inflation_from_pooling": 0.0116,
+      "n_cohorts": 53,
+      "established_in": 38
+    },
+    "lip_height": {
+      "pooled_auc": 0.6325,
+      "pooled_ci": [
+        0.6259,
+        0.6387
+      ],
+      "median_within_cohort_auc": 0.5986,
+      "inflation_from_pooling": 0.0339,
+      "n_cohorts": 53,
+      "established_in": 25
+    },
+    "brow_gap": {
+      "pooled_auc": 0.5313,
+      "pooled_ci": [
+        0.5247,
+        0.5381
+      ],
+      "median_within_cohort_auc": 0.542,
+      "inflation_from_pooling": -0.0107,
+      "n_cohorts": 53,
+      "established_in": 3
+    }
+  },
+  "tally": {
+    "established": 143,
+    "contradicted": 6,
+    "underpowered": 250
+  },
+  "n_cohorts": 57
+}

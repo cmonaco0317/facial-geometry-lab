@@ -1,0 +1,22 @@
+{
+  "_what": "set-to-set movement of the AVERAGENESS PERCENTILE, with the subject's missing photograph-noise added back so both sides of the comparison carry the same noise.",
+  "cohort": "m_white_20_29",
+  "set_size": 4,
+  "n_bank_faces": 804,
+  "n_held_out_for_distribution": 402,
+  "n_identities": 138,
+  "measured_single_photo_shape_sigma": 0.002542,
+  "noise_added_back_fraction": 0.866,
+  "movement_percentile_points": {
+    "median": 10.95,
+    "p90": 29.35,
+    "share_under_10pp": 0.465
+  },
+  "subject_percentile_distribution": {
+    "median": 51.7,
+    "p5": 21.4,
+    "p95": 73.9
+  },
+  "uncorrected_percentile_median": 87.3,
+  "_cleanliness_check": "if the uncorrected median sits far above 50, a clean set-averaged subject is being scored as more typical than the population purely for being cleaner \u2014 \u00a75.1."
+}

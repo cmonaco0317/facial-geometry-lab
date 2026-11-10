@@ -1,0 +1,2073 @@
+{
+  "_what": "per-cohort logistic calibration of dimorphism -> P(male) with an interval, fitted on established features only.",
+  "_bars": {
+    "min_established_features": 2,
+    "max_held_out_calibration_error": 0.1
+  },
+  "bank_instrument_digest": "564237ef83140cf92e7e2cef",
+  "cohorts": {
+    "black_20_29": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width"
+      ],
+      "n_male": 473,
+      "n_female": 626,
+      "mean": [
+        1.722037,
+        0.757542
+      ],
+      "sd": [
+        0.093551,
+        0.069539
+      ],
+      "coef": [
+        -0.313711,
+        0.513012,
+        0.664727
+      ],
+      "coef_ci": [
+        [
+          -0.446987,
+          -0.185593
+        ],
+        [
+          0.384686,
+          0.667059
+        ],
+        [
+          0.519987,
+          0.798382
+        ]
+      ],
+      "held_out_brier": 0.2158,
+      "held_out_calibration_error": 0.048,
+      "held_out_n": 550,
+      "_baseline_brier": 0.2455
+    },
+    "black_30_39": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 456,
+      "n_female": 540,
+      "mean": [
+        1.753142,
+        0.762283,
+        0.373189
+      ],
+      "sd": [
+        0.097607,
+        0.070931,
+        0.090238
+      ],
+      "coef": [
+        -0.190116,
+        0.528766,
+        0.728021,
+        0.051778
+      ],
+      "coef_ci": [
+        [
+          -0.312759,
+          -0.070662
+        ],
+        [
+          0.398819,
+          0.675107
+        ],
+        [
+          0.573365,
+          0.898454
+        ],
+        [
+          -0.098777,
+          0.186988
+        ]
+      ],
+      "held_out_brier": 0.2156,
+      "held_out_calibration_error": 0.0472,
+      "held_out_n": 498,
+      "_baseline_brier": 0.2488
+    },
+    "black_40_49": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "nose_width",
+        "brow_gap"
+      ],
+      "n_male": 291,
+      "n_female": 286,
+      "mean": [
+        2.188565,
+        1.77645,
+        0.769834,
+        0.340929
+      ],
+      "sd": [
+        0.096606,
+        0.100097,
+        0.067007,
+        0.119309
+      ],
+      "coef": [
+        0.042079,
+        -0.510204,
+        1.349667,
+        0.73504,
+        -0.322655
+      ],
+      "coef_ci": [
+        [
+          -0.15765,
+          0.22948
+        ],
+        [
+          -0.857934,
+          -0.153292
+        ],
+        [
+          0.958643,
+          1.731904
+        ],
+        [
+          0.543089,
+          0.952166
+        ],
+        [
+          -0.531831,
+          -0.146341
+        ]
+      ],
+      "held_out_brier": 0.2048,
+      "held_out_calibration_error": 0.0599,
+      "held_out_n": 289,
+      "_baseline_brier": 0.2499
+    },
+    "black_50_59": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 131,
+      "n_female": 159,
+      "mean": [
+        1.778637,
+        0.779946,
+        0.319728
+      ],
+      "sd": [
+        0.094329,
+        0.064808,
+        0.083713
+      ],
+      "coef": [
+        -0.255852,
+        0.860482,
+        0.869908,
+        -0.304705
+      ],
+      "coef_ci": [
+        [
+          -0.505224,
+          0.018014
+        ],
+        [
+          0.542504,
+          1.27056
+        ],
+        [
+          0.591743,
+          1.299061
+        ],
+        [
+          -0.590928,
+          0.022599
+        ]
+      ],
+      "held_out_brier": 0.205,
+      "held_out_calibration_error": 0.0808,
+      "held_out_n": 145,
+      "_baseline_brier": 0.2466
+    },
+    "black_50_59_to_60_69": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 178,
+      "n_female": 211,
+      "mean": [
+        1.775165,
+        0.783162,
+        0.316353
+      ],
+      "sd": [
+        0.093464,
+        0.065778,
+        0.084382
+      ],
+      "coef": [
+        -0.208124,
+        0.714815,
+        0.870327,
+        -0.146821
+      ],
+      "coef_ci": [
+        [
+          -0.449267,
+          -0.010618
+        ],
+        [
+          0.490698,
+          0.994738
+        ],
+        [
+          0.583266,
+          1.26186
+        ],
+        [
+          -0.415958,
+          0.089508
+        ]
+      ],
+      "held_out_brier": 0.1964,
+      "held_out_calibration_error": 0.069,
+      "held_out_n": 195,
+      "_baseline_brier": 0.2481
+    },
+    "black_60_69": {
+      "status": "refused",
+      "why": "only 1 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": [
+        "nose_width"
+      ]
+    },
+    "black_60_69_to_70_plus": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "nose_width",
+        "brow_gap"
+      ],
+      "n_male": 65,
+      "n_female": 75,
+      "mean": [
+        0.79399,
+        0.315617
+      ],
+      "sd": [
+        0.06723,
+        0.119995
+      ],
+      "coef": [
+        -0.15891,
+        0.514347,
+        -0.442971
+      ],
+      "coef_ci": [
+        [
+          -0.501486,
+          0.208081
+        ],
+        [
+          0.103751,
+          0.939101
+        ],
+        [
+          -0.925179,
+          -0.080772
+        ]
+      ],
+      "held_out_brier": 0.2386,
+      "held_out_calibration_error": 0.0503,
+      "held_out_n": 70,
+      "_baseline_brier": 0.2482
+    },
+    "black_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "east_asian_20_29": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "lower_third",
+        "nose_width"
+      ],
+      "n_male": 620,
+      "n_female": 983,
+      "mean": [
+        2.229159,
+        1.78744,
+        0.186808,
+        1.064361,
+        0.75509
+      ],
+      "sd": [
+        0.091858,
+        0.091326,
+        0.01029,
+        0.106426,
+        0.065437
+      ],
+      "coef": [
+        -0.53579,
+        0.202958,
+        0.074718,
+        -0.039499,
+        0.526299,
+        0.751319
+      ],
+      "coef_ci": [
+        [
+          -0.641637,
+          -0.435112
+        ],
+        [
+          0.020415,
+          0.427845
+        ],
+        [
+          -0.105894,
+          0.216645
+        ],
+        [
+          -0.20299,
+          0.110134
+        ],
+        [
+          0.390021,
+          0.662976
+        ],
+        [
+          0.644063,
+          0.891273
+        ]
+      ],
+      "held_out_brier": 0.1925,
+      "held_out_calibration_error": 0.0599,
+      "held_out_n": 802,
+      "_baseline_brier": 0.2338
+    },
+    "east_asian_30_39": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "lower_third",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 436,
+      "n_female": 455,
+      "mean": [
+        2.26004,
+        1.82182,
+        1.079025,
+        0.761202,
+        0.343049
+      ],
+      "sd": [
+        0.093804,
+        0.095116,
+        0.101782,
+        0.06558,
+        0.085381
+      ],
+      "coef": [
+        -0.048509,
+        0.300484,
+        0.133721,
+        0.526384,
+        0.916364,
+        -0.214618
+      ],
+      "coef_ci": [
+        [
+          -0.211267,
+          0.086382
+        ],
+        [
+          0.017739,
+          0.582077
+        ],
+        [
+          -0.138431,
+          0.437166
+        ],
+        [
+          0.341956,
+          0.768031
+        ],
+        [
+          0.729047,
+          1.134259
+        ],
+        [
+          -0.412693,
+          -0.041695
+        ]
+      ],
+      "held_out_brier": 0.1953,
+      "held_out_calibration_error": 0.0458,
+      "held_out_n": 446,
+      "_baseline_brier": 0.2497
+    },
+    "east_asian_40_49": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 204,
+      "n_female": 147,
+      "mean": [
+        1.845692,
+        0.766091,
+        0.321055
+      ],
+      "sd": [
+        0.092374,
+        0.062955,
+        0.080774
+      ],
+      "coef": [
+        0.382167,
+        0.565495,
+        0.761314,
+        -0.054869
+      ],
+      "coef_ci": [
+        [
+          0.192216,
+          0.629995
+        ],
+        [
+          0.355397,
+          0.842502
+        ],
+        [
+          0.507809,
+          1.068973
+        ],
+        [
+          -0.301879,
+          0.205384
+        ]
+      ],
+      "held_out_brier": 0.2046,
+      "held_out_calibration_error": 0.0936,
+      "held_out_n": 176,
+      "_baseline_brier": 0.2437
+    },
+    "east_asian_40_49_to_50_59": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 323,
+      "n_female": 224,
+      "mean": [
+        1.846425,
+        0.77046,
+        0.317981
+      ],
+      "sd": [
+        0.092442,
+        0.062263,
+        0.080367
+      ],
+      "coef": [
+        0.412334,
+        0.486393,
+        0.610492,
+        -0.10977
+      ],
+      "coef_ci": [
+        [
+          0.242436,
+          0.58485
+        ],
+        [
+          0.316686,
+          0.747923
+        ],
+        [
+          0.414251,
+          0.842853
+        ],
+        [
+          -0.312414,
+          0.085235
+        ]
+      ],
+      "held_out_brier": 0.2252,
+      "held_out_calibration_error": 0.0561,
+      "held_out_n": 274,
+      "_baseline_brier": 0.2417
+    },
+    "east_asian_50_59": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "east_asian_50_59_to_60_69": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "east_asian_60_69": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "east_asian_60_69_to_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "east_asian_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "indian_20_29": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "lower_third",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 487,
+      "n_female": 564,
+      "mean": [
+        1.772607,
+        1.041929,
+        0.753009,
+        0.333332
+      ],
+      "sd": [
+        0.088622,
+        0.095932,
+        0.067948,
+        0.07633
+      ],
+      "coef": [
+        -0.174518,
+        0.39696,
+        0.488318,
+        0.710712,
+        -0.184039
+      ],
+      "coef_ci": [
+        [
+          -0.318941,
+          -0.064485
+        ],
+        [
+          0.258062,
+          0.609138
+        ],
+        [
+          0.329397,
+          0.680708
+        ],
+        [
+          0.574151,
+          0.904897
+        ],
+        [
+          -0.337583,
+          -0.015652
+        ]
+      ],
+      "held_out_brier": 0.2208,
+      "held_out_calibration_error": 0.0515,
+      "held_out_n": 526,
+      "_baseline_brier": 0.2499
+    },
+    "indian_30_39": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "lower_third",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 551,
+      "n_female": 436,
+      "mean": [
+        2.229517,
+        1.808286,
+        0.196004,
+        1.057311,
+        0.759453,
+        0.315787
+      ],
+      "sd": [
+        0.093677,
+        0.095157,
+        0.009926,
+        0.096073,
+        0.06649,
+        0.078591
+      ],
+      "coef": [
+        0.295978,
+        -0.353907,
+        1.161469,
+        0.014075,
+        0.364483,
+        0.600543,
+        -0.212221
+      ],
+      "coef_ci": [
+        [
+          0.147983,
+          0.436624
+        ],
+        [
+          -0.6554,
+          -0.064515
+        ],
+        [
+          0.873154,
+          1.518094
+        ],
+        [
+          -0.174039,
+          0.212872
+        ],
+        [
+          0.181907,
+          0.553105
+        ],
+        [
+          0.428611,
+          0.764613
+        ],
+        [
+          -0.385985,
+          -0.04513
+        ]
+      ],
+      "held_out_brier": 0.1892,
+      "held_out_calibration_error": 0.0399,
+      "held_out_n": 494,
+      "_baseline_brier": 0.2463
+    },
+    "indian_40_49": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "lower_third",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 388,
+      "n_female": 275,
+      "mean": [
+        1.818735,
+        1.060593,
+        0.775712,
+        0.296741
+      ],
+      "sd": [
+        0.095838,
+        0.096739,
+        0.067816,
+        0.076726
+      ],
+      "coef": [
+        0.402139,
+        0.547892,
+        0.280882,
+        0.499251,
+        -0.258199
+      ],
+      "coef_ci": [
+        [
+          0.246822,
+          0.576812
+        ],
+        [
+          0.354691,
+          0.799992
+        ],
+        [
+          0.060158,
+          0.49189
+        ],
+        [
+          0.333214,
+          0.69513
+        ],
+        [
+          -0.44119,
+          -0.042582
+        ]
+      ],
+      "held_out_brier": 0.2057,
+      "held_out_calibration_error": 0.0905,
+      "held_out_n": 332,
+      "_baseline_brier": 0.2434
+    },
+    "indian_50_59": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "lower_third",
+        "lip_height"
+      ],
+      "n_male": 251,
+      "n_female": 151,
+      "mean": [
+        2.247859,
+        1.830833,
+        1.06109,
+        0.278743
+      ],
+      "sd": [
+        0.09772,
+        0.096503,
+        0.094901,
+        0.070209
+      ],
+      "coef": [
+        0.583268,
+        -0.498569,
+        0.984809,
+        0.243128,
+        -0.473153
+      ],
+      "coef_ci": [
+        [
+          0.347499,
+          0.818162
+        ],
+        [
+          -0.95816,
+          -0.09295
+        ],
+        [
+          0.561837,
+          1.479606
+        ],
+        [
+          -0.022193,
+          0.507085
+        ],
+        [
+          -0.767698,
+          -0.22753
+        ]
+      ],
+      "held_out_brier": 0.2084,
+      "held_out_calibration_error": 0.074,
+      "held_out_n": 201,
+      "_baseline_brier": 0.2285
+    },
+    "indian_50_59_to_60_69": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "lower_third",
+        "lip_height"
+      ],
+      "n_male": 341,
+      "n_female": 237,
+      "mean": [
+        2.239888,
+        1.825075,
+        0.191641,
+        1.054405,
+        0.275899
+      ],
+      "sd": [
+        0.099122,
+        0.098724,
+        0.010036,
+        0.09766,
+        0.072102
+      ],
+      "coef": [
+        0.414999,
+        -0.406629,
+        0.894722,
+        -0.010239,
+        0.200727,
+        -0.473767
+      ],
+      "coef_ci": [
+        [
+          0.254584,
+          0.625323
+        ],
+        [
+          -0.792913,
+          -0.096607
+        ],
+        [
+          0.60412,
+          1.28585
+        ],
+        [
+          -0.290896,
+          0.233109
+        ],
+        [
+          -0.037311,
+          0.431762
+        ],
+        [
+          -0.686173,
+          -0.288954
+        ]
+      ],
+      "held_out_brier": 0.2133,
+      "held_out_calibration_error": 0.056,
+      "held_out_n": 289,
+      "_baseline_brier": 0.2366
+    },
+    "indian_60_69": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 105,
+      "n_female": 90,
+      "mean": [
+        1.814076,
+        0.799296,
+        0.265561
+      ],
+      "sd": [
+        0.102185,
+        0.067408,
+        0.074363
+      ],
+      "coef": [
+        0.179467,
+        0.761071,
+        0.72854,
+        -0.304599
+      ],
+      "coef_ci": [
+        [
+          -0.155497,
+          0.544441
+        ],
+        [
+          0.428759,
+          1.208863
+        ],
+        [
+          0.335336,
+          1.202444
+        ],
+        [
+          -0.69879,
+          -0.021681
+        ]
+      ],
+      "held_out_brier": 0.1838,
+      "held_out_calibration_error": 0.0496,
+      "held_out_n": 98,
+      "_baseline_brier": 0.2496
+    },
+    "indian_60_69_to_70_plus": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width"
+      ],
+      "n_male": 141,
+      "n_female": 139,
+      "mean": [
+        1.802542,
+        0.803311
+      ],
+      "sd": [
+        0.099482,
+        0.06702
+      ],
+      "coef": [
+        0.015513,
+        0.725213,
+        0.718788
+      ],
+      "coef_ci": [
+        [
+          -0.263507,
+          0.260823
+        ],
+        [
+          0.47846,
+          1.038315
+        ],
+        [
+          0.457586,
+          1.032245
+        ]
+      ],
+      "held_out_brier": 0.2058,
+      "held_out_calibration_error": 0.0763,
+      "held_out_n": 140,
+      "_baseline_brier": 0.2499
+    },
+    "indian_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "latino_hispanic_20_29": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "lower_third",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 517,
+      "n_female": 731,
+      "mean": [
+        2.208549,
+        1.780711,
+        0.195233,
+        1.089216,
+        0.738396,
+        0.347841
+      ],
+      "sd": [
+        0.095839,
+        0.093776,
+        0.010268,
+        0.107225,
+        0.070142,
+        0.085799
+      ],
+      "coef": [
+        -0.432274,
+        -0.474358,
+        0.658545,
+        -0.213086,
+        0.531348,
+        0.876712,
+        -0.314183
+      ],
+      "coef_ci": [
+        [
+          -0.568478,
+          -0.308851
+        ],
+        [
+          -0.70425,
+          -0.246007
+        ],
+        [
+          0.429933,
+          0.907809
+        ],
+        [
+          -0.38289,
+          -0.049466
+        ],
+        [
+          0.386501,
+          0.7243
+        ],
+        [
+          0.71981,
+          1.040106
+        ],
+        [
+          -0.505221,
+          -0.160447
+        ]
+      ],
+      "held_out_brier": 0.187,
+      "held_out_calibration_error": 0.0391,
+      "held_out_n": 624,
+      "_baseline_brier": 0.2433
+    },
+    "latino_hispanic_30_39": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 553,
+      "n_female": 584,
+      "mean": [
+        2.230654,
+        1.805965,
+        0.192234,
+        0.744741,
+        0.327723
+      ],
+      "sd": [
+        0.095899,
+        0.095616,
+        0.010346,
+        0.070519,
+        0.080268
+      ],
+      "coef": [
+        -0.064103,
+        -0.249833,
+        0.910543,
+        -0.109531,
+        0.935663,
+        -0.049764
+      ],
+      "coef_ci": [
+        [
+          -0.196659,
+          0.060696
+        ],
+        [
+          -0.496671,
+          -0.01669
+        ],
+        [
+          0.699641,
+          1.166714
+        ],
+        [
+          -0.275572,
+          0.076944
+        ],
+        [
+          0.778637,
+          1.122475
+        ],
+        [
+          -0.234477,
+          0.107877
+        ]
+      ],
+      "held_out_brier": 0.2096,
+      "held_out_calibration_error": 0.0903,
+      "held_out_n": 569,
+      "_baseline_brier": 0.2492
+    },
+    "latino_hispanic_40_49": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "nose_width",
+        "lip_height",
+        "brow_gap"
+      ],
+      "n_male": 410,
+      "n_female": 333,
+      "mean": [
+        2.251385,
+        1.830621,
+        0.758278,
+        0.299502,
+        0.300553
+      ],
+      "sd": [
+        0.102021,
+        0.097398,
+        0.070029,
+        0.080689,
+        0.114701
+      ],
+      "coef": [
+        0.284998,
+        -0.60676,
+        1.261048,
+        0.760662,
+        -0.301361,
+        -0.487881
+      ],
+      "coef_ci": [
+        [
+          0.096891,
+          0.44077
+        ],
+        [
+          -0.963464,
+          -0.29052
+        ],
+        [
+          0.904653,
+          1.668479
+        ],
+        [
+          0.551871,
+          0.974458
+        ],
+        [
+          -0.497009,
+          -0.132766
+        ],
+        [
+          -0.672205,
+          -0.324424
+        ]
+      ],
+      "held_out_brier": 0.1836,
+      "held_out_calibration_error": 0.0434,
+      "held_out_n": 372,
+      "_baseline_brier": 0.2458
+    },
+    "latino_hispanic_50_59": {
+      "status": "refused",
+      "why": "held-out calibration error 0.105 exceeds the 0.1 bar, so the number would not be a probability",
+      "features": [
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 261,
+      "n_female": 173,
+      "mean": [
+        1.841313,
+        0.778059,
+        0.270538
+      ],
+      "sd": [
+        0.096696,
+        0.068083,
+        0.080084
+      ],
+      "coef": [
+        0.52437,
+        0.72294,
+        0.884406,
+        -0.083645
+      ],
+      "coef_ci": [
+        [
+          0.299768,
+          0.766899
+        ],
+        [
+          0.482628,
+          0.974685
+        ],
+        [
+          0.616428,
+          1.189082
+        ],
+        [
+          -0.329954,
+          0.174941
+        ]
+      ],
+      "held_out_brier": 0.2175,
+      "held_out_calibration_error": 0.1048,
+      "held_out_n": 217,
+      "_baseline_brier": 0.2383
+    },
+    "latino_hispanic_50_59_to_60_69": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 335,
+      "n_female": 242,
+      "mean": [
+        1.839346,
+        0.781354,
+        0.264863
+      ],
+      "sd": [
+        0.097167,
+        0.06821,
+        0.082015
+      ],
+      "coef": [
+        0.403041,
+        0.643043,
+        0.779753,
+        -0.104335
+      ],
+      "coef_ci": [
+        [
+          0.230662,
+          0.607981
+        ],
+        [
+          0.465097,
+          0.866532
+        ],
+        [
+          0.569753,
+          1.002636
+        ],
+        [
+          -0.293229,
+          0.082655
+        ]
+      ],
+      "held_out_brier": 0.1893,
+      "held_out_calibration_error": 0.0496,
+      "held_out_n": 289,
+      "_baseline_brier": 0.2422
+    },
+    "latino_hispanic_60_69": {
+      "status": "refused",
+      "why": "only 1 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": [
+        "nose_width"
+      ]
+    },
+    "latino_hispanic_60_69_to_70_plus": {
+      "status": "refused",
+      "why": "only 1 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": [
+        "nose_width"
+      ]
+    },
+    "latino_hispanic_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "middle_eastern_20_29": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "lower_third",
+        "nose_width"
+      ],
+      "n_male": 354,
+      "n_female": 273,
+      "mean": [
+        2.215225,
+        1.787638,
+        0.196838,
+        1.081928,
+        0.758238
+      ],
+      "sd": [
+        0.099175,
+        0.097492,
+        0.010578,
+        0.112905,
+        0.068355
+      ],
+      "coef": [
+        0.352949,
+        -0.442932,
+        0.662668,
+        -0.479645,
+        0.468214,
+        0.994081
+      ],
+      "coef_ci": [
+        [
+          0.170176,
+          0.551893
+        ],
+        [
+          -0.833924,
+          -0.126113
+        ],
+        [
+          0.302089,
+          1.016032
+        ],
+        [
+          -0.762281,
+          -0.226698
+        ],
+        [
+          0.251143,
+          0.717466
+        ],
+        [
+          0.801304,
+          1.258283
+        ]
+      ],
+      "held_out_brier": 0.1873,
+      "held_out_calibration_error": 0.0705,
+      "held_out_n": 314,
+      "_baseline_brier": 0.2463
+    },
+    "middle_eastern_30_39": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 537,
+      "n_female": 194,
+      "mean": [
+        2.240294,
+        1.823303,
+        0.193168,
+        0.761042,
+        0.303679
+      ],
+      "sd": [
+        0.098815,
+        0.094524,
+        0.010879,
+        0.065431,
+        0.082825
+      ],
+      "coef": [
+        1.286692,
+        0.079499,
+        0.326516,
+        -0.571683,
+        0.790143,
+        -0.083631
+      ],
+      "coef_ci": [
+        [
+          1.10707,
+          1.527543
+        ],
+        [
+          -0.314487,
+          0.448124
+        ],
+        [
+          -0.023053,
+          0.725656
+        ],
+        [
+          -0.819154,
+          -0.310903
+        ],
+        [
+          0.578238,
+          1.007226
+        ],
+        [
+          -0.283013,
+          0.119526
+        ]
+      ],
+      "held_out_brier": 0.1645,
+      "held_out_calibration_error": 0.0559,
+      "held_out_n": 366,
+      "_baseline_brier": 0.1986
+    },
+    "middle_eastern_40_49": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "lower_third",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 333,
+      "n_female": 108,
+      "mean": [
+        2.25972,
+        1.842248,
+        0.190834,
+        1.10526,
+        0.77285,
+        0.28657
+      ],
+      "sd": [
+        0.106383,
+        0.105187,
+        0.011297,
+        0.107419,
+        0.06418,
+        0.084512
+      ],
+      "coef": [
+        1.49025,
+        0.091624,
+        0.868841,
+        -0.230763,
+        0.177218,
+        0.499705,
+        -0.205553
+      ],
+      "coef_ci": [
+        [
+          1.27608,
+          1.820909
+        ],
+        [
+          -0.405444,
+          0.534559
+        ],
+        [
+          0.540408,
+          1.377451
+        ],
+        [
+          -0.602966,
+          0.07707
+        ],
+        [
+          -0.136295,
+          0.441714
+        ],
+        [
+          0.147893,
+          0.841283
+        ],
+        [
+          -0.50693,
+          0.107177
+        ]
+      ],
+      "held_out_brier": 0.1422,
+      "held_out_calibration_error": 0.0331,
+      "held_out_n": 221,
+      "_baseline_brier": 0.1892
+    },
+    "middle_eastern_50_59": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 238,
+      "n_female": 57,
+      "mean": [
+        2.270543,
+        1.855037,
+        0.188247,
+        0.778665,
+        0.260947
+      ],
+      "sd": [
+        0.097446,
+        0.098503,
+        0.009674,
+        0.064387,
+        0.07049
+      ],
+      "coef": [
+        1.858567,
+        0.513543,
+        0.352085,
+        -0.197627,
+        0.831444,
+        -0.32753
+      ],
+      "coef_ci": [
+        [
+          1.524684,
+          2.420081
+        ],
+        [
+          -0.246819,
+          1.208002
+        ],
+        [
+          -0.352499,
+          1.108612
+        ],
+        [
+          -0.621773,
+          0.165959
+        ],
+        [
+          0.473651,
+          1.308746
+        ],
+        [
+          -0.701406,
+          -0.003256
+        ]
+      ],
+      "held_out_brier": 0.1148,
+      "held_out_calibration_error": 0.0796,
+      "held_out_n": 148,
+      "_baseline_brier": 0.1534
+    },
+    "middle_eastern_50_59_to_60_69": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 361,
+      "n_female": 89,
+      "mean": [
+        2.282779,
+        1.866698,
+        0.783621,
+        0.252696
+      ],
+      "sd": [
+        0.098614,
+        0.0999,
+        0.062455,
+        0.073406
+      ],
+      "coef": [
+        1.678325,
+        0.301169,
+        0.475973,
+        0.6615,
+        -0.194754
+      ],
+      "coef_ci": [
+        [
+          1.437294,
+          2.018338
+        ],
+        [
+          -0.251755,
+          0.760838
+        ],
+        [
+          0.029738,
+          0.993021
+        ],
+        [
+          0.39258,
+          0.992038
+        ],
+        [
+          -0.435051,
+          0.055622
+        ]
+      ],
+      "held_out_brier": 0.1246,
+      "held_out_calibration_error": 0.0444,
+      "held_out_n": 225,
+      "_baseline_brier": 0.1404
+    },
+    "middle_eastern_60_69": {
+      "status": "refused",
+      "why": "only 1 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": [
+        "jaw_width"
+      ]
+    },
+    "middle_eastern_60_69_to_70_plus": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width"
+      ],
+      "n_male": 168,
+      "n_female": 52,
+      "mean": [
+        2.290625,
+        1.873322
+      ],
+      "sd": [
+        0.100712,
+        0.099819
+      ],
+      "coef": [
+        1.243024,
+        0.259146,
+        0.292913
+      ],
+      "coef_ci": [
+        [
+          0.908081,
+          1.607273
+        ],
+        [
+          -0.277712,
+          0.80884
+        ],
+        [
+          -0.253594,
+          0.902609
+        ]
+      ],
+      "held_out_brier": 0.1618,
+      "held_out_calibration_error": 0.0384,
+      "held_out_n": 110,
+      "_baseline_brier": 0.1706
+    },
+    "middle_eastern_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "southeast_asian_20_29": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "lower_third",
+        "nose_width"
+      ],
+      "n_male": 578,
+      "n_female": 683,
+      "mean": [
+        1.061478,
+        0.755323
+      ],
+      "sd": [
+        0.101336,
+        0.067639
+      ],
+      "coef": [
+        -0.181449,
+        0.657859,
+        0.721609
+      ],
+      "coef_ci": [
+        [
+          -0.29416,
+          -0.050815
+        ],
+        [
+          0.525924,
+          0.815995
+        ],
+        [
+          0.599493,
+          0.863843
+        ]
+      ],
+      "held_out_brier": 0.2098,
+      "held_out_calibration_error": 0.0484,
+      "held_out_n": 631,
+      "_baseline_brier": 0.2472
+    },
+    "southeast_asian_30_39": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "nose_width"
+      ],
+      "n_male": 439,
+      "n_female": 374,
+      "mean": [
+        2.23035,
+        1.796808,
+        0.768111
+      ],
+      "sd": [
+        0.096567,
+        0.096003,
+        0.068396
+      ],
+      "coef": [
+        0.180699,
+        0.273859,
+        0.252633,
+        0.614154
+      ],
+      "coef_ci": [
+        [
+          0.038624,
+          0.290641
+        ],
+        [
+          0.060109,
+          0.52742
+        ],
+        [
+          0.019726,
+          0.486486
+        ],
+        [
+          0.459407,
+          0.800176
+        ]
+      ],
+      "held_out_brier": 0.2199,
+      "held_out_calibration_error": 0.0389,
+      "held_out_n": 407,
+      "_baseline_brier": 0.2484
+    },
+    "southeast_asian_40_49": {
+      "status": "refused",
+      "why": "only 1 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": [
+        "nose_width"
+      ]
+    },
+    "southeast_asian_40_49_to_50_59": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "southeast_asian_50_59": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "southeast_asian_50_59_to_60_69": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "southeast_asian_60_69": {
+      "status": "refused",
+      "why": "only 1 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": [
+        "nose_width"
+      ]
+    },
+    "southeast_asian_60_69_to_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "southeast_asian_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    },
+    "white_20_29": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "lower_third",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 684,
+      "n_female": 1104,
+      "mean": [
+        2.217237,
+        1.789031,
+        0.194686,
+        1.101802,
+        0.727062,
+        0.336384
+      ],
+      "sd": [
+        0.09662,
+        0.095828,
+        0.010896,
+        0.114341,
+        0.068687,
+        0.088031
+      ],
+      "coef": [
+        -0.588852,
+        -0.084748,
+        0.249099,
+        -0.078197,
+        0.708111,
+        0.657476,
+        -0.474755
+      ],
+      "coef_ci": [
+        [
+          -0.697533,
+          -0.480453
+        ],
+        [
+          -0.311215,
+          0.113452
+        ],
+        [
+          0.066865,
+          0.45919
+        ],
+        [
+          -0.237992,
+          0.046901
+        ],
+        [
+          0.566056,
+          0.8702
+        ],
+        [
+          0.541578,
+          0.789497
+        ],
+        [
+          -0.622859,
+          -0.347122
+        ]
+      ],
+      "held_out_brier": 0.2046,
+      "held_out_calibration_error": 0.0675,
+      "held_out_n": 894,
+      "_baseline_brier": 0.2387
+    },
+    "white_30_39": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 770,
+      "n_female": 769,
+      "mean": [
+        2.241209,
+        1.816862,
+        0.192375,
+        0.730597,
+        0.317356
+      ],
+      "sd": [
+        0.108316,
+        0.10864,
+        0.011536,
+        0.083864,
+        0.089731
+      ],
+      "coef": [
+        0.014374,
+        0.007157,
+        0.729294,
+        -0.029968,
+        0.737404,
+        -0.292523
+      ],
+      "coef_ci": [
+        [
+          -0.086549,
+          0.130706
+        ],
+        [
+          -0.215039,
+          0.220717
+        ],
+        [
+          0.505051,
+          0.987871
+        ],
+        [
+          -0.195584,
+          0.141439
+        ],
+        [
+          0.406731,
+          0.978932
+        ],
+        [
+          -0.483448,
+          -0.115206
+        ]
+      ],
+      "held_out_brier": 0.1947,
+      "held_out_calibration_error": 0.0378,
+      "held_out_n": 770,
+      "_baseline_brier": 0.2499
+    },
+    "white_40_49": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "eye_size",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 480,
+      "n_female": 327,
+      "mean": [
+        2.266309,
+        1.844492,
+        0.188912,
+        0.741754,
+        0.291417
+      ],
+      "sd": [
+        0.108173,
+        0.10394,
+        0.010698,
+        0.073323,
+        0.084993
+      ],
+      "coef": [
+        0.536502,
+        -0.246943,
+        1.223837,
+        0.158679,
+        0.865166,
+        -0.381488
+      ],
+      "coef_ci": [
+        [
+          0.383028,
+          0.716333
+        ],
+        [
+          -0.583093,
+          0.086252
+        ],
+        [
+          0.866044,
+          1.548009
+        ],
+        [
+          -0.098134,
+          0.425075
+        ],
+        [
+          0.671611,
+          1.073906
+        ],
+        [
+          -0.595656,
+          -0.180792
+        ]
+      ],
+      "held_out_brier": 0.1728,
+      "held_out_calibration_error": 0.037,
+      "held_out_n": 404,
+      "_baseline_brier": 0.2425
+    },
+    "white_50_59": {
+      "status": "ok",
+      "why": null,
+      "features": [
+        "face_width",
+        "jaw_width",
+        "nose_width",
+        "lip_height"
+      ],
+      "n_male": 344,
+      "n_female": 194,
+      "mean": [
+        2.276472,
+        1.852898,
+        0.742121,
+        0.278609
+      ],
+      "sd": [
+        0.11051,
+        0.105295,
+        0.070124,
+        0.082678
+      ],
+      "coef": [
+        0.730411,
+        0.204783,
+        0.340369,
+        0.86084,
+        -0.246791
+      ],
+      "coef_ci": [
+        [
+          0.535488,
+          0.935274
+        ],
+        [
+          -0.21308,
+          0.653678
+        ],
+        [
+          -0.049864,
+          0.778851
+        ],
+        [
+          0.593467,
+          1.145199
+        ],
+        [
+          -0.508929,
+          -0.047945
+        ]
+      ],
+      "held_out_brier": 0.184,
+      "held_out_calibration_error": 0.0671,
+      "held_out_n": 269,
+      "_baseline_brier": 0.2354
+    },
+    "white_60_69": {
+      "status": "refused",
+      "why": "only 1 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": [
+        "nose_width"
+      ]
+    },
+    "white_60_69_to_70_plus": {
+      "status": "refused",
+      "why": "only 1 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": [
+        "nose_width"
+      ]
+    },
+    "white_70_plus": {
+      "status": "refused",
+      "why": "only 0 of 7 dimorphism features are established for this cohort, which is a fact about how many faces like this the bank holds and NOT about the person",
+      "established_features": []
+    }
+  },
+  "n_ok": 33,
+  "n_refused": 24
+}

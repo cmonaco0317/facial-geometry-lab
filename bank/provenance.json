@@ -1,0 +1,2850 @@
+{
+  "_what": "Public aggregate export of the frozen private reference instrument. No individual reference geometries or row IDs are distributed.",
+  "built": "2026-09-21 21:26:36",
+  "cohorts": {
+    "f_black_20_29": {
+      "bootstrap_interval_pp_est": 7.7,
+      "eligible_rows_before_identity_dedupe": 691,
+      "identity_cluster_count": 626,
+      "ipd_px_median": 69.1,
+      "ipd_px_p5": 62.1,
+      "label": "faces labelled black_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_black_20_29"
+      ],
+      "merged": false,
+      "n": 626,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 1987,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_black_30_39": {
+      "bootstrap_interval_pp_est": 8.3,
+      "eligible_rows_before_identity_dedupe": 568,
+      "identity_cluster_count": 540,
+      "ipd_px_median": 69.0,
+      "ipd_px_p5": 63.5,
+      "label": "faces labelled black_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_black_30_39"
+      ],
+      "merged": false,
+      "n": 540,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1487,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_black_40_49": {
+      "bootstrap_interval_pp_est": 11.4,
+      "eligible_rows_before_identity_dedupe": 295,
+      "identity_cluster_count": 286,
+      "ipd_px_median": 70.0,
+      "ipd_px_p5": 63.7,
+      "label": "faces labelled black_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_black_40_49"
+      ],
+      "merged": false,
+      "n": 286,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 759,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_black_50_59": {
+      "bootstrap_interval_pp_est": 15.2,
+      "eligible_rows_before_identity_dedupe": 166,
+      "identity_cluster_count": 159,
+      "ipd_px_median": 68.8,
+      "ipd_px_p5": 64.3,
+      "label": "faces labelled black_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_black_50_59"
+      ],
+      "merged": false,
+      "n": 159,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 415,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_black_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 13.2,
+      "eligible_rows_before_identity_dedupe": 226,
+      "identity_cluster_count": 211,
+      "ipd_px_median": 69.1,
+      "ipd_px_p5": 63.1,
+      "label": "faces labelled black_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_black_60_69",
+        "f_black_50_59"
+      ],
+      "merged": true,
+      "n": 211,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 601,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_black_60_69": {
+      "bootstrap_interval_pp_est": 26.1,
+      "eligible_rows_before_identity_dedupe": 60,
+      "identity_cluster_count": 54,
+      "ipd_px_median": 69.4,
+      "ipd_px_p5": 55.7,
+      "label": "faces labelled black_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_black_60_69"
+      ],
+      "merged": false,
+      "n": 54,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 186,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_black_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 22.2,
+      "eligible_rows_before_identity_dedupe": 86,
+      "identity_cluster_count": 75,
+      "ipd_px_median": 70.0,
+      "ipd_px_p5": 46.8,
+      "label": "faces labelled black_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_black_70_plus",
+        "f_black_60_69"
+      ],
+      "merged": true,
+      "n": 75,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 243,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_black_70_plus": {
+      "bootstrap_interval_pp_est": 39.2,
+      "eligible_rows_before_identity_dedupe": 26,
+      "identity_cluster_count": 24,
+      "ipd_px_median": 71.4,
+      "ipd_px_p5": 48.4,
+      "label": "faces labelled black_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_black_70_plus"
+      ],
+      "merged": false,
+      "n": 24,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 57,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_east_asian_20_29": {
+      "bootstrap_interval_pp_est": 6.1,
+      "eligible_rows_before_identity_dedupe": 1255,
+      "identity_cluster_count": 983,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 62.6,
+      "label": "faces labelled east_asian_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_east_asian_20_29"
+      ],
+      "merged": false,
+      "n": 983,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 3286,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_east_asian_30_39": {
+      "bootstrap_interval_pp_est": 9.0,
+      "eligible_rows_before_identity_dedupe": 515,
+      "identity_cluster_count": 455,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 62.8,
+      "label": "faces labelled east_asian_30_39 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": true,
+      "members": [
+        "f_east_asian_30_39"
+      ],
+      "merged": false,
+      "n": 455,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1236,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_east_asian_30_39_to_40_49": {
+      "bootstrap_interval_pp_est": 7.9,
+      "eligible_rows_before_identity_dedupe": 677,
+      "identity_cluster_count": 586,
+      "ipd_px_median": 67.4,
+      "ipd_px_p5": 62.8,
+      "label": "faces labelled east_asian_30_39_to_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_east_asian_40_49",
+        "f_east_asian_30_39"
+      ],
+      "merged": true,
+      "n": 586,
+      "source_buckets": [
+        "FairFace:30-39",
+        "FairFace:40-49"
+      ],
+      "source_rows": 1631,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_east_asian_40_49": {
+      "bootstrap_interval_pp_est": 15.8,
+      "eligible_rows_before_identity_dedupe": 162,
+      "identity_cluster_count": 147,
+      "ipd_px_median": 67.6,
+      "ipd_px_p5": 62.9,
+      "label": "faces labelled east_asian_40_49 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_east_asian_40_49"
+      ],
+      "merged": false,
+      "n": 147,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 395,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_east_asian_40_49_to_50_59": {
+      "bootstrap_interval_pp_est": 12.8,
+      "eligible_rows_before_identity_dedupe": 246,
+      "identity_cluster_count": 224,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 62.6,
+      "label": "faces labelled east_asian_40_49_to_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_east_asian_50_59",
+        "f_east_asian_40_49"
+      ],
+      "merged": true,
+      "n": 224,
+      "source_buckets": [
+        "FairFace:40-49",
+        "FairFace:50-59"
+      ],
+      "source_rows": 602,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_east_asian_50_59": {
+      "bootstrap_interval_pp_est": 21.2,
+      "eligible_rows_before_identity_dedupe": 84,
+      "identity_cluster_count": 82,
+      "ipd_px_median": 66.9,
+      "ipd_px_p5": 60.1,
+      "label": "faces labelled east_asian_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_east_asian_50_59"
+      ],
+      "merged": false,
+      "n": 82,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 207,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_east_asian_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 17.3,
+      "eligible_rows_before_identity_dedupe": 127,
+      "identity_cluster_count": 123,
+      "ipd_px_median": 67.2,
+      "ipd_px_p5": 60.5,
+      "label": "faces labelled east_asian_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_east_asian_60_69",
+        "f_east_asian_50_59"
+      ],
+      "merged": true,
+      "n": 123,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 313,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_east_asian_60_69": {
+      "bootstrap_interval_pp_est": 29.6,
+      "eligible_rows_before_identity_dedupe": 43,
+      "identity_cluster_count": 42,
+      "ipd_px_median": 67.8,
+      "ipd_px_p5": 61.0,
+      "label": "faces labelled east_asian_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_east_asian_60_69"
+      ],
+      "merged": false,
+      "n": 42,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 106,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_east_asian_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 25.2,
+      "eligible_rows_before_identity_dedupe": 63,
+      "identity_cluster_count": 58,
+      "ipd_px_median": 67.5,
+      "ipd_px_p5": 60.3,
+      "label": "faces labelled east_asian_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_east_asian_70_plus",
+        "f_east_asian_60_69"
+      ],
+      "merged": true,
+      "n": 58,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 156,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_east_asian_70_plus": {
+      "bootstrap_interval_pp_est": 45.3,
+      "eligible_rows_before_identity_dedupe": 20,
+      "identity_cluster_count": 18,
+      "ipd_px_median": 66.5,
+      "ipd_px_p5": 58.1,
+      "label": "faces labelled east_asian_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_east_asian_70_plus"
+      ],
+      "merged": false,
+      "n": 18,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 50,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_indian_20_29": {
+      "bootstrap_interval_pp_est": 8.1,
+      "eligible_rows_before_identity_dedupe": 714,
+      "identity_cluster_count": 564,
+      "ipd_px_median": 67.1,
+      "ipd_px_p5": 62.9,
+      "label": "faces labelled indian_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_indian_20_29"
+      ],
+      "merged": false,
+      "n": 564,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 1923,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_indian_30_39": {
+      "bootstrap_interval_pp_est": 9.2,
+      "eligible_rows_before_identity_dedupe": 519,
+      "identity_cluster_count": 436,
+      "ipd_px_median": 68.0,
+      "ipd_px_p5": 62.8,
+      "label": "faces labelled indian_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_indian_30_39"
+      ],
+      "merged": false,
+      "n": 436,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1323,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_indian_40_49": {
+      "bootstrap_interval_pp_est": 11.6,
+      "eligible_rows_before_identity_dedupe": 305,
+      "identity_cluster_count": 275,
+      "ipd_px_median": 67.8,
+      "ipd_px_p5": 63.3,
+      "label": "faces labelled indian_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_indian_40_49"
+      ],
+      "merged": false,
+      "n": 275,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 746,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_indian_50_59": {
+      "bootstrap_interval_pp_est": 15.6,
+      "eligible_rows_before_identity_dedupe": 175,
+      "identity_cluster_count": 151,
+      "ipd_px_median": 67.9,
+      "ipd_px_p5": 62.9,
+      "label": "faces labelled indian_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_indian_50_59"
+      ],
+      "merged": false,
+      "n": 151,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 447,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_indian_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 12.5,
+      "eligible_rows_before_identity_dedupe": 279,
+      "identity_cluster_count": 237,
+      "ipd_px_median": 67.6,
+      "ipd_px_p5": 60.5,
+      "label": "faces labelled indian_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_indian_60_69",
+        "f_indian_50_59"
+      ],
+      "merged": true,
+      "n": 237,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 693,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_indian_60_69": {
+      "bootstrap_interval_pp_est": 20.2,
+      "eligible_rows_before_identity_dedupe": 104,
+      "identity_cluster_count": 90,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 58.7,
+      "label": "faces labelled indian_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_indian_60_69"
+      ],
+      "merged": false,
+      "n": 90,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 246,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_indian_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 16.3,
+      "eligible_rows_before_identity_dedupe": 166,
+      "identity_cluster_count": 139,
+      "ipd_px_median": 67.6,
+      "ipd_px_p5": 60.0,
+      "label": "faces labelled indian_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_indian_70_plus",
+        "f_indian_60_69"
+      ],
+      "merged": true,
+      "n": 139,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 364,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_indian_70_plus": {
+      "bootstrap_interval_pp_est": 26.1,
+      "eligible_rows_before_identity_dedupe": 62,
+      "identity_cluster_count": 54,
+      "ipd_px_median": 68.1,
+      "ipd_px_p5": 62.8,
+      "label": "faces labelled indian_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_indian_70_plus"
+      ],
+      "merged": false,
+      "n": 54,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 118,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_latino_hispanic_20_29": {
+      "bootstrap_interval_pp_est": 7.1,
+      "eligible_rows_before_identity_dedupe": 845,
+      "identity_cluster_count": 731,
+      "ipd_px_median": 67.1,
+      "ipd_px_p5": 62.1,
+      "label": "faces labelled latino_hispanic_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_latino_hispanic_20_29"
+      ],
+      "merged": false,
+      "n": 731,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 2253,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_latino_hispanic_30_39": {
+      "bootstrap_interval_pp_est": 7.9,
+      "eligible_rows_before_identity_dedupe": 634,
+      "identity_cluster_count": 584,
+      "ipd_px_median": 67.6,
+      "ipd_px_p5": 62.3,
+      "label": "faces labelled latino_hispanic_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_latino_hispanic_30_39"
+      ],
+      "merged": false,
+      "n": 584,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1541,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_latino_hispanic_40_49": {
+      "bootstrap_interval_pp_est": 10.5,
+      "eligible_rows_before_identity_dedupe": 416,
+      "identity_cluster_count": 333,
+      "ipd_px_median": 68.3,
+      "ipd_px_p5": 63.3,
+      "label": "faces labelled latino_hispanic_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_latino_hispanic_40_49"
+      ],
+      "merged": false,
+      "n": 333,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 947,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_latino_hispanic_50_59": {
+      "bootstrap_interval_pp_est": 14.6,
+      "eligible_rows_before_identity_dedupe": 209,
+      "identity_cluster_count": 173,
+      "ipd_px_median": 68.5,
+      "ipd_px_p5": 63.2,
+      "label": "faces labelled latino_hispanic_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_latino_hispanic_50_59"
+      ],
+      "merged": false,
+      "n": 173,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 481,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_latino_hispanic_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 12.3,
+      "eligible_rows_before_identity_dedupe": 295,
+      "identity_cluster_count": 242,
+      "ipd_px_median": 68.3,
+      "ipd_px_p5": 61.3,
+      "label": "faces labelled latino_hispanic_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_latino_hispanic_60_69",
+        "f_latino_hispanic_50_59"
+      ],
+      "merged": true,
+      "n": 242,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 659,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_latino_hispanic_60_69": {
+      "bootstrap_interval_pp_est": 22.3,
+      "eligible_rows_before_identity_dedupe": 86,
+      "identity_cluster_count": 74,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 54.6,
+      "label": "faces labelled latino_hispanic_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_latino_hispanic_60_69"
+      ],
+      "merged": false,
+      "n": 74,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 178,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_latino_hispanic_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 20.6,
+      "eligible_rows_before_identity_dedupe": 108,
+      "identity_cluster_count": 87,
+      "ipd_px_median": 67.5,
+      "ipd_px_p5": 56.8,
+      "label": "faces labelled latino_hispanic_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_latino_hispanic_70_plus",
+        "f_latino_hispanic_60_69"
+      ],
+      "merged": true,
+      "n": 87,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 236,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_latino_hispanic_70_plus": {
+      "bootstrap_interval_pp_est": 48.0,
+      "eligible_rows_before_identity_dedupe": 22,
+      "identity_cluster_count": 16,
+      "ipd_px_median": 68.2,
+      "ipd_px_p5": 63.4,
+      "label": "faces labelled latino_hispanic_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_latino_hispanic_70_plus"
+      ],
+      "merged": false,
+      "n": 16,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 58,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_middle_eastern_20_29": {
+      "bootstrap_interval_pp_est": 11.6,
+      "eligible_rows_before_identity_dedupe": 335,
+      "identity_cluster_count": 273,
+      "ipd_px_median": 66.4,
+      "ipd_px_p5": 61.0,
+      "label": "faces labelled middle_eastern_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_20_29"
+      ],
+      "merged": false,
+      "n": 273,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 1193,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_middle_eastern_30_39": {
+      "bootstrap_interval_pp_est": 13.8,
+      "eligible_rows_before_identity_dedupe": 215,
+      "identity_cluster_count": 194,
+      "ipd_px_median": 66.5,
+      "ipd_px_p5": 61.4,
+      "label": "faces labelled middle_eastern_30_39 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_30_39"
+      ],
+      "merged": false,
+      "n": 194,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 686,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_middle_eastern_30_39_to_40_49": {
+      "bootstrap_interval_pp_est": 11.4,
+      "eligible_rows_before_identity_dedupe": 350,
+      "identity_cluster_count": 284,
+      "ipd_px_median": 66.8,
+      "ipd_px_p5": 61.3,
+      "label": "faces labelled middle_eastern_30_39_to_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_40_49",
+        "f_middle_eastern_30_39"
+      ],
+      "merged": true,
+      "n": 284,
+      "source_buckets": [
+        "FairFace:30-39",
+        "FairFace:40-49"
+      ],
+      "source_rows": 1059,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_middle_eastern_40_49": {
+      "bootstrap_interval_pp_est": 18.5,
+      "eligible_rows_before_identity_dedupe": 135,
+      "identity_cluster_count": 108,
+      "ipd_px_median": 67.4,
+      "ipd_px_p5": 60.5,
+      "label": "faces labelled middle_eastern_40_49 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_40_49"
+      ],
+      "merged": false,
+      "n": 108,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 373,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_middle_eastern_40_49_to_50_59": {
+      "bootstrap_interval_pp_est": 15.8,
+      "eligible_rows_before_identity_dedupe": 206,
+      "identity_cluster_count": 148,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 61.5,
+      "label": "faces labelled middle_eastern_40_49_to_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_50_59",
+        "f_middle_eastern_40_49"
+      ],
+      "merged": true,
+      "n": 148,
+      "source_buckets": [
+        "FairFace:40-49",
+        "FairFace:50-59"
+      ],
+      "source_rows": 551,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_middle_eastern_50_59": {
+      "bootstrap_interval_pp_est": 25.4,
+      "eligible_rows_before_identity_dedupe": 71,
+      "identity_cluster_count": 57,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 61.8,
+      "label": "faces labelled middle_eastern_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_50_59"
+      ],
+      "merged": false,
+      "n": 57,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 178,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_middle_eastern_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 20.4,
+      "eligible_rows_before_identity_dedupe": 109,
+      "identity_cluster_count": 89,
+      "ipd_px_median": 66.9,
+      "ipd_px_p5": 62.1,
+      "label": "faces labelled middle_eastern_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_60_69",
+        "f_middle_eastern_50_59"
+      ],
+      "merged": true,
+      "n": 89,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 252,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_middle_eastern_60_69": {
+      "bootstrap_interval_pp_est": 32.5,
+      "eligible_rows_before_identity_dedupe": 38,
+      "identity_cluster_count": 35,
+      "ipd_px_median": 66.3,
+      "ipd_px_p5": 63.0,
+      "label": "faces labelled middle_eastern_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_60_69"
+      ],
+      "merged": false,
+      "n": 35,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 74,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_middle_eastern_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 26.6,
+      "eligible_rows_before_identity_dedupe": 55,
+      "identity_cluster_count": 52,
+      "ipd_px_median": 66.8,
+      "ipd_px_p5": 62.6,
+      "label": "faces labelled middle_eastern_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_70_plus",
+        "f_middle_eastern_60_69"
+      ],
+      "merged": true,
+      "n": 52,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 104,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_middle_eastern_70_plus": {
+      "bootstrap_interval_pp_est": 46.6,
+      "eligible_rows_before_identity_dedupe": 17,
+      "identity_cluster_count": 17,
+      "ipd_px_median": 67.0,
+      "ipd_px_p5": 62.3,
+      "label": "faces labelled middle_eastern_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_middle_eastern_70_plus"
+      ],
+      "merged": false,
+      "n": 17,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 30,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_southeast_asian_20_29": {
+      "bootstrap_interval_pp_est": 7.3,
+      "eligible_rows_before_identity_dedupe": 853,
+      "identity_cluster_count": 683,
+      "ipd_px_median": 67.4,
+      "ipd_px_p5": 62.4,
+      "label": "faces labelled southeast_asian_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_southeast_asian_20_29"
+      ],
+      "merged": false,
+      "n": 683,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 2121,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_southeast_asian_30_39": {
+      "bootstrap_interval_pp_est": 9.9,
+      "eligible_rows_before_identity_dedupe": 423,
+      "identity_cluster_count": 374,
+      "ipd_px_median": 68.0,
+      "ipd_px_p5": 63.5,
+      "label": "faces labelled southeast_asian_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_southeast_asian_30_39"
+      ],
+      "merged": false,
+      "n": 374,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1036,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_southeast_asian_40_49": {
+      "bootstrap_interval_pp_est": 14.2,
+      "eligible_rows_before_identity_dedupe": 213,
+      "identity_cluster_count": 183,
+      "ipd_px_median": 67.9,
+      "ipd_px_p5": 59.5,
+      "label": "faces labelled southeast_asian_40_49 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_southeast_asian_40_49"
+      ],
+      "merged": false,
+      "n": 183,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 471,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_southeast_asian_40_49_to_50_59": {
+      "bootstrap_interval_pp_est": 11.3,
+      "eligible_rows_before_identity_dedupe": 343,
+      "identity_cluster_count": 291,
+      "ipd_px_median": 68.0,
+      "ipd_px_p5": 62.5,
+      "label": "faces labelled southeast_asian_40_49_to_50_59 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_southeast_asian_50_59",
+        "f_southeast_asian_40_49"
+      ],
+      "merged": true,
+      "n": 291,
+      "source_buckets": [
+        "FairFace:40-49",
+        "FairFace:50-59"
+      ],
+      "source_rows": 761,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_southeast_asian_50_59": {
+      "bootstrap_interval_pp_est": 17.7,
+      "eligible_rows_before_identity_dedupe": 130,
+      "identity_cluster_count": 118,
+      "ipd_px_median": 68.3,
+      "ipd_px_p5": 63.8,
+      "label": "faces labelled southeast_asian_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_southeast_asian_50_59"
+      ],
+      "merged": false,
+      "n": 118,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 290,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_southeast_asian_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 14.3,
+      "eligible_rows_before_identity_dedupe": 198,
+      "identity_cluster_count": 180,
+      "ipd_px_median": 67.9,
+      "ipd_px_p5": 62.3,
+      "label": "faces labelled southeast_asian_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_southeast_asian_60_69",
+        "f_southeast_asian_50_59"
+      ],
+      "merged": true,
+      "n": 180,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 442,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_southeast_asian_60_69": {
+      "bootstrap_interval_pp_est": 23.8,
+      "eligible_rows_before_identity_dedupe": 68,
+      "identity_cluster_count": 65,
+      "ipd_px_median": 67.2,
+      "ipd_px_p5": 57.5,
+      "label": "faces labelled southeast_asian_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_southeast_asian_60_69"
+      ],
+      "merged": false,
+      "n": 65,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 152,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_southeast_asian_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 17.9,
+      "eligible_rows_before_identity_dedupe": 120,
+      "identity_cluster_count": 115,
+      "ipd_px_median": 67.2,
+      "ipd_px_p5": 59.3,
+      "label": "faces labelled southeast_asian_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_southeast_asian_70_plus",
+        "f_southeast_asian_60_69"
+      ],
+      "merged": true,
+      "n": 115,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 255,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_southeast_asian_70_plus": {
+      "bootstrap_interval_pp_est": 26.6,
+      "eligible_rows_before_identity_dedupe": 52,
+      "identity_cluster_count": 52,
+      "ipd_px_median": 67.9,
+      "ipd_px_p5": 60.3,
+      "label": "faces labelled southeast_asian_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_southeast_asian_70_plus"
+      ],
+      "merged": false,
+      "n": 52,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 103,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_white_20_29": {
+      "bootstrap_interval_pp_est": 5.8,
+      "eligible_rows_before_identity_dedupe": 1196,
+      "identity_cluster_count": 1104,
+      "ipd_px_median": 66.9,
+      "ipd_px_p5": 61.8,
+      "label": "faces labelled white_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_white_20_29"
+      ],
+      "merged": false,
+      "n": 1104,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 3332,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_white_30_39": {
+      "bootstrap_interval_pp_est": 6.9,
+      "eligible_rows_before_identity_dedupe": 834,
+      "identity_cluster_count": 769,
+      "ipd_px_median": 66.9,
+      "ipd_px_p5": 62.0,
+      "label": "faces labelled white_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "f_white_30_39"
+      ],
+      "merged": false,
+      "n": 769,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 2129,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_white_40_49": {
+      "bootstrap_interval_pp_est": 10.6,
+      "eligible_rows_before_identity_dedupe": 347,
+      "identity_cluster_count": 327,
+      "ipd_px_median": 67.5,
+      "ipd_px_p5": 61.7,
+      "label": "faces labelled white_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_white_40_49"
+      ],
+      "merged": false,
+      "n": 327,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 900,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_white_50_59": {
+      "bootstrap_interval_pp_est": 13.8,
+      "eligible_rows_before_identity_dedupe": 203,
+      "identity_cluster_count": 194,
+      "ipd_px_median": 67.0,
+      "ipd_px_p5": 60.8,
+      "label": "faces labelled white_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_white_50_59"
+      ],
+      "merged": false,
+      "n": 194,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 476,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "f_white_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 11.7,
+      "eligible_rows_before_identity_dedupe": 286,
+      "identity_cluster_count": 268,
+      "ipd_px_median": 66.9,
+      "ipd_px_p5": 60.9,
+      "label": "faces labelled white_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "f_white_60_69",
+        "f_white_50_59"
+      ],
+      "merged": true,
+      "n": 268,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 688,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "f_white_60_69": {
+      "bootstrap_interval_pp_est": 21.5,
+      "eligible_rows_before_identity_dedupe": 83,
+      "identity_cluster_count": 80,
+      "ipd_px_median": 66.7,
+      "ipd_px_p5": 61.7,
+      "label": "faces labelled white_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_white_60_69"
+      ],
+      "merged": false,
+      "n": 80,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 212,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_white_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 18.2,
+      "eligible_rows_before_identity_dedupe": 121,
+      "identity_cluster_count": 111,
+      "ipd_px_median": 66.9,
+      "ipd_px_p5": 62.0,
+      "label": "faces labelled white_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_white_70_plus",
+        "f_white_60_69"
+      ],
+      "merged": true,
+      "n": 111,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 293,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "f_white_70_plus": {
+      "bootstrap_interval_pp_est": 32.0,
+      "eligible_rows_before_identity_dedupe": 38,
+      "identity_cluster_count": 36,
+      "ipd_px_median": 67.7,
+      "ipd_px_p5": 63.6,
+      "label": "faces labelled white_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "f_white_70_plus"
+      ],
+      "merged": false,
+      "n": 36,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 81,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_black_20_29": {
+      "bootstrap_interval_pp_est": 8.8,
+      "eligible_rows_before_identity_dedupe": 516,
+      "identity_cluster_count": 473,
+      "ipd_px_median": 69.5,
+      "ipd_px_p5": 63.0,
+      "label": "faces labelled black_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_black_20_29"
+      ],
+      "merged": false,
+      "n": 473,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 1587,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_black_30_39": {
+      "bootstrap_interval_pp_est": 9.0,
+      "eligible_rows_before_identity_dedupe": 485,
+      "identity_cluster_count": 456,
+      "ipd_px_median": 69.5,
+      "ipd_px_p5": 62.8,
+      "label": "faces labelled black_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_black_30_39"
+      ],
+      "merged": false,
+      "n": 456,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1469,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_black_40_49": {
+      "bootstrap_interval_pp_est": 11.3,
+      "eligible_rows_before_identity_dedupe": 322,
+      "identity_cluster_count": 291,
+      "ipd_px_median": 69.9,
+      "ipd_px_p5": 59.2,
+      "label": "faces labelled black_40_49 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_black_40_49"
+      ],
+      "merged": false,
+      "n": 291,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 888,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_black_40_49_to_50_59": {
+      "bootstrap_interval_pp_est": 9.4,
+      "eligible_rows_before_identity_dedupe": 477,
+      "identity_cluster_count": 416,
+      "ipd_px_median": 69.9,
+      "ipd_px_p5": 60.7,
+      "label": "faces labelled black_40_49_to_50_59 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_black_50_59",
+        "m_black_40_49"
+      ],
+      "merged": true,
+      "n": 416,
+      "source_buckets": [
+        "FairFace:40-49",
+        "FairFace:50-59"
+      ],
+      "source_rows": 1329,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_black_50_59": {
+      "bootstrap_interval_pp_est": 16.8,
+      "eligible_rows_before_identity_dedupe": 155,
+      "identity_cluster_count": 131,
+      "ipd_px_median": 69.7,
+      "ipd_px_p5": 62.4,
+      "label": "faces labelled black_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_black_50_59"
+      ],
+      "merged": false,
+      "n": 131,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 441,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_black_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 14.4,
+      "eligible_rows_before_identity_dedupe": 207,
+      "identity_cluster_count": 178,
+      "ipd_px_median": 69.4,
+      "ipd_px_p5": 60.4,
+      "label": "faces labelled black_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_black_60_69",
+        "m_black_50_59"
+      ],
+      "merged": true,
+      "n": 178,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 566,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_black_60_69": {
+      "bootstrap_interval_pp_est": 27.2,
+      "eligible_rows_before_identity_dedupe": 52,
+      "identity_cluster_count": 50,
+      "ipd_px_median": 68.9,
+      "ipd_px_p5": 58.3,
+      "label": "faces labelled black_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_black_60_69"
+      ],
+      "merged": false,
+      "n": 50,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 125,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_black_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 23.8,
+      "eligible_rows_before_identity_dedupe": 69,
+      "identity_cluster_count": 65,
+      "ipd_px_median": 69.0,
+      "ipd_px_p5": 57.9,
+      "label": "faces labelled black_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_black_70_plus",
+        "m_black_60_69"
+      ],
+      "merged": true,
+      "n": 65,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 160,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_black_70_plus": {
+      "bootstrap_interval_pp_est": 49.6,
+      "eligible_rows_before_identity_dedupe": 17,
+      "identity_cluster_count": 15,
+      "ipd_px_median": 69.0,
+      "ipd_px_p5": 61.6,
+      "label": "faces labelled black_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_black_70_plus"
+      ],
+      "merged": false,
+      "n": 15,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 35,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_east_asian_20_29": {
+      "bootstrap_interval_pp_est": 7.7,
+      "eligible_rows_before_identity_dedupe": 725,
+      "identity_cluster_count": 620,
+      "ipd_px_median": 67.4,
+      "ipd_px_p5": 61.1,
+      "label": "faces labelled east_asian_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_east_asian_20_29"
+      ],
+      "merged": false,
+      "n": 620,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 2128,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_east_asian_30_39": {
+      "bootstrap_interval_pp_est": 9.2,
+      "eligible_rows_before_identity_dedupe": 509,
+      "identity_cluster_count": 436,
+      "ipd_px_median": 67.4,
+      "ipd_px_p5": 58.7,
+      "label": "faces labelled east_asian_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_east_asian_30_39"
+      ],
+      "merged": false,
+      "n": 436,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1404,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_east_asian_40_49": {
+      "bootstrap_interval_pp_est": 13.4,
+      "eligible_rows_before_identity_dedupe": 232,
+      "identity_cluster_count": 204,
+      "ipd_px_median": 67.4,
+      "ipd_px_p5": 62.5,
+      "label": "faces labelled east_asian_40_49 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_east_asian_40_49"
+      ],
+      "merged": false,
+      "n": 204,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 671,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_east_asian_40_49_to_50_59": {
+      "bootstrap_interval_pp_est": 10.7,
+      "eligible_rows_before_identity_dedupe": 373,
+      "identity_cluster_count": 323,
+      "ipd_px_median": 67.2,
+      "ipd_px_p5": 61.9,
+      "label": "faces labelled east_asian_40_49_to_50_59 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "m_east_asian_50_59",
+        "m_east_asian_40_49"
+      ],
+      "merged": true,
+      "n": 323,
+      "source_buckets": [
+        "FairFace:40-49",
+        "FairFace:50-59"
+      ],
+      "source_rows": 1046,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_east_asian_50_59": {
+      "bootstrap_interval_pp_est": 16.6,
+      "eligible_rows_before_identity_dedupe": 141,
+      "identity_cluster_count": 133,
+      "ipd_px_median": 66.8,
+      "ipd_px_p5": 60.0,
+      "label": "faces labelled east_asian_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_east_asian_50_59"
+      ],
+      "merged": false,
+      "n": 133,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 375,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_east_asian_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 13.9,
+      "eligible_rows_before_identity_dedupe": 207,
+      "identity_cluster_count": 190,
+      "ipd_px_median": 66.8,
+      "ipd_px_p5": 60.0,
+      "label": "faces labelled east_asian_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_east_asian_60_69",
+        "m_east_asian_50_59"
+      ],
+      "merged": true,
+      "n": 190,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 569,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_east_asian_60_69": {
+      "bootstrap_interval_pp_est": 23.8,
+      "eligible_rows_before_identity_dedupe": 66,
+      "identity_cluster_count": 65,
+      "ipd_px_median": 66.6,
+      "ipd_px_p5": 56.5,
+      "label": "faces labelled east_asian_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_east_asian_60_69"
+      ],
+      "merged": false,
+      "n": 65,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 194,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_east_asian_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 20.8,
+      "eligible_rows_before_identity_dedupe": 87,
+      "identity_cluster_count": 85,
+      "ipd_px_median": 66.6,
+      "ipd_px_p5": 59.3,
+      "label": "faces labelled east_asian_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_east_asian_70_plus",
+        "m_east_asian_60_69"
+      ],
+      "merged": true,
+      "n": 85,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 245,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_east_asian_70_plus": {
+      "bootstrap_interval_pp_est": 41.9,
+      "eligible_rows_before_identity_dedupe": 21,
+      "identity_cluster_count": 21,
+      "ipd_px_median": 65.0,
+      "ipd_px_p5": 61.1,
+      "label": "faces labelled east_asian_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_east_asian_70_plus"
+      ],
+      "merged": false,
+      "n": 21,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 51,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_indian_20_29": {
+      "bootstrap_interval_pp_est": 8.7,
+      "eligible_rows_before_identity_dedupe": 569,
+      "identity_cluster_count": 487,
+      "ipd_px_median": 67.5,
+      "ipd_px_p5": 61.8,
+      "label": "faces labelled indian_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_indian_20_29"
+      ],
+      "merged": false,
+      "n": 487,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 1537,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_indian_30_39": {
+      "bootstrap_interval_pp_est": 8.2,
+      "eligible_rows_before_identity_dedupe": 656,
+      "identity_cluster_count": 551,
+      "ipd_px_median": 67.6,
+      "ipd_px_p5": 62.1,
+      "label": "faces labelled indian_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_indian_30_39"
+      ],
+      "merged": false,
+      "n": 551,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1796,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_indian_40_49": {
+      "bootstrap_interval_pp_est": 9.7,
+      "eligible_rows_before_identity_dedupe": 413,
+      "identity_cluster_count": 388,
+      "ipd_px_median": 67.5,
+      "ipd_px_p5": 55.3,
+      "label": "faces labelled indian_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_indian_40_49"
+      ],
+      "merged": false,
+      "n": 388,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 1088,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_indian_50_59": {
+      "bootstrap_interval_pp_est": 12.1,
+      "eligible_rows_before_identity_dedupe": 284,
+      "identity_cluster_count": 251,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 58.7,
+      "label": "faces labelled indian_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_indian_50_59"
+      ],
+      "merged": false,
+      "n": 251,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 667,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_indian_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 10.4,
+      "eligible_rows_before_identity_dedupe": 398,
+      "identity_cluster_count": 341,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 59.1,
+      "label": "faces labelled indian_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "m_indian_60_69",
+        "m_indian_50_59"
+      ],
+      "merged": true,
+      "n": 341,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 922,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_indian_60_69": {
+      "bootstrap_interval_pp_est": 18.7,
+      "eligible_rows_before_identity_dedupe": 114,
+      "identity_cluster_count": 105,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 59.9,
+      "label": "faces labelled indian_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_indian_60_69"
+      ],
+      "merged": false,
+      "n": 105,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 255,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_indian_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 16.2,
+      "eligible_rows_before_identity_dedupe": 153,
+      "identity_cluster_count": 141,
+      "ipd_px_median": 66.7,
+      "ipd_px_p5": 59.8,
+      "label": "faces labelled indian_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_indian_70_plus",
+        "m_indian_60_69"
+      ],
+      "merged": true,
+      "n": 141,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 329,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_indian_70_plus": {
+      "bootstrap_interval_pp_est": 30.7,
+      "eligible_rows_before_identity_dedupe": 39,
+      "identity_cluster_count": 39,
+      "ipd_px_median": 65.5,
+      "ipd_px_p5": 57.7,
+      "label": "faces labelled indian_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_indian_70_plus"
+      ],
+      "merged": false,
+      "n": 39,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 74,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_latino_hispanic_20_29": {
+      "bootstrap_interval_pp_est": 8.4,
+      "eligible_rows_before_identity_dedupe": 622,
+      "identity_cluster_count": 517,
+      "ipd_px_median": 66.9,
+      "ipd_px_p5": 60.5,
+      "label": "faces labelled latino_hispanic_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_latino_hispanic_20_29"
+      ],
+      "merged": false,
+      "n": 517,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 1708,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_latino_hispanic_30_39": {
+      "bootstrap_interval_pp_est": 8.2,
+      "eligible_rows_before_identity_dedupe": 651,
+      "identity_cluster_count": 553,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 59.1,
+      "label": "faces labelled latino_hispanic_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_latino_hispanic_30_39"
+      ],
+      "merged": false,
+      "n": 553,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1731,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_latino_hispanic_40_49": {
+      "bootstrap_interval_pp_est": 9.5,
+      "eligible_rows_before_identity_dedupe": 471,
+      "identity_cluster_count": 410,
+      "ipd_px_median": 67.1,
+      "ipd_px_p5": 59.8,
+      "label": "faces labelled latino_hispanic_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_latino_hispanic_40_49"
+      ],
+      "merged": false,
+      "n": 410,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 1271,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_latino_hispanic_50_59": {
+      "bootstrap_interval_pp_est": 11.9,
+      "eligible_rows_before_identity_dedupe": 315,
+      "identity_cluster_count": 261,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 54.4,
+      "label": "faces labelled latino_hispanic_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_latino_hispanic_50_59"
+      ],
+      "merged": false,
+      "n": 261,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 774,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_latino_hispanic_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 10.5,
+      "eligible_rows_before_identity_dedupe": 405,
+      "identity_cluster_count": 335,
+      "ipd_px_median": 67.2,
+      "ipd_px_p5": 54.2,
+      "label": "faces labelled latino_hispanic_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "m_latino_hispanic_60_69",
+        "m_latino_hispanic_50_59"
+      ],
+      "merged": true,
+      "n": 335,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 996,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_latino_hispanic_60_69": {
+      "bootstrap_interval_pp_est": 20.9,
+      "eligible_rows_before_identity_dedupe": 90,
+      "identity_cluster_count": 84,
+      "ipd_px_median": 66.7,
+      "ipd_px_p5": 54.0,
+      "label": "faces labelled latino_hispanic_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_latino_hispanic_60_69"
+      ],
+      "merged": false,
+      "n": 84,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 222,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_latino_hispanic_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 19.7,
+      "eligible_rows_before_identity_dedupe": 101,
+      "identity_cluster_count": 95,
+      "ipd_px_median": 66.7,
+      "ipd_px_p5": 56.5,
+      "label": "faces labelled latino_hispanic_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_latino_hispanic_70_plus",
+        "m_latino_hispanic_60_69"
+      ],
+      "merged": true,
+      "n": 95,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 249,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_latino_hispanic_70_plus": {
+      "bootstrap_interval_pp_est": 57.9,
+      "eligible_rows_before_identity_dedupe": 11,
+      "identity_cluster_count": 11,
+      "ipd_px_median": 66.3,
+      "ipd_px_p5": 60.3,
+      "label": "faces labelled latino_hispanic_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_latino_hispanic_70_plus"
+      ],
+      "merged": false,
+      "n": 11,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 27,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_middle_eastern_20_29": {
+      "bootstrap_interval_pp_est": 10.2,
+      "eligible_rows_before_identity_dedupe": 431,
+      "identity_cluster_count": 354,
+      "ipd_px_median": 66.0,
+      "ipd_px_p5": 61.4,
+      "label": "faces labelled middle_eastern_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "m_middle_eastern_20_29"
+      ],
+      "merged": false,
+      "n": 354,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 1454,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_middle_eastern_30_39": {
+      "bootstrap_interval_pp_est": 8.3,
+      "eligible_rows_before_identity_dedupe": 664,
+      "identity_cluster_count": 537,
+      "ipd_px_median": 66.2,
+      "ipd_px_p5": 60.3,
+      "label": "faces labelled middle_eastern_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_middle_eastern_30_39"
+      ],
+      "merged": false,
+      "n": 537,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 2011,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_middle_eastern_40_49": {
+      "bootstrap_interval_pp_est": 10.5,
+      "eligible_rows_before_identity_dedupe": 424,
+      "identity_cluster_count": 333,
+      "ipd_px_median": 65.9,
+      "ipd_px_p5": 60.6,
+      "label": "faces labelled middle_eastern_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "m_middle_eastern_40_49"
+      ],
+      "merged": false,
+      "n": 333,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 1340,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_middle_eastern_50_59": {
+      "bootstrap_interval_pp_est": 12.4,
+      "eligible_rows_before_identity_dedupe": 255,
+      "identity_cluster_count": 238,
+      "ipd_px_median": 66.1,
+      "ipd_px_p5": 60.6,
+      "label": "faces labelled middle_eastern_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_middle_eastern_50_59"
+      ],
+      "merged": false,
+      "n": 238,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 764,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_middle_eastern_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 10.1,
+      "eligible_rows_before_identity_dedupe": 398,
+      "identity_cluster_count": 361,
+      "ipd_px_median": 66.0,
+      "ipd_px_p5": 59.8,
+      "label": "faces labelled middle_eastern_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "m_middle_eastern_60_69",
+        "m_middle_eastern_50_59"
+      ],
+      "merged": true,
+      "n": 361,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 1181,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_middle_eastern_60_69": {
+      "bootstrap_interval_pp_est": 16.6,
+      "eligible_rows_before_identity_dedupe": 143,
+      "identity_cluster_count": 134,
+      "ipd_px_median": 65.5,
+      "ipd_px_p5": 58.4,
+      "label": "faces labelled middle_eastern_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_middle_eastern_60_69"
+      ],
+      "merged": false,
+      "n": 134,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 417,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_middle_eastern_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 14.8,
+      "eligible_rows_before_identity_dedupe": 183,
+      "identity_cluster_count": 168,
+      "ipd_px_median": 65.1,
+      "ipd_px_p5": 59.1,
+      "label": "faces labelled middle_eastern_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_middle_eastern_70_plus",
+        "m_middle_eastern_60_69"
+      ],
+      "merged": true,
+      "n": 168,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 521,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_middle_eastern_70_plus": {
+      "bootstrap_interval_pp_est": 30.7,
+      "eligible_rows_before_identity_dedupe": 40,
+      "identity_cluster_count": 39,
+      "ipd_px_median": 64.3,
+      "ipd_px_p5": 59.7,
+      "label": "faces labelled middle_eastern_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_middle_eastern_70_plus"
+      ],
+      "merged": false,
+      "n": 39,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 104,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_southeast_asian_20_29": {
+      "bootstrap_interval_pp_est": 8.0,
+      "eligible_rows_before_identity_dedupe": 675,
+      "identity_cluster_count": 578,
+      "ipd_px_median": 67.5,
+      "ipd_px_p5": 62.8,
+      "label": "faces labelled southeast_asian_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_southeast_asian_20_29"
+      ],
+      "merged": false,
+      "n": 578,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 1859,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_southeast_asian_30_39": {
+      "bootstrap_interval_pp_est": 9.2,
+      "eligible_rows_before_identity_dedupe": 471,
+      "identity_cluster_count": 439,
+      "ipd_px_median": 67.6,
+      "ipd_px_p5": 62.2,
+      "label": "faces labelled southeast_asian_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_southeast_asian_30_39"
+      ],
+      "merged": false,
+      "n": 439,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 1241,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_southeast_asian_40_49": {
+      "bootstrap_interval_pp_est": 11.8,
+      "eligible_rows_before_identity_dedupe": 278,
+      "identity_cluster_count": 264,
+      "ipd_px_median": 68.0,
+      "ipd_px_p5": 61.3,
+      "label": "faces labelled southeast_asian_40_49 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_southeast_asian_40_49"
+      ],
+      "merged": false,
+      "n": 264,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 714,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_southeast_asian_40_49_to_50_59": {
+      "bootstrap_interval_pp_est": 9.8,
+      "eligible_rows_before_identity_dedupe": 421,
+      "identity_cluster_count": 382,
+      "ipd_px_median": 67.9,
+      "ipd_px_p5": 61.0,
+      "label": "faces labelled southeast_asian_40_49_to_50_59 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_southeast_asian_50_59",
+        "m_southeast_asian_40_49"
+      ],
+      "merged": true,
+      "n": 382,
+      "source_buckets": [
+        "FairFace:40-49",
+        "FairFace:50-59"
+      ],
+      "source_rows": 1115,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_southeast_asian_50_59": {
+      "bootstrap_interval_pp_est": 16.9,
+      "eligible_rows_before_identity_dedupe": 143,
+      "identity_cluster_count": 129,
+      "ipd_px_median": 67.7,
+      "ipd_px_p5": 60.9,
+      "label": "faces labelled southeast_asian_50_59 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_southeast_asian_50_59"
+      ],
+      "merged": false,
+      "n": 129,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 401,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_southeast_asian_50_59_to_60_69": {
+      "bootstrap_interval_pp_est": 13.2,
+      "eligible_rows_before_identity_dedupe": 235,
+      "identity_cluster_count": 213,
+      "ipd_px_median": 67.3,
+      "ipd_px_p5": 60.6,
+      "label": "faces labelled southeast_asian_50_59_to_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_southeast_asian_60_69",
+        "m_southeast_asian_50_59"
+      ],
+      "merged": true,
+      "n": 213,
+      "source_buckets": [
+        "FairFace:50-59",
+        "FairFace:60-69"
+      ],
+      "source_rows": 595,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_southeast_asian_60_69": {
+      "bootstrap_interval_pp_est": 20.5,
+      "eligible_rows_before_identity_dedupe": 92,
+      "identity_cluster_count": 88,
+      "ipd_px_median": 66.6,
+      "ipd_px_p5": 60.9,
+      "label": "faces labelled southeast_asian_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_southeast_asian_60_69"
+      ],
+      "merged": false,
+      "n": 88,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 194,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_southeast_asian_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 17.7,
+      "eligible_rows_before_identity_dedupe": 123,
+      "identity_cluster_count": 118,
+      "ipd_px_median": 66.5,
+      "ipd_px_p5": 61.9,
+      "label": "faces labelled southeast_asian_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_southeast_asian_70_plus",
+        "m_southeast_asian_60_69"
+      ],
+      "merged": true,
+      "n": 118,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 276,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_southeast_asian_70_plus": {
+      "bootstrap_interval_pp_est": 34.5,
+      "eligible_rows_before_identity_dedupe": 31,
+      "identity_cluster_count": 31,
+      "ipd_px_median": 66.3,
+      "ipd_px_p5": 61.9,
+      "label": "faces labelled southeast_asian_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_southeast_asian_70_plus"
+      ],
+      "merged": false,
+      "n": 31,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 82,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    },
+    "m_white_20_29": {
+      "bootstrap_interval_pp_est": 7.3,
+      "eligible_rows_before_identity_dedupe": 804,
+      "identity_cluster_count": 684,
+      "ipd_px_median": 66.4,
+      "ipd_px_p5": 59.0,
+      "label": "faces labelled white_20_29 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_white_20_29"
+      ],
+      "merged": false,
+      "n": 684,
+      "source_buckets": [
+        "FairFace:20-29"
+      ],
+      "source_rows": 2530,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_white_30_39": {
+      "bootstrap_interval_pp_est": 6.9,
+      "eligible_rows_before_identity_dedupe": 885,
+      "identity_cluster_count": 770,
+      "ipd_px_median": 66.5,
+      "ipd_px_p5": 61.3,
+      "label": "faces labelled white_30_39 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_white_30_39"
+      ],
+      "merged": false,
+      "n": 770,
+      "source_buckets": [
+        "FairFace:30-39"
+      ],
+      "source_rows": 2490,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_white_40_49": {
+      "bootstrap_interval_pp_est": 8.8,
+      "eligible_rows_before_identity_dedupe": 532,
+      "identity_cluster_count": 480,
+      "ipd_px_median": 66.8,
+      "ipd_px_p5": 60.5,
+      "label": "faces labelled white_40_49 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": true,
+      "members": [
+        "m_white_40_49"
+      ],
+      "merged": false,
+      "n": 480,
+      "source_buckets": [
+        "FairFace:40-49"
+      ],
+      "source_rows": 1534,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_white_50_59": {
+      "bootstrap_interval_pp_est": 10.4,
+      "eligible_rows_before_identity_dedupe": 398,
+      "identity_cluster_count": 344,
+      "ipd_px_median": 66.4,
+      "ipd_px_p5": 49.9,
+      "label": "faces labelled white_50_59 by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "m_white_50_59"
+      ],
+      "merged": false,
+      "n": 344,
+      "source_buckets": [
+        "FairFace:50-59"
+      ],
+      "source_rows": 1108,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_white_60_69": {
+      "bootstrap_interval_pp_est": 14.8,
+      "eligible_rows_before_identity_dedupe": 214,
+      "identity_cluster_count": 169,
+      "ipd_px_median": 65.8,
+      "ipd_px_p5": 54.4,
+      "label": "faces labelled white_60_69 by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_white_60_69"
+      ],
+      "merged": false,
+      "n": 169,
+      "source_buckets": [
+        "FairFace:60-69"
+      ],
+      "source_rows": 539,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-overlapping-cohort"
+    },
+    "m_white_60_69_to_70_plus": {
+      "bootstrap_interval_pp_est": 13.6,
+      "eligible_rows_before_identity_dedupe": 249,
+      "identity_cluster_count": 199,
+      "ipd_px_median": 65.9,
+      "ipd_px_p5": 52.4,
+      "label": "faces labelled white_60_69_to_70_plus by FairFace annotators",
+      "meets_floor": true,
+      "meets_sizing_target": false,
+      "members": [
+        "m_white_70_plus",
+        "m_white_60_69"
+      ],
+      "merged": true,
+      "n": 199,
+      "source_buckets": [
+        "FairFace:60-69",
+        "FairFace:more than 70"
+      ],
+      "source_rows": 629,
+      "sources": [
+        "fairface"
+      ]
+    },
+    "m_white_70_plus": {
+      "bootstrap_interval_pp_est": 34.5,
+      "eligible_rows_before_identity_dedupe": 35,
+      "identity_cluster_count": 31,
+      "ipd_px_median": 66.9,
+      "ipd_px_p5": 49.9,
+      "label": "faces labelled white_70_plus by FairFace annotators",
+      "meets_floor": false,
+      "meets_sizing_target": false,
+      "members": [
+        "m_white_70_plus"
+      ],
+      "merged": false,
+      "n": 31,
+      "source_buckets": [
+        "FairFace:more than 70"
+      ],
+      "source_rows": 90,
+      "sources": [
+        "fairface"
+      ],
+      "public_suppression": "suppressed-small-cohort"
+    }
+  },
+  "gate": {
+    "_resolution_disclosure": "The subject's gate requires IPD >= 120px (intake.MIN_IPD_PX) and the averageness path >= 280px (averageness_band.MIN_IPD_PX_OUTER). FairFace 448px crops give a median IPD of 66-67px, so ZERO faces from this source can meet it and the shipped 825-face bank never did either (measured 2026-09-07: race_landmarks.npz medians 66.5-69.8px). Applying the resolution leg would empty the bank; dropping it silently would be the mismatch it exists to prevent. It is therefore RECORDED as unmet and carried as claim `bank-resolution-mismatch-is-measured-not-hidden`.",
+    "at_rest": "averageness_band.posture_ok \u2014 the subject's own mouth-posture gate",
+    "pose": "analyze_averageness2.is_frontal \u2014 |yaw|<=14, |pitch|<=16, |roll|<=25",
+    "resolution": "NOT APPLIED \u2014 see _resolution_disclosure"
+  },
+  "instrument": {
+    "digest": "f8ee4c87e0d4ca26414a437c",
+    "modules": {
+      "analyze_advanced.py": "bda0a6b7bb46c65a",
+      "analyze_averageness2.py": "a5384429e8fa3f57",
+      "averageness_band.py": "ba696d7761d0a62f",
+      "dimorphism_bank_probe.py": "6bf12c4159832b32",
+      "dimorphism_reference.py": "0c521769345bcf95",
+      "fa_common.py": "f7421996bf826b5f",
+      "facial_catalogue.py": "45b20ce0fcbba127",
+      "reference_values.py": "bfbc38182b212316"
+    },
+    "n_modules": 8,
+    "packages": {
+      "mediapipe": "0.10.35",
+      "cv2": "4.13.0",
+      "numpy": "2.4.6",
+      "python": "3.11.15"
+    },
+    "models": {
+      "face_landmarker.task": "64184e229b263107",
+      "selfie_segmenter.tflite": "191ac9529ae506ee"
+    },
+    "entry_points": [
+      "analyze_averageness2",
+      "averageness_band",
+      "facial_catalogue",
+      "dimorphism_bank_probe"
+    ]
+  },
+  "manifest_version": 2,
+  "n_cohorts_base": 84,
+  "n_cohorts_emitted": 119,
+  "n_cohorts_merged": 35,
+  "n_eligible_rows_before_identity_dedupe": 27218,
+  "n_face_rows_stored": 30890,
+  "n_faces_unique": 23760,
+  "n_source_rows": 73659,
+  "shards": [
+    {
+      "landmark_seconds": 164.0,
+      "rows_seen": 21686,
+      "shard": "train_0.parquet",
+      "written": 16257
+    },
+    {
+      "landmark_seconds": 165.1,
+      "rows_seen": 21686,
+      "shard": "train_1.parquet",
+      "written": 16320
+    },
+    {
+      "landmark_seconds": 168.8,
+      "rows_seen": 21686,
+      "shard": "train_2.parquet",
+      "written": 16473
+    },
+    {
+      "landmark_seconds": 169.8,
+      "rows_seen": 21686,
+      "shard": "train_3.parquet",
+      "written": 16391
+    },
+    {
+      "landmark_seconds": 85.9,
+      "rows_seen": 10954,
+      "shard": "validation_0.parquet",
+      "written": 8218
+    }
+  ],
+  "source": {
+    "dataset": "FairFace",
+    "license": "CC-BY-4.0",
+    "representation": "Public aggregate reference export"
+  },
+  "public_export": {
+    "schema": "public-reference-cdf-v1",
+    "source_private_bank_sha256": "b7abe307123e81913995af814aa257bd8ab206da8d70f2cb8101afd7f4f1c48e",
+    "suppression": "49pairwise-disjoint eligible references; other cohorts metadata-only. Each published reference has>=150distinct identity clusters and each ECDF>=50samples. Existing resolver discloses broader age/cohort fallbacks."
+  }
+}

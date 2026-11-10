@@ -1,13 +1,46 @@
-Facial Geometry Lab
+Facial Geometry Lab / Facial Analysis
 Copyright 2026 Carter Monaco
+Licensed under Apache License 2.0; see LICENSE.
 
-The authored source is licensed under Apache License 2.0; see LICENSE.
-This public edition extracts the manual geometry, validation and report
-components from a larger private application. Automatic photo extraction,
-personal calibration and reference banks are omitted. The landmark adapter
-was removed and a newly authored synthetic demonstration was added.
+PUBLIC AGGREGATE REFERENCE DATA
+The bank/derived.npz empirical distributions and cohort-mean shapes derive from
+FairFace, "FairFace: Face Attribute Dataset for Balanced Race, Gender, and Age"
+(Karkkainen and Joo, WACV 2021), distributed under CC BY 4.0:
+https://github.com/joojs/fairface
+https://creativecommons.org/licenses/by/4.0/
+These transformed reference statistics retain the FairFace attribution and
+CC BY 4.0 terms. Apache-2.0 does not replace the dataset's license.
+Changes: model-based landmark measurement; cohort grouping and identity-cluster
+counting; independent empirical CDF threshold/count pairs; cohort mean shapes and
+held-out distance distributions; suppression of cohorts below the existing
+150-cluster floor and distributions with fewer than50finite observations.
+No reference photographs, individual reference landmark meshes, row identities,
+per-person pose arrays or identity-cluster IDs are distributed. Cohort labels
+are FairFace annotators' labels, not verified participant self-descriptions.
+This representation is not a formal differential-privacy or anonymity guarantee.
 
-No photographs, facial datasets, model weights, reference-bank records or
-personal measurements are distributed. Demo coordinates are fictional
-schematic fixtures authored for this edition, not measurements of a person.
-Pydantic is a separately licensed dependency (MIT).
+MEDIAPIPE
+Google MediaPipe source is Apache-2.0:
+https://github.com/google-ai-edge/mediapipe
+Model assets are downloaded directly from checksum-pinned official Google URLs
+before photo intake; model weights are not included in the app or source tree.
+The auxiliary six-class forehead model is selfie_multiclass_256x256 float32 v1:
+https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_multiclass_256x256/float32/1/selfie_multiclass_256x256.tflite
+Model card (Google / Adel Ahmadyan, May2023, Apache2.0):
+https://storage.googleapis.com/mediapipe-assets/Model%20Card%20Multiclass%20Segmentation.pdf
+The app uses it for hair/skin visibility; it does not establish hidden anatomy.
+
+BUNDLED RUNTIME AND LIBRARIES
+The macOS app includes CPython and installed Python dependencies. Their own
+copyright/license files remain in the runtime distribution, including the
+site-packages dist-info license directories. Dependencies include MediaPipe,
+NumPy, SciPy, OpenCV, Matplotlib, Pydantic, limits and cryptography.
+Python standalone runtime source/build project:
+https://github.com/astral-sh/python-build-standalone
+No third-party library is relicensed by the application license.
+
+OPTIONAL INTEL BUILD PATCH (NO INTEL APP IN THIS RELEASE)
+The retained Intel build source includes an Apache-2.0 MediaPipe modification:
+macos_app/mediapipe-x86_64.patch supplies build compatibility with the current
+macOS SDK (zlib/OpenCV compiler definitions). It changes no model assets or
+measurement algorithms. The0.4.7download is Apple Silicon only; Intel is unverified.

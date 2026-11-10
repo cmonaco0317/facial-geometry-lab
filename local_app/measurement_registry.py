@@ -30,7 +30,7 @@ EYES = ("eye_outer_a", "eye_inner_a", "eye_inner_b", "eye_outer_b")
 METRICS = (
     Metric(
         "reviewed_facial_index",
-        "Reviewed facial height / width",
+        "Reviewed mesh forehead-to-chin height / cheek span",
         "proportions",
         (*FACE, *CHEEKS),
         "Mesh-top-to-chin vertical height / horizontal cheek span.",

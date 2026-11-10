@@ -1,0 +1,54 @@
+{
+  "_what": "symmetry's rankability as a function of how hard the yaw gate is set, on BOTH sides at once.",
+  "_floor_expected": "yaw gating removes the yaw confound only; the detector's left-right bias is present at every pose, so this must stop helping somewhere.",
+  "set_size": 4,
+  "gates_deg": [
+    14.0,
+    10.0,
+    7.0,
+    5.0,
+    3.0
+  ],
+  "rows": {
+    "14.0": {
+      "n_bank_faces": 27473,
+      "n_identities_contributing": 307,
+      "bank_spread_p5_p95": 15.0621,
+      "noise_share_of_bank_variance": 0.9335,
+      "inflation": 3.879,
+      "raw_movement_pct": 18.94,
+      "corrected_movement_pct": 73.46,
+      "tier": 0
+    },
+    "10.0": {
+      "n_bank_faces": 21255,
+      "n_identities_contributing": 301,
+      "bank_spread_p5_p95": 10.7666,
+      "noise_share_of_bank_variance": 0.8836,
+      "inflation": 2.931,
+      "raw_movement_pct": 18.25,
+      "corrected_movement_pct": 53.5,
+      "tier": 0
+    },
+    "7.0": {
+      "n_bank_faces": 15817,
+      "n_identities_contributing": 282,
+      "bank_spread_p5_p95": 7.7216,
+      "noise_share_of_bank_variance": 0.821,
+      "inflation": 2.363,
+      "raw_movement_pct": 17.81,
+      "corrected_movement_pct": 42.1,
+      "tier": 2
+    },
+    "5.0": {
+      "n_bank_faces": 11779,
+      "n_identities_contributing": 255,
+      "bank_spread_p5_p95": 5.8089,
+      "noise_share_of_bank_variance": 0.7215,
+      "inflation": 1.895,
+      "raw_movement_pct": 14.92,
+      "corrected_movement_pct": 28.26,
+      "tier": 2
+    }
+  }
+}

@@ -96,13 +96,24 @@ def composite_score(axes: Mapping[str, AxisResult]) -> dict[str, Any]:
     )
 
 
-def public_regions(axes: Mapping[str, AxisResult]) -> list[dict[str, Any]]:
+def public_regions(
+    axes: Mapping[str, AxisResult], *, frontal: list[dict] | None = None
+) -> list[dict[str, Any]]:
     """Allowlisted numerical rows only; no image identifiers or arbitrary details."""
+    from .anatomical_observations import PROXY_LABELS, PROXY_NOTE
+    from .automatic_forehead import coverage_exclusions, FOREHEAD_METRICS
     harmony = axes.get("harmony")
     rows = harmony.details.get("regional_measurements", []) if harmony else []
+    covered = coverage_exclusions(axes, frontal)
     output = []
     for row in rows if isinstance(rows, list) else []:
         if not isinstance(row, dict) or _number(row.get("value")) is None:
+            continue
+        if not isinstance(row.get("id"), str):
+            continue
+        evidence = row.get("evidence_photo_ids", harmony.details.get("evidence_photo_ids", []))
+        if (row.get("id") in FOREHEAD_METRICS and isinstance(evidence, (list, tuple))
+                and any(isinstance(photo, str) and photo in covered for photo in evidence)):
             continue
 
         # Labels and explanations come from the local catalogue but still escape at rendering.
@@ -117,6 +128,9 @@ def public_regions(axes: Mapping[str, AxisResult]) -> list[dict[str, Any]]:
             return text
 
         percentile = _number(row.get("percentile"))
+        if row.get("id") in PROXY_LABELS:
+            row = {**row, "label": PROXY_LABELS[row["id"]],
+                   "note": f"{safe_text(row.get('note', ''))} {PROXY_NOTE}".strip()}
         output.append(
             {
                 **{
@@ -126,7 +140,7 @@ def public_regions(axes: Mapping[str, AxisResult]) -> list[dict[str, Any]]:
                 "method": row.get("method", "automatic-regional-v1")
                 if isinstance(row.get("method", "automatic-regional-v1"), str)
                 and row.get("method", "automatic-regional-v1") in {
-                    "automatic-regional-v1", "automatic-regional-v2"
+                    "automatic-regional-v1", "automatic-regional-v2", "automatic-iris-v1"
                 }
                 else "incompatible",
                 **({"evidence_photo_count": row["evidence_photo_count"]}

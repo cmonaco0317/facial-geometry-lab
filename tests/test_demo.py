@@ -75,18 +75,16 @@ class DemoTests(unittest.TestCase):
         current = dict(binding="synthetic", revision=1, points=frontal_points())
         before = copy.deepcopy(current)
         updated = save_review(current, frontal_points(), expected_revision=1,
-                              binding="synthetic")
+                              binding="synthetic", forehead_visibility="visible")
         self.assertEqual(current, before)
         self.assertEqual(updated["revision"], 2)
 
-    def test_private_calibration_modules_are_absent(self):
+    def test_individual_reference_records_are_absent(self):
         root = Path(__file__).resolve().parents[1]
-        excluded = ("reference_values.py", "movement_reference.py",
-                    "dimorphism_reference.py", "symmetry_reference.py",
-                    "averageness_band.py", "stranger_movement_probe.py",
-                    "local_app/analysis.py", "local_app/server.py")
-        for name in excluded:
-            self.assertFalse((root / name).exists(), name)
+        self.assertEqual(list((root / "bank").glob("*/measurements.npz")), [])
+        self.assertFalse((root / "STATE.md").exists())
+        self.assertFalse((root / "subject.json").exists())
+
 
 
 if __name__ == "__main__":

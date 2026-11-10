@@ -1,4 +1,4 @@
-"""Bounded, script-free landmark diagrams. Public edition omits photo extraction."""
+"""Bounded, script-free diagrams from one observed face; never a generated face."""
 
 from __future__ import annotations
 
@@ -66,6 +66,30 @@ ALL_IDS = sorted(
 )
 
 
+def observed_diagram(context: Any, photo_ids: tuple[str, ...]) -> dict[str, Any] | None:
+    import numpy as np
+
+    candidates = [p for p in context.kept if p["photo"] in photo_ids]
+    if not candidates:
+        return None
+    chosen = min(candidates, key=lambda p: (abs(p.get("yaw", 0)), str(p["photo"])))
+    points = np.asarray(chosen["landmarks"], dtype=float)
+    if points.shape != (468, 2) or not np.isfinite(points).all():
+        return None
+    selected = points[ALL_IDS]
+    lo = selected.min(axis=0)
+    span = np.ptp(selected, axis=0)
+    scale = max(float(span[0]) / 280, float(span[1]) / 340)
+    if scale <= 0:
+        return None
+    shift = np.array([(320 - span[0] / scale) / 2, (380 - span[1] / scale) / 2])
+    normalized = (selected - lo) / scale + shift
+    return {
+        "points": {
+            str(i): [round(float(v), 3) for v in p] for i, p in zip(ALL_IDS, normalized)
+        },
+        "note": "One selected photograph, normalized without changing aspect ratio. Lines show the landmark spans used in this region; table values may summarize several photographs. The top mesh point is not the hairline.",
+    }
 
 
 def public_diagram(raw: Any) -> dict[str, Any] | None:

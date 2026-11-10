@@ -1,0 +1,61 @@
+From: Facial Analysis build tooling
+Subject: Build MediaPipe 0.10.35 for Darwin x86_64
+Source: https://github.com/google-ai-edge/mediapipe.git
+Source-Commit: f8ef212d5c962c0e853db7e59d217056b187084b
+
+This downstream patch changes distribution metadata and Darwin build target
+flags, retains shared source-built OpenCV on Darwin to avoid Linux-oriented
+static link dependencies, leaves the unavailable private ODML converter
+disabled in the public source distribution, and clears Apple Clang 21's global
+TARGET_OS_MAC definition from OpenCV's bundled C dependencies. It makes no
+algorithm, calculator, Tasks API, graph, or model change. MediaPipe and this
+build-only modification remain under the Apache License, Version 2.0.
+
+diff --git a/setup.py b/setup.py
+index 2c5a77c..efc1de3 100644
+--- a/setup.py
++++ b/setup.py
+@@ -33,4 +33,4 @@
+-__version__ = 'dev'
++__version__ = '0.10.35'
+ MP_DISABLE_GPU = os.environ.get('MEDIAPIPE_DISABLE_GPU') != '0'
+ IS_WINDOWS = (platform.system() == 'Windows')
+ IS_MAC = (platform.system() == 'Darwin')
+@@ -120,7 +120,7 @@ def _modify_opencv_cmake_rule(link_opencv):
+   # On Windows, the opencv_cmake rule may need Visual Studio to compile OpenCV
+   # from source. For simplicity, we continue to link the prebuilt version of
+   # the OpenCV library through "@windows_opencv//:opencv".
+-  if not link_opencv and not IS_WINDOWS:
++  if not link_opencv and not IS_WINDOWS and not IS_MAC:
+     content = open(MP_THIRD_PARTY_BUILD,
+                    'r').read().replace('OPENCV_SHARED_LIBS = True',
+                                        'OPENCV_SHARED_LIBS = False')
+@@ -230,7 +230,7 @@ class BuildExtension(build_ext.build_ext):
+       for ext in self.extensions:
+         self._build_binary(
+             ext,
+-            ['--cpu=darwin_arm64', '--ios_multi_cpus=i386,x86_64,armv7,arm64'],
++            ['--cpu=darwin_x86_64', '--ios_multi_cpus=x86_64'],
+         )
+     else:
+       for ext in self.extensions:
+@@ -244,7 +244,6 @@ class BuildExtension(build_ext.build_ext):
+         '--compilation_mode=opt',
+         '--copt=-DNDEBUG',
+         '--keep_going',
+-        '--define=ENABLE_ODML_CONVERTER=1',
+         str(ext.bazel_target),
+     ] + GPU_OPTIONS
+
+diff --git a/third_party/BUILD b/third_party/BUILD
+index 2ab0a7d..5258b71 100644
+--- a/third_party/BUILD
++++ b/third_party/BUILD
+@@ -212,6 +212,7 @@ cmake(
+     # here are serving to provide some CMake script configuration options
+     cache_entries = {
+         "CMAKE_BUILD_TYPE": "Release",
++        "CMAKE_C_FLAGS": "-UTARGET_OS_MAC",
+         # The module list is always sorted alphabetically so that we do not
+         # cause a rebuild when changing the link order.
+         "BUILD_LIST": ",".join(sorted(OPENCV_MODULES)),

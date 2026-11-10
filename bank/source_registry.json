@@ -1,0 +1,87 @@
+{
+  "retrieved_at": "2026-09-18",
+  "sources": {
+    "fairface": {
+      "age_labels_used": [
+        "20-29",
+        "30-39",
+        "40-49",
+        "50-59",
+        "60-69",
+        "more than 70"
+      ],
+      "cached_parquet": {
+        "train_0.parquet": {
+          "bytes": 467720349,
+          "sha256": "9c27e70f0cf6f1ba54e5d7fcc7c69bd5b1c8342205796e9a9bb8f507125ef70c"
+        },
+        "train_1.parquet": {
+          "bytes": 465770326,
+          "sha256": "fa253c53b3bee4a784314963e5579fa90ae7422a4990f72c4f2458b3e4e51692"
+        },
+        "train_2.parquet": {
+          "bytes": 466479874,
+          "sha256": "ad65e7e2f34faf35cf5741a91f55397a9df0544df567bd1f7388d60dfe86dcf8"
+        },
+        "train_3.parquet": {
+          "bytes": 467699600,
+          "sha256": "caf5e1f5982d0206e7d3f48fff89c74740eeb3a57aebceef59fd6fc68a9ea7c2"
+        },
+        "validation_0.parquet": {
+          "bytes": 236824583,
+          "sha256": "ce47863c011f355ef7ab63d70420d9d4b36fce03cf1621a26597955da21968bb"
+        }
+      },
+      "dataset_url": "https://huggingface.co/datasets/HuggingFaceM4/FairFace",
+      "display_name": "HuggingFaceM4/FairFace",
+      "excluded_age_labels": {
+        "10-19": "Never used for adult 18-19 because the bucket cannot exclude minors."
+      },
+      "label_kind": "annotator judgement from a photograph",
+      "license": "CC BY 4.0",
+      "official_url": "https://github.com/dchen236/FairFace",
+      "redistribute_raw": false,
+      "stable_person_identifiers": false
+    },
+    "opencv_sface_2021dec": {
+      "bytes": 38696353,
+      "display_name": "OpenCV Zoo SFace 2021-12",
+      "download_url": "https://github.com/opencv/opencv_zoo/raw/main/models/face_recognition_sface/face_recognition_sface_2021dec.onnx",
+      "label_kind": "face-recognition model used only for conservative duplicate identity clustering",
+      "license": "Apache-2.0",
+      "model_path": "models/sface/face_recognition_sface_2021dec.onnx",
+      "official_url": "https://github.com/opencv/opencv_zoo/blob/main/models/face_recognition_sface/face_recognition_sface_2021dec.onnx",
+      "redistribute_model": false,
+      "same_identity_cosine_threshold": 0.363,
+      "sha256": "0ba9fbfa01b5270c96627c4ef784da859931e02f04419c829e83484087c34e79"
+    },
+    "utkface": {
+      "acquisition_failure": "official archive returned HTTP 404",
+      "acquisition_status": "unavailable",
+      "bytes": null,
+      "checked_at": "2026-09-18T19:21:12+00:00",
+      "display_name": "UTKFace",
+      "label_compatibility": {
+        "Asian": "broader-Asian fallback only; never represented as East Asian or Southeast Asian exact coverage",
+        "Black": "exact-compatible with the Black application label",
+        "Indian": "exact-compatible with the Indian application label",
+        "Others": "broader-ethnicity fallback only; never represented as a specific application ethnicity",
+        "White": "exact-compatible with the White application label"
+      },
+      "label_kind": "age, gender, and race estimated by DEX and double-checked by a human annotator",
+      "legacy_archive_id": "0BxYys69jI14kYVM3aVhKS1VhRUk",
+      "license": "non-commercial research only",
+      "official_folder_url": "https://drive.google.com/drive/folders/0BxYys69jI14kU0I1YUQyY1ZDRUE?usp=sharing",
+      "official_url": "https://github.com/aicip/UTKFace/blob/master/index.md",
+      "redistribute_raw": false,
+      "restriction_disclosure": "The source permits non-commercial research only. Raw photographs are never redistributed and are purged after feature extraction.",
+      "selected_ages": [
+        18,
+        19
+      ],
+      "sha256": null,
+      "stable_person_identifiers": false
+    }
+  },
+  "version": 1
+}

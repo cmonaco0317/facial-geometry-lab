@@ -1,4 +1,4 @@
-"""Partial, revision-bound 2D frontal review. Public edition: automatic detection adapter omitted."""
+"""Partial, revision-bound 2D frontal review. Automatic geometry stays immutable."""
 
 from __future__ import annotations
 
@@ -53,7 +53,63 @@ ANCHORS = {
     "upper_lip": ("Upper lip top", 0, "lips"),
     "lower_lip": ("Lower lip bottom", 17, "lips"),
 }
-REVIEW_NOTE = "Reviewed 2D photo measurements. No matching manual-reference percentiles or calibrated uncertainty. Head pose and placement affect readings. These measurements have no reference-bank percentiles and do not infer depth."
+REVIEW_NOTE = "Reviewed 2D photo measurements. No matching manual-reference percentiles or calibrated uncertainty. Head pose and placement affect readings. Automatic pillar cards and composite use their original instrument; these readings do not overwrite inferred depth."
+FOREHEAD_VISIBILITY = {
+    "unassessed": "Use automatic visibility assessment",
+    "visible": "Forehead and central hairline are clearly visible",
+    "hairline_hidden": "Hair hides the central hairline; forehead outline is visible",
+    "forehead_hidden": "Hair hides the forehead outline and hairline",
+    "uncertain": "I cannot tell where the hairline is",
+}
+
+
+def forehead_points(
+    raw: Any, visibility: str, automatic_status: str | None = None
+) -> dict[str, list[float] | None]:
+    """Hair coverage takes precedence over retained model/user coordinates."""
+    if not isinstance(visibility, str) or visibility not in FOREHEAD_VISIBILITY:
+        raise ValueError("Choose a supported forehead visibility option.")
+    if automatic_status is not None:
+        from .automatic_forehead import EXPLANATIONS
+
+        if not isinstance(automatic_status, str) or automatic_status not in EXPLANATIONS:
+            raise ValueError("Unsupported automatic forehead finding.")
+    points = validate_points(raw)
+    if visibility != "visible":
+        points["hairline"] = None
+    if visibility == "forehead_hidden" or (
+        visibility == "unassessed" and automatic_status is not None
+        and automatic_status != "forehead_clear"
+    ):
+        for key in ("mesh_top", "forehead_a", "forehead_b"):
+            points[key] = None
+    return points
+
+
+def forehead_note(visibility: str, automatic_status: str | None = None) -> str:
+    if visibility == "unassessed" and automatic_status is not None:
+        from .automatic_forehead import EXPLANATIONS
+
+        return "Automatic visibility assessment: " + EXPLANATIONS[automatic_status]
+    label = FOREHEAD_VISIBILITY.get(visibility, FOREHEAD_VISIBILITY["unassessed"])
+    return (
+        f"User-reviewed visibility: {label}. "
+        + ("Hairline readings use the visible, manually placed central hairline."
+           if visibility == "visible" else
+           "Hidden or uncertain hairline readings are unavailable. For hairline-defined "
+           "proportions, add a clear frontal photo with hair lifted away from the skin. "
+           "Do not place the hairline on the edge of a fringe or guess behind hair.")
+    )
+
+
+def render_forehead_warning(frontal: list[dict] | None) -> str:
+    if not any(r.get("forehead_visibility") == "forehead_hidden" for r in frontal or []):
+        return ""
+    return ('<p class="review-confirm"><strong>Hair covers the forehead in a reviewed photo.</strong> '
+            'Automatic forehead-dependent regional readings using that photo are omitted. '
+            'The pillar cards and geometry score still use their original mesh proxies; '
+            'this is not a hairline-corrected score. Add a clear frontal photo with hair '
+            'lifted away to review the hairline and forehead.</p>')
 
 Coordinate = Annotated[float, Field(strict=True, allow_inf_nan=False, ge=0, le=1)]
 Point = Annotated[list[Coordinate], Field(min_length=2, max_length=2)]
@@ -101,6 +157,7 @@ def save_review(
     expected_revision: int,
     binding: str,
     acknowledged: bool = False,
+    forehead_visibility: str = "unassessed",
 ) -> dict:
     if (
         isinstance(expected_revision, bool)
@@ -112,6 +169,9 @@ def save_review(
             "This review changed in another tab or the photograph changed. Reload before saving."
         )
     points = validate_points(raw)
+    if points["hairline"] is not None and forehead_visibility == "unassessed":
+        raise ValueError("Confirm that the central hairline is visible before measuring it.")
+    points = forehead_points(points, forehead_visibility, current.get("automatic_forehead_status"))
     warnings = geometry_warnings(points)
     if warnings and not acknowledged:
         raise ValueError(
@@ -122,6 +182,8 @@ def save_review(
         "points": points,
         "warnings": warnings,
         "reviewed": True,
+        "forehead_visibility": forehead_visibility,
+        "visibility_pending": False,
         "revision": expected_revision + 1,
     }
 
@@ -261,6 +323,35 @@ def calculate(raw: Any, width: int, height: int) -> list[dict]:
     ]
 
 
+def detected_points(path: Any) -> dict:
+    import fa_common as common
+    from facial_catalogue import L_BROW, R_BROW
+
+    points, _image, (width, height) = common.detect_landmarks(str(path))
+    output = {key: None for key in ANCHORS}
+    if points is None:
+        return output
+    for key, (_label, index, _region) in ANCHORS.items():
+        if index is not None:
+            output[key] = [
+                float(points[index][0] / width),
+                float(points[index][1] / height),
+            ]
+    for side, ring, brow in (
+        ("a", common.LEFT_EYE_RING, L_BROW),
+        ("b", common.RIGHT_EYE_RING, R_BROW),
+    ):
+        centre = points[ring].mean(axis=0)
+        peak = min((points[i] for i in brow), key=lambda p: p[1])
+        output["eye_centre_" + side] = [
+            float(centre[0] / width),
+            float(centre[1] / height),
+        ]
+        output["brow_peak_" + side] = [float(peak[0] / width), float(peak[1] / height)]
+    return {
+        k: v if v is None or all(math.isfinite(x) and 0 <= x <= 1 for x in v) else None
+        for k, v in output.items()
+    }
 
 
 def observation_binding(entry: Any, instrument: str) -> str:
@@ -275,16 +366,28 @@ def observation_binding(entry: Any, instrument: str) -> str:
 
 
 def public_review(record: dict, width: int, height: int) -> dict | None:
-    if not record.get("reviewed"):
+    visibility = record.get("forehead_visibility", "unassessed")
+    visibility_only = not record.get("reviewed") and record.get("visibility_pending") is True
+    if not record.get("reviewed") and not visibility_only:
         return None
+    if visibility_only and visibility not in {"hairline_hidden", "forehead_hidden", "uncertain"}:
+        return None
+    automatic_status = record.get("automatic_forehead_status")
+    points = forehead_points(
+        {key: None for key in ANCHORS} if visibility_only else record["points"], visibility,
+        automatic_status,
+    )
     return dict(
+        **({"automatic_forehead_status": automatic_status} if automatic_status is not None else {}),
+        **({"visibility_only": True} if visibility_only else {}),
         method=REGISTRY_VERSION,
         contract=measurement_contract(),
         revision=record["revision"],
-        measurements=calculate(record["points"], width, height),
-        warnings=geometry_warnings(record["points"]),
+        forehead_visibility=visibility,
+        measurements=calculate(points, width, height),
+        warnings=geometry_warnings(points),
         diagram=dict(
-            points=validate_points(record["points"]), width=width, height=height
+            points=points, width=width, height=height
         ),
         note=REVIEW_NOTE,
     )
@@ -299,6 +402,11 @@ def render_reviewed(payload: dict | None) -> str:
         if isinstance(photo, int) and not isinstance(photo, bool) and photo > 0
         else ""
     )
+    if payload.get("visibility_only"):
+        return (f'<section class="feature-chapter"><h2>{html.escape(heading.replace("Reviewed frontal measurements", "Saved forehead coverage"))}</h2>'
+                '<p>Saved hair coverage is retained as an exclusion. Recheck visibility '
+                'and confirm landmarks before using restored measurements.</p>'
+                f'<p>{html.escape(forehead_note(payload["forehead_visibility"]))}</p></section>')
     warnings = "".join(
         f"<li>{html.escape(w)}</li>" for w in payload.get("warnings", [])
     )
@@ -306,7 +414,9 @@ def render_reviewed(payload: dict | None) -> str:
         f"<tr><th>{html.escape(r['label'])}</th><td>{r['value']:.4f} {html.escape(r['unit'])}</td><td>{html.escape(r['definition'])}</td></tr>"
         for r in payload["measurements"]
     )
-    return f'<section class="feature-chapter"><h2>{html.escape(heading)}</h2><ul>{warnings}</ul>{render_review_diagram(payload.get("diagram"))}<p>{html.escape(REVIEW_NOTE)}</p><div class="table-wrap"><table><thead><tr><th>Measurement</th><th>Reading</th><th>Definition</th></tr></thead><tbody>{rows}</tbody></table></div></section>'
+    visibility_note = forehead_note(payload.get("forehead_visibility", "unassessed"),
+                                    payload.get("automatic_forehead_status"))
+    return f'<section class="feature-chapter"><h2>{html.escape(heading)}</h2><ul>{warnings}</ul>{render_review_diagram(payload.get("diagram"))}<p>{html.escape(visibility_note)}</p><p>{html.escape(REVIEW_NOTE)}</p><div class="table-wrap"><table><thead><tr><th>Measurement</th><th>Reading</th><th>Definition</th></tr></thead><tbody>{rows}</tbody></table></div></section>'
 
 
 def safe_review(raw: Any) -> dict | None:
@@ -330,7 +440,16 @@ def safe_review(raw: Any) -> dict | None:
             for v in (width, height)
         ):
             return None
-        points = validate_points(diagram["points"])
+        visibility = raw.get("forehead_visibility", "unassessed")
+        visibility_only = raw.get("visibility_only", False)
+        if type(visibility_only) is not bool or (visibility_only and visibility not in {
+            "hairline_hidden", "forehead_hidden", "uncertain"
+        }):
+            return None
+        automatic_status = raw.get("automatic_forehead_status")
+        points = forehead_points(diagram["points"], visibility, automatic_status)
+        if visibility_only:
+            points = {key: None for key in ANCHORS}
         rows = calculate(points, width, height)
     except ValueError:
         return None
@@ -342,10 +461,13 @@ def safe_review(raw: Any) -> dict | None:
     ):
         return None
     return dict(
+        **({"automatic_forehead_status": automatic_status} if automatic_status is not None else {}),
+        **({"visibility_only": True} if visibility_only else {}),
         **({"photo_number": photo} if photo is not None else {}),
         method=REGISTRY_VERSION,
         contract=measurement_contract(),
         revision=revision,
+        forehead_visibility=visibility,
         measurements=rows,
         warnings=geometry_warnings(points),
         diagram=dict(points=points, width=width, height=height),

@@ -1,0 +1,67 @@
+{
+  "_what": "how far each AXIS's printed reading moves between two disjoint sets of 4 casual photographs of the same stranger.",
+  "_dimorphism_units": "probability POINTS (0-100), not % of a scale",
+  "_harmony_symmetry_units": "PERCENTILE POINTS within the reference pool",
+  "_stability_not_accuracy": "LFW has no cohort labels, so one reference cohort's calibration and one pooled reference distribution are used. This measures MOVEMENT only and is not a validation of correctness.",
+  "set_size": 4,
+  "n_identities": 138,
+  "reference_cohort": "white_20_29",
+  "dimorphism": {
+    "n": 3450,
+    "median_probability_points": 8.04,
+    "p90": 21.23,
+    "share_moving_under_10_points": 0.591,
+    "features_used": [
+      "face_width",
+      "jaw_width",
+      "eye_size",
+      "lower_third",
+      "nose_width",
+      "lip_height"
+    ]
+  },
+  "axes": {
+    "asymmetry": {
+      "n": 3450,
+      "median_percentile_points": 17.97,
+      "p90": 41.68,
+      "share_moving_under_10_points": 0.286
+    },
+    "harm__vertical_balance": {
+      "n": 3450,
+      "median_percentile_points": 14.37,
+      "p90": 38.46,
+      "share_moving_under_10_points": 0.361
+    },
+    "harm__horizontal_balance": {
+      "n": 3450,
+      "median_percentile_points": 11.92,
+      "p90": 31.24,
+      "share_moving_under_10_points": 0.437
+    },
+    "harm__midface_proportion": {
+      "n": 3450,
+      "median_percentile_points": 8.17,
+      "p90": 25.51,
+      "share_moving_under_10_points": 0.576
+    },
+    "harm__nose_mouth_eye": {
+      "n": 3450,
+      "median_percentile_points": 12.27,
+      "p90": 32.06,
+      "share_moving_under_10_points": 0.423
+    },
+    "harm__lip_balance": {
+      "n": 3450,
+      "median_percentile_points": 13.61,
+      "p90": 39.25,
+      "share_moving_under_10_points": 0.394
+    },
+    "harm__lower_face_split": {
+      "n": 3450,
+      "median_percentile_points": 10.17,
+      "p90": 28.96,
+      "share_moving_under_10_points": 0.494
+    }
+  }
+}

@@ -1,0 +1,855 @@
+{
+  "schema": "public-reference-cdf-v1",
+  "minimum_distinct_identity_clusters": 150,
+  "minimum_cdf_count": 50,
+  "source_private_bank_sha256": "b7abe307123e81913995af814aa257bd8ab206da8d70f2cb8101afd7f4f1c48e",
+  "cohorts": {
+    "f_black_20_29": {
+      "status": "available",
+      "source_rows": 626,
+      "distinct_identity_clusters": 626,
+      "mean_fit_rows": 313,
+      "typicality_reference_rows": 313,
+      "members": [
+        "f_black_20_29"
+      ]
+    },
+    "f_black_30_39": {
+      "status": "available",
+      "source_rows": 540,
+      "distinct_identity_clusters": 540,
+      "mean_fit_rows": 270,
+      "typicality_reference_rows": 270,
+      "members": [
+        "f_black_30_39"
+      ]
+    },
+    "f_black_40_49": {
+      "status": "available",
+      "source_rows": 286,
+      "distinct_identity_clusters": 286,
+      "mean_fit_rows": 143,
+      "typicality_reference_rows": 143,
+      "members": [
+        "f_black_40_49"
+      ]
+    },
+    "f_black_50_59": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 159,
+      "distinct_identity_clusters": 159,
+      "mean_fit_rows": 79,
+      "typicality_reference_rows": 80
+    },
+    "f_black_50_59_to_60_69": {
+      "status": "available",
+      "source_rows": 211,
+      "distinct_identity_clusters": 211,
+      "mean_fit_rows": 105,
+      "typicality_reference_rows": 106,
+      "members": [
+        "f_black_60_69",
+        "f_black_50_59"
+      ]
+    },
+    "f_black_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 54
+    },
+    "f_black_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 75
+    },
+    "f_black_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 24
+    },
+    "f_east_asian_20_29": {
+      "status": "available",
+      "source_rows": 983,
+      "distinct_identity_clusters": 983,
+      "mean_fit_rows": 491,
+      "typicality_reference_rows": 492,
+      "members": [
+        "f_east_asian_20_29"
+      ]
+    },
+    "f_east_asian_30_39": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 455,
+      "distinct_identity_clusters": 455,
+      "mean_fit_rows": 227,
+      "typicality_reference_rows": 228
+    },
+    "f_east_asian_30_39_to_40_49": {
+      "status": "available",
+      "source_rows": 586,
+      "distinct_identity_clusters": 586,
+      "mean_fit_rows": 293,
+      "typicality_reference_rows": 293,
+      "members": [
+        "f_east_asian_40_49",
+        "f_east_asian_30_39"
+      ]
+    },
+    "f_east_asian_40_49": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 147
+    },
+    "f_east_asian_40_49_to_50_59": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 224,
+      "distinct_identity_clusters": 224,
+      "mean_fit_rows": 112,
+      "typicality_reference_rows": 112
+    },
+    "f_east_asian_50_59": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 82
+    },
+    "f_east_asian_50_59_to_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 123
+    },
+    "f_east_asian_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 42
+    },
+    "f_east_asian_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 58
+    },
+    "f_east_asian_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 18
+    },
+    "f_indian_20_29": {
+      "status": "available",
+      "source_rows": 564,
+      "distinct_identity_clusters": 564,
+      "mean_fit_rows": 282,
+      "typicality_reference_rows": 282,
+      "members": [
+        "f_indian_20_29"
+      ]
+    },
+    "f_indian_30_39": {
+      "status": "available",
+      "source_rows": 436,
+      "distinct_identity_clusters": 436,
+      "mean_fit_rows": 218,
+      "typicality_reference_rows": 218,
+      "members": [
+        "f_indian_30_39"
+      ]
+    },
+    "f_indian_40_49": {
+      "status": "available",
+      "source_rows": 275,
+      "distinct_identity_clusters": 275,
+      "mean_fit_rows": 137,
+      "typicality_reference_rows": 138,
+      "members": [
+        "f_indian_40_49"
+      ]
+    },
+    "f_indian_50_59": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 151,
+      "distinct_identity_clusters": 151,
+      "mean_fit_rows": 75,
+      "typicality_reference_rows": 76
+    },
+    "f_indian_50_59_to_60_69": {
+      "status": "available",
+      "source_rows": 237,
+      "distinct_identity_clusters": 237,
+      "mean_fit_rows": 118,
+      "typicality_reference_rows": 119,
+      "members": [
+        "f_indian_60_69",
+        "f_indian_50_59"
+      ]
+    },
+    "f_indian_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 90
+    },
+    "f_indian_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 139
+    },
+    "f_indian_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 54
+    },
+    "f_latino_hispanic_20_29": {
+      "status": "available",
+      "source_rows": 731,
+      "distinct_identity_clusters": 731,
+      "mean_fit_rows": 365,
+      "typicality_reference_rows": 366,
+      "members": [
+        "f_latino_hispanic_20_29"
+      ]
+    },
+    "f_latino_hispanic_30_39": {
+      "status": "available",
+      "source_rows": 584,
+      "distinct_identity_clusters": 584,
+      "mean_fit_rows": 292,
+      "typicality_reference_rows": 292,
+      "members": [
+        "f_latino_hispanic_30_39"
+      ]
+    },
+    "f_latino_hispanic_40_49": {
+      "status": "available",
+      "source_rows": 333,
+      "distinct_identity_clusters": 333,
+      "mean_fit_rows": 166,
+      "typicality_reference_rows": 167,
+      "members": [
+        "f_latino_hispanic_40_49"
+      ]
+    },
+    "f_latino_hispanic_50_59": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 173,
+      "distinct_identity_clusters": 173,
+      "mean_fit_rows": 86,
+      "typicality_reference_rows": 87
+    },
+    "f_latino_hispanic_50_59_to_60_69": {
+      "status": "available",
+      "source_rows": 242,
+      "distinct_identity_clusters": 242,
+      "mean_fit_rows": 121,
+      "typicality_reference_rows": 121,
+      "members": [
+        "f_latino_hispanic_60_69",
+        "f_latino_hispanic_50_59"
+      ]
+    },
+    "f_latino_hispanic_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 74
+    },
+    "f_latino_hispanic_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 87
+    },
+    "f_latino_hispanic_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 16
+    },
+    "f_middle_eastern_20_29": {
+      "status": "available",
+      "source_rows": 273,
+      "distinct_identity_clusters": 273,
+      "mean_fit_rows": 136,
+      "typicality_reference_rows": 137,
+      "members": [
+        "f_middle_eastern_20_29"
+      ]
+    },
+    "f_middle_eastern_30_39": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 194,
+      "distinct_identity_clusters": 194,
+      "mean_fit_rows": 97,
+      "typicality_reference_rows": 97
+    },
+    "f_middle_eastern_30_39_to_40_49": {
+      "status": "available",
+      "source_rows": 284,
+      "distinct_identity_clusters": 284,
+      "mean_fit_rows": 142,
+      "typicality_reference_rows": 142,
+      "members": [
+        "f_middle_eastern_40_49",
+        "f_middle_eastern_30_39"
+      ]
+    },
+    "f_middle_eastern_40_49": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 108
+    },
+    "f_middle_eastern_40_49_to_50_59": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 148
+    },
+    "f_middle_eastern_50_59": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 57
+    },
+    "f_middle_eastern_50_59_to_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 89
+    },
+    "f_middle_eastern_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 35
+    },
+    "f_middle_eastern_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 52
+    },
+    "f_middle_eastern_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 17
+    },
+    "f_southeast_asian_20_29": {
+      "status": "available",
+      "source_rows": 683,
+      "distinct_identity_clusters": 683,
+      "mean_fit_rows": 341,
+      "typicality_reference_rows": 342,
+      "members": [
+        "f_southeast_asian_20_29"
+      ]
+    },
+    "f_southeast_asian_30_39": {
+      "status": "available",
+      "source_rows": 374,
+      "distinct_identity_clusters": 374,
+      "mean_fit_rows": 187,
+      "typicality_reference_rows": 187,
+      "members": [
+        "f_southeast_asian_30_39"
+      ]
+    },
+    "f_southeast_asian_40_49": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 183,
+      "distinct_identity_clusters": 183,
+      "mean_fit_rows": 91,
+      "typicality_reference_rows": 92
+    },
+    "f_southeast_asian_40_49_to_50_59": {
+      "status": "available",
+      "source_rows": 291,
+      "distinct_identity_clusters": 291,
+      "mean_fit_rows": 145,
+      "typicality_reference_rows": 146,
+      "members": [
+        "f_southeast_asian_50_59",
+        "f_southeast_asian_40_49"
+      ]
+    },
+    "f_southeast_asian_50_59": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 118
+    },
+    "f_southeast_asian_50_59_to_60_69": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 180,
+      "distinct_identity_clusters": 180,
+      "mean_fit_rows": 90,
+      "typicality_reference_rows": 90
+    },
+    "f_southeast_asian_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 65
+    },
+    "f_southeast_asian_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 115
+    },
+    "f_southeast_asian_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 52
+    },
+    "f_white_20_29": {
+      "status": "available",
+      "source_rows": 1104,
+      "distinct_identity_clusters": 1104,
+      "mean_fit_rows": 552,
+      "typicality_reference_rows": 552,
+      "members": [
+        "f_white_20_29"
+      ]
+    },
+    "f_white_30_39": {
+      "status": "available",
+      "source_rows": 769,
+      "distinct_identity_clusters": 769,
+      "mean_fit_rows": 384,
+      "typicality_reference_rows": 385,
+      "members": [
+        "f_white_30_39"
+      ]
+    },
+    "f_white_40_49": {
+      "status": "available",
+      "source_rows": 327,
+      "distinct_identity_clusters": 327,
+      "mean_fit_rows": 163,
+      "typicality_reference_rows": 164,
+      "members": [
+        "f_white_40_49"
+      ]
+    },
+    "f_white_50_59": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 194,
+      "distinct_identity_clusters": 194,
+      "mean_fit_rows": 97,
+      "typicality_reference_rows": 97
+    },
+    "f_white_50_59_to_60_69": {
+      "status": "available",
+      "source_rows": 268,
+      "distinct_identity_clusters": 268,
+      "mean_fit_rows": 134,
+      "typicality_reference_rows": 134,
+      "members": [
+        "f_white_60_69",
+        "f_white_50_59"
+      ]
+    },
+    "f_white_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 80
+    },
+    "f_white_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 111
+    },
+    "f_white_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 36
+    },
+    "m_black_20_29": {
+      "status": "available",
+      "source_rows": 473,
+      "distinct_identity_clusters": 473,
+      "mean_fit_rows": 236,
+      "typicality_reference_rows": 237,
+      "members": [
+        "m_black_20_29"
+      ]
+    },
+    "m_black_30_39": {
+      "status": "available",
+      "source_rows": 456,
+      "distinct_identity_clusters": 456,
+      "mean_fit_rows": 228,
+      "typicality_reference_rows": 228,
+      "members": [
+        "m_black_30_39"
+      ]
+    },
+    "m_black_40_49": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 291,
+      "distinct_identity_clusters": 291,
+      "mean_fit_rows": 145,
+      "typicality_reference_rows": 146
+    },
+    "m_black_40_49_to_50_59": {
+      "status": "available",
+      "source_rows": 416,
+      "distinct_identity_clusters": 416,
+      "mean_fit_rows": 208,
+      "typicality_reference_rows": 208,
+      "members": [
+        "m_black_50_59",
+        "m_black_40_49"
+      ]
+    },
+    "m_black_50_59": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 131
+    },
+    "m_black_50_59_to_60_69": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 178,
+      "distinct_identity_clusters": 178,
+      "mean_fit_rows": 89,
+      "typicality_reference_rows": 89
+    },
+    "m_black_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 50
+    },
+    "m_black_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 65
+    },
+    "m_black_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 15
+    },
+    "m_east_asian_20_29": {
+      "status": "available",
+      "source_rows": 620,
+      "distinct_identity_clusters": 620,
+      "mean_fit_rows": 310,
+      "typicality_reference_rows": 310,
+      "members": [
+        "m_east_asian_20_29"
+      ]
+    },
+    "m_east_asian_30_39": {
+      "status": "available",
+      "source_rows": 436,
+      "distinct_identity_clusters": 436,
+      "mean_fit_rows": 218,
+      "typicality_reference_rows": 218,
+      "members": [
+        "m_east_asian_30_39"
+      ]
+    },
+    "m_east_asian_40_49": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 204,
+      "distinct_identity_clusters": 204,
+      "mean_fit_rows": 102,
+      "typicality_reference_rows": 102
+    },
+    "m_east_asian_40_49_to_50_59": {
+      "status": "available",
+      "source_rows": 323,
+      "distinct_identity_clusters": 323,
+      "mean_fit_rows": 161,
+      "typicality_reference_rows": 162,
+      "members": [
+        "m_east_asian_50_59",
+        "m_east_asian_40_49"
+      ]
+    },
+    "m_east_asian_50_59": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 133
+    },
+    "m_east_asian_50_59_to_60_69": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 190,
+      "distinct_identity_clusters": 190,
+      "mean_fit_rows": 95,
+      "typicality_reference_rows": 95
+    },
+    "m_east_asian_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 65
+    },
+    "m_east_asian_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 85
+    },
+    "m_east_asian_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 21
+    },
+    "m_indian_20_29": {
+      "status": "available",
+      "source_rows": 487,
+      "distinct_identity_clusters": 487,
+      "mean_fit_rows": 243,
+      "typicality_reference_rows": 244,
+      "members": [
+        "m_indian_20_29"
+      ]
+    },
+    "m_indian_30_39": {
+      "status": "available",
+      "source_rows": 551,
+      "distinct_identity_clusters": 551,
+      "mean_fit_rows": 275,
+      "typicality_reference_rows": 276,
+      "members": [
+        "m_indian_30_39"
+      ]
+    },
+    "m_indian_40_49": {
+      "status": "available",
+      "source_rows": 388,
+      "distinct_identity_clusters": 388,
+      "mean_fit_rows": 194,
+      "typicality_reference_rows": 194,
+      "members": [
+        "m_indian_40_49"
+      ]
+    },
+    "m_indian_50_59": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 251,
+      "distinct_identity_clusters": 251,
+      "mean_fit_rows": 125,
+      "typicality_reference_rows": 126
+    },
+    "m_indian_50_59_to_60_69": {
+      "status": "available",
+      "source_rows": 341,
+      "distinct_identity_clusters": 341,
+      "mean_fit_rows": 170,
+      "typicality_reference_rows": 171,
+      "members": [
+        "m_indian_60_69",
+        "m_indian_50_59"
+      ]
+    },
+    "m_indian_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 105
+    },
+    "m_indian_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 141
+    },
+    "m_indian_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 39
+    },
+    "m_latino_hispanic_20_29": {
+      "status": "available",
+      "source_rows": 517,
+      "distinct_identity_clusters": 517,
+      "mean_fit_rows": 258,
+      "typicality_reference_rows": 259,
+      "members": [
+        "m_latino_hispanic_20_29"
+      ]
+    },
+    "m_latino_hispanic_30_39": {
+      "status": "available",
+      "source_rows": 553,
+      "distinct_identity_clusters": 553,
+      "mean_fit_rows": 276,
+      "typicality_reference_rows": 277,
+      "members": [
+        "m_latino_hispanic_30_39"
+      ]
+    },
+    "m_latino_hispanic_40_49": {
+      "status": "available",
+      "source_rows": 410,
+      "distinct_identity_clusters": 410,
+      "mean_fit_rows": 205,
+      "typicality_reference_rows": 205,
+      "members": [
+        "m_latino_hispanic_40_49"
+      ]
+    },
+    "m_latino_hispanic_50_59": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 261,
+      "distinct_identity_clusters": 261,
+      "mean_fit_rows": 130,
+      "typicality_reference_rows": 131
+    },
+    "m_latino_hispanic_50_59_to_60_69": {
+      "status": "available",
+      "source_rows": 335,
+      "distinct_identity_clusters": 335,
+      "mean_fit_rows": 167,
+      "typicality_reference_rows": 168,
+      "members": [
+        "m_latino_hispanic_60_69",
+        "m_latino_hispanic_50_59"
+      ]
+    },
+    "m_latino_hispanic_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 84
+    },
+    "m_latino_hispanic_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 95
+    },
+    "m_latino_hispanic_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 11
+    },
+    "m_middle_eastern_20_29": {
+      "status": "available",
+      "source_rows": 354,
+      "distinct_identity_clusters": 354,
+      "mean_fit_rows": 177,
+      "typicality_reference_rows": 177,
+      "members": [
+        "m_middle_eastern_20_29"
+      ]
+    },
+    "m_middle_eastern_30_39": {
+      "status": "available",
+      "source_rows": 537,
+      "distinct_identity_clusters": 537,
+      "mean_fit_rows": 268,
+      "typicality_reference_rows": 269,
+      "members": [
+        "m_middle_eastern_30_39"
+      ]
+    },
+    "m_middle_eastern_40_49": {
+      "status": "available",
+      "source_rows": 333,
+      "distinct_identity_clusters": 333,
+      "mean_fit_rows": 166,
+      "typicality_reference_rows": 167,
+      "members": [
+        "m_middle_eastern_40_49"
+      ]
+    },
+    "m_middle_eastern_50_59": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 238,
+      "distinct_identity_clusters": 238,
+      "mean_fit_rows": 119,
+      "typicality_reference_rows": 119
+    },
+    "m_middle_eastern_50_59_to_60_69": {
+      "status": "available",
+      "source_rows": 361,
+      "distinct_identity_clusters": 361,
+      "mean_fit_rows": 180,
+      "typicality_reference_rows": 181,
+      "members": [
+        "m_middle_eastern_60_69",
+        "m_middle_eastern_50_59"
+      ]
+    },
+    "m_middle_eastern_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 134
+    },
+    "m_middle_eastern_60_69_to_70_plus": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 168,
+      "distinct_identity_clusters": 168,
+      "mean_fit_rows": 84,
+      "typicality_reference_rows": 84
+    },
+    "m_middle_eastern_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 39
+    },
+    "m_southeast_asian_20_29": {
+      "status": "available",
+      "source_rows": 578,
+      "distinct_identity_clusters": 578,
+      "mean_fit_rows": 289,
+      "typicality_reference_rows": 289,
+      "members": [
+        "m_southeast_asian_20_29"
+      ]
+    },
+    "m_southeast_asian_30_39": {
+      "status": "available",
+      "source_rows": 439,
+      "distinct_identity_clusters": 439,
+      "mean_fit_rows": 219,
+      "typicality_reference_rows": 220,
+      "members": [
+        "m_southeast_asian_30_39"
+      ]
+    },
+    "m_southeast_asian_40_49": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 264,
+      "distinct_identity_clusters": 264,
+      "mean_fit_rows": 132,
+      "typicality_reference_rows": 132
+    },
+    "m_southeast_asian_40_49_to_50_59": {
+      "status": "available",
+      "source_rows": 382,
+      "distinct_identity_clusters": 382,
+      "mean_fit_rows": 191,
+      "typicality_reference_rows": 191,
+      "members": [
+        "m_southeast_asian_50_59",
+        "m_southeast_asian_40_49"
+      ]
+    },
+    "m_southeast_asian_50_59": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 129
+    },
+    "m_southeast_asian_50_59_to_60_69": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 213,
+      "distinct_identity_clusters": 213,
+      "mean_fit_rows": 106,
+      "typicality_reference_rows": 107
+    },
+    "m_southeast_asian_60_69": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 88
+    },
+    "m_southeast_asian_60_69_to_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 118
+    },
+    "m_southeast_asian_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 31
+    },
+    "m_white_20_29": {
+      "status": "available",
+      "source_rows": 684,
+      "distinct_identity_clusters": 684,
+      "mean_fit_rows": 342,
+      "typicality_reference_rows": 342,
+      "members": [
+        "m_white_20_29"
+      ]
+    },
+    "m_white_30_39": {
+      "status": "available",
+      "source_rows": 770,
+      "distinct_identity_clusters": 770,
+      "mean_fit_rows": 385,
+      "typicality_reference_rows": 385,
+      "members": [
+        "m_white_30_39"
+      ]
+    },
+    "m_white_40_49": {
+      "status": "available",
+      "source_rows": 480,
+      "distinct_identity_clusters": 480,
+      "mean_fit_rows": 240,
+      "typicality_reference_rows": 240,
+      "members": [
+        "m_white_40_49"
+      ]
+    },
+    "m_white_50_59": {
+      "status": "available",
+      "source_rows": 344,
+      "distinct_identity_clusters": 344,
+      "mean_fit_rows": 172,
+      "typicality_reference_rows": 172,
+      "members": [
+        "m_white_50_59"
+      ]
+    },
+    "m_white_60_69": {
+      "status": "suppressed-overlapping-cohort",
+      "source_rows": 169,
+      "distinct_identity_clusters": 169,
+      "mean_fit_rows": 84,
+      "typicality_reference_rows": 85
+    },
+    "m_white_60_69_to_70_plus": {
+      "status": "available",
+      "source_rows": 199,
+      "distinct_identity_clusters": 199,
+      "mean_fit_rows": 99,
+      "typicality_reference_rows": 100,
+      "members": [
+        "m_white_70_plus",
+        "m_white_60_69"
+      ]
+    },
+    "m_white_70_plus": {
+      "status": "suppressed-small-cohort",
+      "source_rows": 31
+    }
+  },
+  "representation": "Independent empirical CDF threshold/count pairs and aggregate symmetric cohort means. No photographs, per-person landmarks, row indices, poses, IPD or identity IDs. This is not a formal anonymization guarantee.",
+  "sha256": "938f02dfaff4d32c914a89bd303f824ca7ced12a6a1b5a0b37280623f7d40540",
+  "partition": "Published member sets are pairwise disjoint. Complementary suppression prevents reconstructing omitted small-cell ECDFs by subtracting overlapping public cohorts."
+}
