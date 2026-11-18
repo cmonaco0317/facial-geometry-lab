@@ -9,7 +9,7 @@ import json
 import math
 from .photos import PhotoCatalog, MAX_PIXELS
 
-VERSION = "illustrative-overlay-v1"
+VERSION = "illustrative-overlay-v2"
 
 
 @dataclass(frozen=True)
@@ -36,6 +36,8 @@ def make_preview(
         raise ValueError("Select a bounded source photograph.")
     if style not in {"eyewear", "hair", "reviewed"}:
         raise ValueError("Unsupported local overlay.")
+    if type(original) is not bool:
+        raise ValueError("Original-photo selection must be a boolean.")
     for value, lo, hi in ((x, 0, 1), (y, 0, 1), (scale, 0.1, 0.8)):
         if (
             type(value) not in (int, float)
@@ -50,16 +52,24 @@ def make_preview(
     image = cv2.imdecode(np.frombuffer(source, dtype=np.uint8), cv2.IMREAD_COLOR)
     if image is None:
         raise ValueError("Source photograph could not be decoded.")
+    source_dimensions = [int(image.shape[1]), int(image.shape[0])]
     ratio = min(1.0, 1200 / max(image.shape[:2]))
     if ratio < 1:
         image = cv2.resize(
-            image, None, fx=ratio, fy=ratio, interpolation=cv2.INTER_AREA
+            image,
+            (
+                max(1, round(image.shape[1] * ratio)),
+                max(1, round(image.shape[0] * ratio)),
+            ),
+            interpolation=cv2.INTER_AREA,
         )
     h, w = image.shape[:2]
     ok, jpeg = cv2.imencode(".jpg", image, [cv2.IMWRITE_JPEG_QUALITY, 88])
     if not ok:
         raise ValueError("Source photograph could not be rendered.")
-    cx, cy, size = x * w, y * h, scale * w
+    canvas_width = max(480, w)
+    offset = (canvas_width - w) / 2
+    cx, cy, size = x * w + offset, y * h, scale * w
     # Original geometric assets authored for this project; user-adjusted, not a fit prediction.
     if style == "eyewear":
         overlay = f'<g fill="none" stroke="#1b3631" stroke-width="{max(1, size * 0.018):.3f}"><rect x="{cx - size * 0.5:.3f}" y="{cy - size * 0.15:.3f}" width="{size * 0.43:.3f}" height="{size * 0.3:.3f}" rx="{size * 0.08:.3f}"/><rect x="{cx + size * 0.07:.3f}" y="{cy - size * 0.15:.3f}" width="{size * 0.43:.3f}" height="{size * 0.3:.3f}" rx="{size * 0.08:.3f}"/><path d="M {cx - size * 0.07:.3f},{cy:.3f} Q {cx:.3f},{cy - size * 0.1:.3f} {cx + size * 0.07:.3f},{cy:.3f}"/></g>'
@@ -74,7 +84,7 @@ def make_preview(
         for key, color in (("automatic", "#e3aa46"), ("points", "#39d0af")):
             points = validate_points(review.get(key))
             overlay += "".join(
-                f'<circle cx="{p[0] * w:.3f}" cy="{p[1] * h:.3f}" r="{max(1, w * 0.005):.3f}" fill="{color}"/>'
+                f'<circle cx="{p[0] * w + offset:.3f}" cy="{p[1] * h:.3f}" r="{max(1, w * 0.005):.3f}" fill="{color}"/>'
                 for p in points.values()
                 if p
             )
@@ -85,6 +95,10 @@ def make_preview(
         kind="illustrative-preview",
         version=VERSION,
         source="Explicitly selected local source photograph",
+        source_sha256=source_hash,
+        source_dimensions=source_dimensions,
+        image_display_dimensions=[w, h],
+        viewport_padding=[offset, 0],
         source_revision=review.get("revision") if style == "reviewed" else None,
         asset=style,
         asset_license="Original project geometry; LICENSE",
@@ -92,10 +106,14 @@ def make_preview(
         label="Illustrative only; not a measurement, prediction or fit prescription.",
     )
     label = "Illustrative only · " + (
-        "Original gold / reviewed green points"
-        if style == "reviewed"
-        else style + " placement experiment"
+        "Original normalized source photo"
+        if original
+        else (
+            "Original gold / reviewed green points"
+            if style == "reviewed"
+            else style + " placement experiment"
+        )
     )
     # A fixed 60-unit footer keeps provenance visible even when the overlay is hidden.
-    svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h + 60}" viewBox="0 0 {w} {h + 60}"><metadata>{html.escape(json.dumps(metadata, sort_keys=True))}</metadata><image width="{w}" height="{h}" href="data:image/jpeg;base64,{base64.b64encode(jpeg).decode()}"/><g id="illustrative-overlay">{overlay}</g><rect y="{h}" width="{w}" height="60" fill="#f5f2e9"/><text x="{w * 0.025:.3f}" y="{h + 22}" font-size="{min(16, max(1, w * 0.026)):.3f}" fill="#163e36">{html.escape(label)}</text><text x="{w * 0.025:.3f}" y="{h + 44}" font-size="{min(12, max(1, w * 0.019)):.3f}" fill="#163e36">Local illustration · Not for remeasurement · {VERSION}</text></svg>'
+    svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="{canvas_width}" height="{h + 60}" viewBox="0 0 {canvas_width} {h + 60}"><metadata>{html.escape(json.dumps(metadata, sort_keys=True))}</metadata><image x="{offset}" width="{w}" height="{h}" href="data:image/jpeg;base64,{base64.b64encode(jpeg).decode()}"/><g id="illustrative-overlay">{overlay}</g><rect y="{h}" width="{canvas_width}" height="60" fill="#f5f2e9"/><text x="{canvas_width * 0.025:.3f}" y="{h + 22}" font-size="{min(16, max(12, canvas_width * 0.026)):.3f}" fill="#163e36">{html.escape(label)}</text><text x="{canvas_width * 0.025:.3f}" y="{h + 44}" font-size="{min(12, max(10, canvas_width * 0.019)):.3f}" fill="#163e36">Local illustration · Not for remeasurement · {VERSION}</text></svg>'
     return Preview(svg.encode(), source_hash)

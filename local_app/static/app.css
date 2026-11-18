@@ -1017,6 +1017,16 @@ fieldset {
 .history-row label { flex: 1; min-width: 15rem; }
 .history-shell button { margin: .3rem; }
 .history-photo, .preview-image { display: block; max-width: 100%; max-height: 700px; width: auto; height: auto; object-fit: contain; margin-block: 1rem; }
+.appearance-photo { display: block; max-width: 100%; max-height: 640px; height: auto; margin-block: 1rem; }
 .history-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
 .history-shell pre { max-width: 100%; overflow-wrap: anywhere; white-space: pre-wrap; }
 @media(max-width: 760px) { .history-comparison { grid-template-columns: 1fr; } }
+
+/* Keep source and illustrative image bounds consistent with pointer coordinates. */
+.experiment-image { display: block; width: 420px; max-width: 100%; height: auto; border: 0; padding: 0; }
+
+.appearance-image { max-width: 100%; height: auto; }
+
+.experiment-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.experiment-pair figure { min-width: 0; margin: 1rem 0; }
+@media (max-width: 780px) { .experiment-pair { grid-template-columns: 1fr; } }

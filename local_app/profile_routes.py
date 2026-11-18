@@ -12,6 +12,8 @@ from .photos import PhotoCatalog
 from .profile_review import ANCHORS, measure_profile
 from .profile_v2 import METHOD, contract, measure, validate_points, warnings
 from .review_page import render_review
+from .profile_lineage import proposal_origin
+from .profile_proposals import MESH_PROFILE_METHOD, profile_proxy_contract
 
 STATE_KEY = "profile_reviews"
 
@@ -44,7 +46,55 @@ def _binding(session, store, entry):
 def _record(session, store, entry):
     binding = _binding(session, store, entry)
     prior = session.state.get(STATE_KEY, {}).get(entry.photo_id)
+    proposals = (
+        session.state.get("analysis_report", {})
+        .get("axes", {})
+        .get("harmony", {})
+        .get("details", {})
+        .get("profile_proposals", [])
+    )
+    source_hash = hashlib.sha256(
+        store.path_for(session.session_id, "uploads", entry.stored_name).read_bytes()
+    ).hexdigest()
+    proposal = next(
+        (
+            p
+            for p in proposals
+            if p.get("photo_id") == entry.photo_id
+            and p.get("status") == "candidate"
+            and p.get("source_sha256") == source_hash
+            and p.get("width") == entry.width
+            and p.get("height") == entry.height
+            and p.get("method") == MESH_PROFILE_METHOD
+            and p.get("contract") == profile_proxy_contract(p.get("model_sha256"))
+        ),
+        None,
+    )
     if prior and prior.get("binding") == binding:
+        if (
+            proposal
+            and not any(
+                prior.get(k)
+                for k in (
+                    "reviewed",
+                    "migrated",
+                    "automatic_suppressed",
+                    "supersedes_legacy",
+                    "restored_hints",
+                )
+            )
+            and (prior.get("automatic_proposal") or {}).get("proposal_id")
+            != proposal["proposal_id"]
+        ):
+            prior = {
+                **prior,
+                "points": deepcopy(proposal["points"]),
+                "facing": proposal["facing"],
+                "automatic_proposal": proposal,
+                "revision": prior["revision"] + 1,
+            }
+            session.state[STATE_KEY][entry.photo_id] = prior
+            store.save(session)
         return prior
     points = {k: None for k in ANCHORS}
     migrated = False
@@ -67,7 +117,11 @@ def _record(session, store, entry):
         supersedes_legacy=bool(
             prior and (prior.get("supersedes_legacy") or prior.get("reviewed"))
         ),
+        automatic_suppressed=False,
+        automatic_proposal=proposal if not migrated else None,
     )
+    if proposal and not migrated:
+        value.update(points=deepcopy(proposal["points"]), facing=proposal["facing"])
     session.state.setdefault(STATE_KEY, {})[entry.photo_id] = value
     store.save(session)
     return value
@@ -106,6 +160,8 @@ def get_profile(handler, session):
         entries, entry = _selection(
             session, handler.server.store, query.get("photo", [None])[0]
         )
+        handler.server.analyze_session(session.session_id)
+        session = handler.server.store.load(session.session_id)
         if "draft" in query and query["draft"] != ["yes"]:
             raise ValueError("Unsupported preview selection.")
         record = _record(session, handler.server.store, entry)
@@ -176,12 +232,38 @@ def update_profile(handler, session, resource, fields):
                 "revision": revision + 1,
                 "migrated": False,
                 "supersedes_legacy": True,
+                "automatic_suppressed": True,
+                "automatic_proposal": None,
+                "proposal_ancestry": None,
             }
             if (
                 current.state.get("profile_review", {}).get("photo_id")
                 == entry.photo_id
             ):
                 current.state.pop("profile_review", None)
+        elif handler._one(fields, "action") == "propose":
+            if (
+                current.state.get("profile_review", {}).get("photo_id")
+                == entry.photo_id
+            ):
+                current.state.pop("profile_review", None)
+            current.state[STATE_KEY][entry.photo_id] = {
+                **record,
+                "points": {k: None for k in ANCHORS},
+                "reviewed": False,
+                "automatic_suppressed": False,
+                "supersedes_legacy": False,
+                "migrated": False,
+                "restored_hints": False,
+                "automatic_proposal": None,
+                "proposal_ancestry": None,
+                "revision": revision + 1,
+            }
+            handler.server.store.save(current)
+            handler._redirect(
+                f"/sessions/{session.session_id}/profile?photo={entry.photo_id}"
+            )
+            return
         else:
             action = handler._one(fields, "action")
             if action not in ("save", "preview"):
@@ -237,6 +319,15 @@ def update_profile(handler, session, resource, fields):
                 raise ValueError(
                     "Place enough visible points for at least one reading."
                 )
+            from .frontal_routes import frontal_payloads
+
+            if any(
+                p.get("evidence_photo_id") == entry.photo_id
+                for p in frontal_payloads(current, handler.server.store)
+            ):
+                raise ValueError(
+                    "This photo has a frontal review. Use a separate side photo, or remove its frontal review before saving a profile review."
+                )
             if warnings(
                 points, entry.width, entry.height, facing=facing
             ) and fields.get("acknowledged") != ["yes"]:
@@ -250,7 +341,52 @@ def update_profile(handler, session, resource, fields):
                 "revision": revision + 1,
                 "migrated": False,
                 "supersedes_legacy": True,
+                "automatic_suppressed": False,
             }
+            automatic = record.get("automatic_proposal")
+            previous_origin = proposal_origin(record.get("proposal_ancestry"))
+            if automatic or previous_origin:
+
+                def quantized(pair):
+                    return (
+                        tuple(round(v, 8) for v in pair) if pair is not None else None
+                    )
+
+                origin = proposal_origin(
+                    dict(
+                        **(
+                            previous_origin.model_dump(
+                                mode="json", exclude={"changed_anchors"}
+                            )
+                            if previous_origin
+                            else {
+                                key: automatic[key]
+                                for key in (
+                                    "method",
+                                    "contract",
+                                    "proposal_id",
+                                    "model_sha256",
+                                )
+                            }
+                        ),
+                        changed_anchors=sorted(
+                            set(
+                                previous_origin.changed_anchors
+                                if previous_origin
+                                else ()
+                            )
+                            | {
+                                k
+                                for k in ANCHORS
+                                if quantized(points[k])
+                                != quantized(record["points"][k])
+                            }
+                        ),
+                    )
+                )
+                current.state[STATE_KEY][entry.photo_id]["proposal_ancestry"] = (
+                    origin.model_dump(mode="json")
+                )
         current.state.get("profile_drafts", {}).pop(entry.photo_id, None)
         handler.server.store.save(current)
         handler._redirect(f"/sessions/{session.session_id}/results")
@@ -278,7 +414,21 @@ def profile_payloads(session, store):
             value = measure(
                 raw["points"], entry.width, entry.height, facing=raw["facing"]
             )
-            result.append({**value, "revision": raw["revision"], "photo_number": index})
+            result.append(
+                {
+                    **value,
+                    "revision": raw["revision"],
+                    "photo_number": index,
+                    "evidence_photo_id": entry.photo_id,
+                    "proposal_ancestry": (
+                        proposal_origin(raw.get("proposal_ancestry")).model_dump(
+                            mode="json"
+                        )
+                        if raw.get("proposal_ancestry")
+                        else None
+                    ),
+                }
+            )
             reviewed.add(entry.photo_id)
         except (ValueError, OSError, KeyError):
             continue

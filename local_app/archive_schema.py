@@ -4,11 +4,17 @@ from __future__ import annotations
 from datetime import datetime, timezone
 import base64
 import hashlib
+import json
 from pathlib import Path
 from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
-from .product_report import composite_score, public_regions
+from .product_report import public_regions
 from .score_audit import audit, contract
+from .observations import Observation, public_observations
+from .current_observations import archive_observations
+from .product_report import current_composite, current_score_axes
+from .profile_lineage import ProposalOrigin
+from .history_context import SessionContext
 
 Text = Annotated[str, Field(max_length=512)]
 Short = Annotated[str, Field(max_length=120)]
@@ -52,8 +58,9 @@ class EnteredDemographics(Strict):
 
 
 class Snapshot(Strict):
-    version: Literal[1] = 1
-    demographics: EnteredDemographics
+    version: Literal[1, 2] = 2
+    demographics: EnteredDemographics | None = None
+    adult_confirmed: bool = False
     created_at: Short
     profile: Short = Field(min_length=1)
     captured_at: Short = ""
@@ -72,6 +79,7 @@ class Snapshot(Strict):
     score: Number | None = Field(default=None, ge=0, le=100)
     components: list[Component] = Field(max_length=3)
     readings: list[Reading] = Field(max_length=2000)
+    observations: tuple[Observation, ...] = Field(default=(), max_length=2000)
     ideas: list[Idea] = Field(default_factory=list, max_length=30)
     preferences: dict[Short, Short] = Field(default_factory=dict, max_length=20)
 
@@ -89,6 +97,9 @@ class Snapshot(Strict):
         from .consultation import preferences
 
         preferences(self.preferences)
+        public_observations(self.observations)
+        if self.demographics is None and not self.adult_confirmed:
+            raise ValueError("Adult confirmation is required without demographics.")
         if len({r.id for r in self.components}) != len(self.components):
             raise ValueError("Duplicate components.")
         if len(set(self.harmony_ids)) != len(self.harmony_ids):
@@ -139,7 +150,10 @@ class Annotation(Strict):
     points: dict[Short, list[Number] | None] = Field(max_length=40)
     facing: Literal["", "left", "right"] = ""
     level_degrees: Number = Field(default=0.0, ge=-45, le=45)
-    forehead_visibility: Literal["unassessed", "visible", "hairline_hidden", "forehead_hidden", "uncertain"] = "unassessed"
+    proposal_ancestry: ProposalOrigin | None = None
+    forehead_visibility: Literal[
+        "unassessed", "visible", "hairline_hidden", "forehead_hidden", "uncertain"
+    ] = "unassessed"
 
     @model_validator(mode="after")
     def validate_anchors(self):
@@ -179,7 +193,7 @@ class Evidence(Strict):
 
 
 class Record(Strict):
-    version: Literal[1] = 1
+    version: Literal[1, 2] = 1
     id: str = Field(pattern=r"^[a-f0-9]{32}$")
     name: Short = Field(min_length=1)
     archived_at: Short
@@ -187,10 +201,115 @@ class Record(Strict):
     snapshot: Snapshot
     snapshot_hash: str = Field(pattern=r"^[a-f0-9]{64}$")
     evidence: list[Evidence] = Field(default_factory=list, max_length=30)
+    context: SessionContext | None = None
 
     @model_validator(mode="after")
     def integrity(self):
-        if snapshot_hash(self.snapshot) != self.snapshot_hash:
+        if self.context is not None and self.version != 2:
+            raise ValueError("Saved report context requires record version 2.")
+        if (
+            self.context is not None
+            and self.context.workflow is not None
+            and self.context.saved_report is None
+        ):
+            raise ValueError(
+                "Editable history requires its explicitly retained full report."
+            )
+        if self.context is not None and self.context.sources:
+            sources = {s.photo_number: s for s in self.context.sources}
+            if set(sources) != set(range(1, self.snapshot.photo_count + 1)):
+                raise ValueError(
+                    "Source context does not cover the original input slots."
+                )
+            from .photos import PhotoCatalog
+
+            for item in self.evidence:
+                raw = base64.b64decode(item.jpeg_b64, validate=True)
+                source = sources.get(item.ordinal)
+                if (
+                    source is None
+                    or hashlib.sha256(raw).hexdigest() != source.source_sha256
+                    or PhotoCatalog._declared_dimensions(raw, "jpeg")
+                    != (source.width, source.height)
+                ):
+                    raise ValueError(
+                        "Saved photo does not match its archived source context."
+                    )
+        if self.context is not None and self.context.saved_report is not None:
+            from .report_questions import _load
+
+            payload = _load(self.context.saved_report)
+            demographic = self.snapshot.demographics
+            expected_demographics = {
+                "entered_by_user": demographic is not None,
+                "adult_confirmed": self.snapshot.adult_confirmed,
+                "comparison_requested": demographic is not None,
+                **(demographic.model_dump() if demographic else {}),
+            }
+            component_fields = ("id", "value", "effective_weight", "status")
+            components = [
+                {k: r.get(k) for k in component_fields}
+                for r in payload.get("composite", {}).get("components", [])
+            ]
+
+            def signature(rows):
+                normalized = []
+                for row in rows:
+                    value = {
+                        k: v
+                        for k, v in row.items()
+                        if k not in {"geometry_retained", "score_eligible"}
+                    }
+                    value["sources"] = [
+                        {k: v for k, v in s.items() if k != "points"}
+                        for s in row["sources"]
+                    ]
+                    normalized.append(
+                        json.dumps(
+                            value,
+                            sort_keys=True,
+                            separators=(",", ":"),
+                            allow_nan=False,
+                        )
+                    )
+                return sorted(normalized)
+
+            if (
+                str(payload.get("format_version")) != self.context.report_version
+                or payload.get("instrument_version") != self.snapshot.instrument
+                or payload.get("accepted_photo_count") != self.snapshot.photo_count
+                or payload.get("composite", {}).get("value") != self.snapshot.score
+                or payload.get("composite", {}).get("version") != self.snapshot.formula
+                or payload.get("score_audit", {}).get("contract")
+                != self.snapshot.formula_contract
+                or components != [r.model_dump() for r in self.snapshot.components]
+                or payload.get("demographics") != expected_demographics
+                or payload.get("consultation", {}).get("preferences")
+                != self.snapshot.preferences
+                or signature(payload["observations"])
+                != signature([r.model_dump() for r in self.snapshot.observations])
+            ):
+                raise ValueError(
+                    "Saved full report does not match its numerical snapshot."
+                )
+        hashes = {snapshot_hash(self.snapshot)}
+        if self.snapshot.version == 1 and not self.snapshot.observations:
+            # v1 existed before either observations or optional references.
+            # Preserve both historical serializations without altering their values.
+            hashes.add(
+                hashlib.sha256(
+                    self.snapshot.model_dump_json(exclude={"observations"}).encode()
+                ).hexdigest()
+            )
+            if self.snapshot.demographics is not None:
+                hashes.add(
+                    hashlib.sha256(
+                        self.snapshot.model_dump_json(
+                            exclude={"observations", "adult_confirmed"}
+                        ).encode()
+                    ).hexdigest()
+                )
+        if self.snapshot_hash not in hashes:
             raise ValueError("Snapshot integrity mismatch.")
         if len({e.ordinal for e in self.evidence}) != len(self.evidence):
             raise ValueError("Duplicate evidence.")
@@ -236,11 +355,12 @@ def freeze_report(
     profiles=None,
     settings=None,
     ideas=None,
+    adult_confirmed=False,
 ):
     from .consultation import consultation_payload, preferences
 
-    score = composite_score(report.axes)
-    audited = audit(report.axes)
+    score = current_composite(report.axes, frontal, profiles)
+    audited = audit(current_score_axes(report.axes, frontal, profiles))
     rows = [
         Reading(
             id=r["id"],
@@ -293,7 +413,13 @@ def freeze_report(
         for r in consultation.get("suggestions", [])
     ]
     return Snapshot(
-        demographics=EnteredDemographics(**demographics.to_dict()),
+        observations=archive_observations(report.axes, frontal, profiles),
+        demographics=(
+            EnteredDemographics(**demographics.to_dict())
+            if demographics is not None
+            else None
+        ),
+        adult_confirmed=adult_confirmed if demographics is None else True,
         created_at=now(),
         profile=profile.strip(),
         protocol=protocol,
@@ -302,8 +428,12 @@ def freeze_report(
         formula=score["version"],
         formula_contract=contract(),
         reference=reference,
-        cohort=report.cohort.used_id,
-        fallback=report.cohort.fallback_level,
+        cohort=report.cohort.used_id if report.cohort is not None else "",
+        fallback=(
+            report.cohort.fallback_level
+            if report.cohort is not None
+            else report.reference.status
+        ),
         instrument=report.instrument_fingerprint,
         input_digest=hashlib.sha256(report.photo_fingerprint.encode()).hexdigest(),
         photo_count=report.accepted_photos,
@@ -325,6 +455,8 @@ def freeze_report(
 
 
 def compare(a: Snapshot, b: Snapshot):
+    from math import isfinite
+
     fields = (
         "profile",
         "formula",
@@ -385,11 +517,11 @@ def compare(a: Snapshot, b: Snapshot):
     status = (
         "insufficient_evidence"
         if unknown
-        else "method_changed"
-        if changed
-        else "partly_comparable"
-        if differences
-        else "compatible"
+        else (
+            "method_changed"
+            if changed
+            else "partly_comparable" if differences else "compatible"
+        )
     )
     deltas = [
         dict(
@@ -401,7 +533,11 @@ def compare(a: Snapshot, b: Snapshot):
             photo=before[k].photo,
             before=before[k].value,
             after=after[k].value,
-            delta=after[k].value - before[k].value,
+            delta=(
+                (after[k].value - before[k].value)
+                if isfinite(after[k].value - before[k].value)
+                else None
+            ),
         )
         for k in sorted(before.keys() & after.keys())
         if (not changed or not before[k].method.startswith("automatic"))
@@ -426,8 +562,10 @@ def compare(a: Snapshot, b: Snapshot):
         headlines=[a.score, b.score],
         same_inputs=same,
         readings=deltas,
-        observed_range=[min(a.score, b.score), max(a.score, b.score)]
-        if status == "compatible" and not same
-        else None,
+        observed_range=(
+            [min(a.score, b.score), max(a.score, b.score)]
+            if status == "compatible" and not same
+            else None
+        ),
         warnings=warnings,
     )

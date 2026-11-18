@@ -13,7 +13,7 @@ import secrets
 from typing import Any
 
 from .analysis import AXIS_ORDER, AnalysisReport, ProgressiveAnalysisService
-from .contracts import AxisResult, CohortUse, Demographics
+from .contracts import AxisResult, CohortUse, Demographics, ReferenceAvailability
 from .sessions import SessionStore
 from .consultation import consultation_payload, render_consultation
 from .illustrations import public_diagram, render_diagrams
@@ -22,8 +22,18 @@ from .profile_review import public_profile, render_profile
 from .product_report import composite_score, public_regions, render_product_summary
 from .score_audit import audit
 from .automatic_forehead import public_forehead, render_automatic_forehead
+from .current_observations import (
+    current_observations,
+    render_observations,
+    profile_proxy_attempts,
+)
+from .observations import public_observations
+from .product_report import current_composite, current_score_axes
+from .reading_registry import reading_registry
+from .appearance import appearance_payload, render_appearance
+from .consultation_review import analysis_context
 
-EXPORT_FORMAT_VERSION = 6
+EXPORT_FORMAT_VERSION = 7
 _WINDOWS_ABSOLUTE_PATH = re.compile(r"^(?:[A-Za-z]:[\\/]|\\\\)")
 
 CAPTURE_REASONS = {
@@ -42,10 +52,14 @@ CAPTURE_REASONS = {
 
 def public_capture_summary(raw: Any) -> dict[str, Any] | None:
     """Export aggregate counts only; never paths, identifiers or model outputs."""
-    fields = ("submitted_photos", "detected_photos", "eligible_photos", "selected_axis_photos")
+    fields = (
+        "submitted_photos",
+        "detected_photos",
+        "eligible_photos",
+        "selected_axis_photos",
+    )
     if not isinstance(raw, dict) or any(
-        type(raw.get(key)) is not int or not 0 <= raw[key] <= 10000
-        for key in fields
+        type(raw.get(key)) is not int or not 0 <= raw[key] <= 10000 for key in fields
     ):
         return None
     if not (
@@ -57,8 +71,10 @@ def public_capture_summary(raw: Any) -> dict[str, Any] | None:
     return {
         **{key: raw[key] for key in fields},
         "failure_counts": {
-            key: count for key, count in (reasons.items() if isinstance(reasons, dict) else [])
-            if key in CAPTURE_REASONS and type(count) is int
+            key: count
+            for key, count in (reasons.items() if isinstance(reasons, dict) else [])
+            if key in CAPTURE_REASONS
+            and type(count) is int
             and 0 < count <= raw["submitted_photos"]
         },
     }
@@ -77,9 +93,9 @@ def render_capture_summary(raw: Any, *, expanded: bool = False) -> str:
         f'<p>{summary["submitted_photos"]} assessed; {summary["detected_photos"]} with a detected face; '
         f'{summary["eligible_photos"]} meet all strict checks for this category. '
         f'{summary["selected_axis_photos"]} used for its axis reading. '
-        'Regional rows show their own photo counts.</p>'
-        f'<p>{reasons}. A photo can have several flags. Flags are automated checks, '
-        'not verified judgments about expression or anatomy.</p></details>'
+        "Regional rows show their own photo counts.</p>"
+        f"<p>{reasons}. A photo can have several flags. Flags are automated checks, "
+        "not verified judgments about expression or anatomy.</p></details>"
     )
 
 
@@ -92,11 +108,32 @@ def _public_text(value: object) -> str:
 
 
 def _default_source_inventory() -> Mapping[str, Mapping[str, Any]]:
+    """Read descriptive provenance without loading or validating numeric pools."""
     try:
-        import bank_reference
-
-        return bank_reference.cohort_inventory()
-    except (ImportError, OSError, RuntimeError, TypeError, ValueError):
+        bank = Path(__file__).resolve().parent.parent / "bank"
+        provenance = json.loads((bank / "provenance.json").read_text())
+        registry = json.loads((bank / "source_registry.json").read_text())["sources"]
+        inventory = {}
+        for key, cohort in provenance["cohorts"].items():
+            sources = [
+                registry.get(s, {}) for s in cohort.get("sources", ("fairface",))
+            ]
+            inventory[key] = {
+                "source": "; ".join(
+                    sorted(
+                        {
+                            s["display_name"].strip()
+                            for s in sources
+                            if s.get("display_name")
+                        }
+                    )
+                ),
+                "source_label_kind": "; ".join(
+                    sorted({s["label_kind"] for s in sources if s.get("label_kind")})
+                ),
+            }
+        return inventory
+    except (OSError, KeyError, TypeError, ValueError):
         return {}
 
 
@@ -132,10 +169,27 @@ def source_disclosures(
 
 
 def _comparison_payload(
-    cohort: CohortUse,
+    cohort: CohortUse | None,
     inventory: Mapping[str, Mapping[str, Any]],
+    reference: ReferenceAvailability | None = None,
 ) -> dict[str, Any]:
+    if cohort is None:
+        status = reference or ReferenceAvailability.not_requested()
+        return {
+            "status": status.status,
+            "reason": _public_text(status.reason),
+            "requested": {
+                "id": _public_text(status.requested_id),
+                "label": _public_text(status.requested_label),
+            },
+            "used": None,
+            "fallback_reason": None,
+            "exact_match": False,
+            "sample_size": None,
+            "reference_sources": [],
+        }
     return {
+        "status": "available",
         "requested": {
             "id": _public_text(cohort.requested_id),
             "label": _public_text(cohort.requested_label or cohort.requested_id),
@@ -208,9 +262,9 @@ def _axis_payload(
                     "value": result.value,
                     "unit": _public_text(result.unit or ""),
                     "percentile": result.percentile,
-                    "uncertainty_percentile": list(result.interval)
-                    if result.interval is not None
-                    else None,
+                    "uncertainty_percentile": (
+                        list(result.interval) if result.interval is not None else None
+                    ),
                 }
             )
         if result.status == "estimated":
@@ -247,18 +301,47 @@ def _axis_payload(
             "message": _public_text(result.error_message or result.summary),
             "retryable": result.retryable,
         }
+    elif result.status == "unavailable":
+        payload["unavailable_reason"] = {
+            "code": _public_text(result.error_code or "unavailable"),
+            "message": summary,
+        }
     return payload
+
+
+def _demographics_payload(
+    demographics: Demographics | None,
+    *,
+    adult_confirmed: bool,
+) -> dict[str, Any]:
+    if demographics is None:
+        return {
+            "entered_by_user": False,
+            "adult_confirmed": bool(adult_confirmed),
+            "comparison_requested": False,
+        }
+    return {
+        **demographics.to_dict(),
+        "entered_by_user": True,
+        "adult_confirmed": True,
+        "comparison_requested": True,
+    }
 
 
 def build_export_payload(
     report: AnalysisReport,
-    demographics: Demographics,
+    demographics: Demographics | None,
     *,
+    adult_confirmed: bool = False,
     source_inventory: Mapping[str, Mapping[str, Any]] | None = None,
     settings: dict[str, str] | None = None,
     profile: dict[str, Any] | list[dict] | None = None,
     ideas: dict | None = None,
     frontal: list[dict] | None = None,
+    appearance_review: dict | None = None,
+    reviewer_state: dict | None = None,
+    question_state: dict | None = None,
+    experiment_state: dict | None = None,
 ) -> dict[str, Any]:
     """Build the durable report; photo/session identifiers are omitted."""
     inventory = (
@@ -266,9 +349,18 @@ def build_export_payload(
         if source_inventory is not None
         else _default_source_inventory()
     )
-    return {
+    registry = reading_registry()
+    current = public_observations(current_observations(report.axes, frontal, profile))
+    appearance = appearance_payload(
+        report.axes["harmony"].details.get("appearance_sources"), appearance_review
+    )
+    payload = {
         "format_version": EXPORT_FORMAT_VERSION,
+        "observation_notation": registry["notation"],
+        "detector_point_groups": registry["mesh_input_groups"],
+        "detector_point_names": "pN denotes detector index N. Use original image pixels for lengths and angles.",
         "automatic_forehead": public_forehead(report.axes),
+        "appearance": appearance,
         "frontal_reviews": [
             p for raw in frontal or [] if (p := safe_review(raw)) is not None
         ],
@@ -278,32 +370,49 @@ def build_export_payload(
             frontal=frontal,
             ideas=ideas,
             profile=profile,
+            observations=current,
+            appearance=appearance,
+            context=analysis_context(report,experiment_state),
+            reviewer_state=reviewer_state,
         ),
         "illustration": public_diagram(
             report.axes["harmony"].details.get("illustration")
         ),
-        "profile_review": public_profile(profile)
-        if isinstance(profile, dict) and profile.get("method") == "manual-profile-v1"
-        else None,
+        "profile_review": (
+            public_profile(profile)
+            if isinstance(profile, dict)
+            and profile.get("method") == "manual-profile-v1"
+            else None
+        ),
         "profile_reviews": [
             p
             for raw in (profile if isinstance(profile, list) else [profile])
             if (p := public_profile(raw)) is not None
         ],
-        "composite": composite_score(report.axes),
-        "score_audit": audit(report.axes),
+        "observations": current,
+        "profile_proxy_attempts": profile_proxy_attempts(report.axes),
+        "composite": current_composite(report.axes, frontal, profile),
+        "score_audit": audit(current_score_axes(report.axes, frontal, profile)),
         "regional_measurements": public_regions(report.axes, frontal=frontal),
-        "demographics": {
-            **demographics.to_dict(),
-            "entered_by_user": True,
-        },
+        "demographics": _demographics_payload(
+            demographics, adult_confirmed=adult_confirmed
+        ),
         "accepted_photo_count": report.accepted_photos,
         "instrument_version": _public_text(report.instrument_fingerprint),
-        "comparison": _comparison_payload(report.cohort, inventory),
+        "comparison": _comparison_payload(report.cohort, inventory, report.reference),
         "axes": {
             axis: _axis_payload(report.axes[axis], inventory) for axis in AXIS_ORDER
         },
     }
+    if experiment_state:
+        from .photo_experiments import public_experiment, report_basis
+
+        payload["photo_experiment"] = public_experiment(experiment_state,report_basis(payload))
+    if question_state:
+        from .question_session import public_questions
+
+        payload["report_questions"] = public_questions(question_state)
+    return payload
 
 
 def render_json_export(payload: Mapping[str, Any]) -> bytes:
@@ -341,6 +450,36 @@ def _method_html(
     instrument_version: object,
     harmony: Mapping[str, Any],
 ) -> str:
+    if comparison.get("status") != "available":
+        title = (
+            "Reference comparison unavailable"
+            if comparison.get("status") == "unavailable"
+            else "Reference comparison was not requested"
+        )
+        requested = comparison.get("requested") or {}
+        requested_label = requested.get("label") or "No demographic comparison group"
+        reason = comparison.get("reason") or title
+        return f"""
+    <section class="method" aria-labelledby="method-title">
+      <div class="section-heading">
+        <p class="section-number">Evidence note</p>
+        <h2 id="method-title">Method and limits</h2>
+      </div>
+      <div class="method-grid">
+        <dl class="comparison">
+          <div><dt>Reference status</dt><dd>{_h(title)}</dd></div>
+          <div><dt>Requested group</dt><dd>{_h(requested_label)}</dd></div>
+        </dl>
+        <div class="limits-copy">
+          <p>{_h(reason)} No replacement population was inferred, so reference
+          percentiles and the composite score are unavailable.</p>
+          <p>Observed geometry remains image-derived and can move with camera
+          angle, expression and image detail.</p>
+        </div>
+      </div>
+      <p class="instrument"><strong>Instrument fingerprint</strong>
+      <span>{_h(instrument_version)}</span></p>
+    </section>"""
     requested = comparison["requested"]
     used = comparison["used"]
     sources = "".join(
@@ -466,6 +605,9 @@ def _summary_item(name: str, result: Mapping[str, Any]) -> str:
     elif state == "needs_photo":
         reading = "More evidence needed"
         detail = "See the capture request below"
+    elif state == "unavailable":
+        reading = "Reference unavailable"
+        detail = "No population rank was calculated"
     else:
         reading = "Not completed"
         detail = "See the processing note below"
@@ -562,10 +704,14 @@ def _axis_html(position: int, name: str, result: Mapping[str, Any]) -> str:
             )
         )
     else:
-        error = result["error"]
-        measurement = (
-            f"<p><strong>Processing error:</strong> {_h(error['message'])}</p>"
-        )
+        if result["status"] == "unavailable":
+            reason = result["unavailable_reason"]
+            measurement = f"<p><strong>Reference unavailable:</strong> {_h(reason['message'])}</p>"
+        else:
+            error = result["error"]
+            measurement = (
+                f"<p><strong>Processing error:</strong> {_h(error['message'])}</p>"
+            )
     return f"""
     <section class="axis axis--{_h(name)}">
       <div class="section-heading">
@@ -582,6 +728,9 @@ def _axis_html(position: int, name: str, result: Mapping[str, Any]) -> str:
 
 def render_html_export(payload: Mapping[str, Any]) -> str:
     """Render a self-contained, script-free HTML report suitable for printing."""
+    from .question_session import render_questions
+    from .photo_experiments import render_experiment
+
     demographics = payload["demographics"]
     summary = "".join(_summary_item(axis, payload["axes"][axis]) for axis in AXIS_ORDER)
     axes = "".join(
@@ -593,13 +742,19 @@ def render_html_export(payload: Mapping[str, Any]) -> str:
         payload["instrument_version"],
         payload["axes"]["harmony"],
     )
-    ethnicities = ", ".join(
-        _plain_label(value).title() for value in demographics["ethnicities"]
-    )
+    if demographics.get("entered_by_user"):
+        demographic_meta = (
+            f'<span><strong>Age {_h(demographics["age"])}</strong></span>'
+            f'<span>{_h(_plain_label(demographics["sex"]).title())}</span>'
+            f'<span>{_h(", ".join(_plain_label(value).title() for value in demographics["ethnicities"]))}</span>'
+        )
+    else:
+        demographic_meta = "<span><strong>Adult confirmed</strong></span><span>No demographic comparison</span>"
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'unsafe-inline'; img-src data:; form-action 'none'; base-uri 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Four-pillar facial analysis · Facial measurement report</title>
   <style>
@@ -691,14 +846,13 @@ def render_html_export(payload: Mapping[str, Any]) -> str:
       </div>
       <p class="cover-deck">Your geometry overview, illustrated regional measurements, optional profile readings
       and goal-based styling experiments. Definitions and evidence limits stay beside each result.</p>
-      <p class="cover-meta"><span><strong>Age {_h(demographics["age"])}</strong></span>
-        <span>{_h(_plain_label(demographics["sex"]).title())}</span>
-        <span>{_h(ethnicities)}</span>
+      <p class="cover-meta">{demographic_meta}
         <span><strong>{int(payload["accepted_photo_count"]):,}</strong> accepted photos</span></p>
     </header>
     <main>
       {render_forehead_warning(payload.get("frontal_reviews"))}
       {render_automatic_forehead(payload.get("automatic_forehead", []))}
+      {render_observations(payload.get("observations", []))}
       {render_product_summary(payload.get("composite") or composite_score({}), payload.get("regional_measurements", []), show_regions=False, expanded=True, score_audit=payload.get("score_audit"))}
       <section class="snapshot" aria-labelledby="snapshot-title">
         <p class="section-number">Executive summary</p><h2 id="snapshot-title">Your results at a glance</h2>
@@ -713,13 +867,16 @@ def render_html_export(payload: Mapping[str, Any]) -> str:
         </div>
       </section>
       {render_consultation(payload.get("consultation") or consultation_payload(payload.get("regional_measurements", [])), render_diagrams(payload.get("illustration")))}
+      {render_questions(payload.get("report_questions"))}
+      {render_experiment(payload.get("photo_experiment"))}
+      {render_appearance(payload.get("appearance") or appearance_payload([]))}
       {"".join(render_reviewed(p) for p in payload.get("frontal_reviews", []))}
       {render_profile(payload.get("profile_reviews") or payload.get("profile_review"))}
       {axes}
       {method}
     </main>
     <p class="disclaimer">Demographics were entered by the user. This export contains
-    measurements, derived landmark diagrams, preferences and cohort provenance; it does not contain source photos,
+    measurements, derived landmark diagrams, appearance photo crops, preferences and cohort provenance. Photo crops can identify you. It does not contain full-resolution source photos,
     filenames, local paths, photo identifiers, or session credentials.</p>
   </div>
 </body>
@@ -791,6 +948,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         ideas=session.state.get("idea_choices"),
         profile=profile_payload(session, store),
         frontal=frontal_payloads(session, store),
+        appearance_review=session.state.get("appearance_review"),
+        reviewer_state=session.state.get("consultation_reviewer"),
+        question_state=session.state.get("report_questions"),
+        experiment_state=session.state.get("photo_experiment"),
     )
     destination = write_export(
         payload,

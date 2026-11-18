@@ -26,7 +26,6 @@ import webbrowser
 
 from .analysis import AnalysisNotReady, ProgressiveAnalysisService
 from .contracts import Demographics
-from .cohorts import NoCompatibleCohort
 from .photos import MAX_FILE_BYTES, MAX_SESSION_BYTES, PhotoCatalog, PhotoRejected
 from .report import build_export_payload, render_html_export, render_json_export
 from .render import ETHNICITY_OPTIONS, render_landing, render_results
@@ -44,7 +43,7 @@ BOOTSTRAP_COOKIE = "face_bootstrap"
 LOCAL_HOST_PATTERN = re.compile(r"^(?:127\.0\.0\.1|localhost)(?::[0-9]{1,5})?$")
 SESSION_ROUTE = re.compile(
     r"^/sessions/(?P<session>[A-Za-z0-9_-]{32,96})/"
-    r"(?P<resource>photos|analyze|results|report\.(?:json|html)|preferences|ideas|profile|profile-clear|frontal|frontal-clear|end)$"
+    r"(?P<resource>photos|analyze|results|report\.(?:json|html)|preferences|ideas|profile|profile-clear|frontal|frontal-clear|appearance|consultation-review|questions|experiments|experiment\.svg|experiment-original|end)$"
 )
 SECURITY_HEADERS = {
     "Cache-Control": "no-store",
@@ -156,8 +155,6 @@ class LocalAnalysisHTTPServer(ThreadingHTTPServer):
 
     def analyze_session(self, session_id: str, *, force: bool = False):
         with self.state_lock:
-            session = self.store.load(session_id)
-            self.analysis.resolver.resolve(session.demographics)
             with self.store.analysis_scope(session_id):
                 try:
                     return self.analysis.analyze(session_id, force=force)
@@ -206,6 +203,9 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
         if not self._valid_host():
             return
         path = urlsplit(self.path).path
+        if path == "/favicon.ico":
+            self._send(204,b"","image/x-icon")
+            return
         if path in {"/", "/index.html"}:
             token = secrets.token_urlsafe(24)
             page = render_landing(csrf_token=token)
@@ -232,6 +232,9 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
         if path == "/static/frontal.js":
             self._serve_static("frontal.js", "text/javascript; charset=utf-8")
             return
+        if path == "/static/experiments.js":
+            self._serve_static("experiments.js", "text/javascript; charset=utf-8")
+            return
         if path == "/static/review.js":
             self._serve_static("review.js", "text/javascript; charset=utf-8")
             return
@@ -248,6 +251,30 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
             self._error(404, "Session not found")
             return
         resource = route.group("resource")
+        if resource in {"experiments","experiment.svg","experiment-original"}:
+            from .experiment_routes import get_experiments
+
+            with self.server.state_lock:
+                get_experiments(self,session,resource)
+            return
+        if resource == "questions":
+            from .report_question_routes import get_questions
+
+            with self.server.state_lock:
+                get_questions(self, session)
+            return
+        if resource == "consultation-review":
+            from .consultation_review_routes import get_review
+
+            with self.server.state_lock:
+                get_review(self, session)
+            return
+        if resource == "appearance":
+            from .appearance_routes import get_appearance
+
+            with self.server.state_lock:
+                get_appearance(self, session)
+            return
         if resource == "frontal":
             from .frontal_routes import get_frontal
 
@@ -297,7 +324,23 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
             return
         resource = route.group("resource")
         with self.server.state_lock:
-            if resource in {"frontal", "frontal-clear"}:
+            if resource == "experiments":
+                from .experiment_routes import save_experiment
+
+                save_experiment(self,session,content_length)
+            elif resource == "questions":
+                from .report_question_routes import save_question
+
+                save_question(self, session, content_length)
+            elif resource == "consultation-review":
+                from .consultation_review_routes import save_review
+
+                save_review(self, session, content_length)
+            elif resource == "appearance":
+                from .appearance_routes import update_appearance
+
+                update_appearance(self, session, content_length)
+            elif resource in {"frontal", "frontal-clear"}:
                 from .frontal_routes import update_frontal
 
                 update_frontal(self, session, resource, content_length)
@@ -325,29 +368,15 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
             self._error(403, "The form expired. Reload the page and try again.")
             return
         try:
-            ethnicities = tuple(fields.get("ethnicity", ()))
-            if (
-                not ethnicities
-                or len(ethnicities) > len(ALLOWED_ETHNICITIES)
-                or any(value not in ALLOWED_ETHNICITIES for value in ethnicities)
-            ):
-                raise ValueError("unsupported ethnicity selection")
-            demographics = Demographics(
-                age=int(self._one(fields, "age") or ""),
-                sex=self._one(fields, "sex") or "",
-                ethnicities=ethnicities,
-            )
+            demographics = self._demographics_from_fields(fields)
         except (TypeError, ValueError) as error:
             self._error(422, str(error))
             return
 
-        try:
-            self.server.analysis.resolver.resolve(demographics)
-        except NoCompatibleCohort:
-            self._reference_unavailable()
-            return
-
-        session = self.server.store.create(demographics)
+        session = self.server.store.create(
+            demographics,
+            adult_confirmed=True if demographics is None else None,
+        )
         try:
             self._catalog_uploads(session, form)
             catalog = PhotoCatalog(self.server.store, session.session_id)
@@ -370,11 +399,6 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
             return
         fields = self._text_fields(form)
         if not self._valid_csrf(session, self._one(fields, "csrf_token")):
-            return
-        try:
-            self.server.analysis.resolver.resolve(session.demographics)
-        except NoCompatibleCohort:
-            self._reference_unavailable()
             return
         try:
             self._catalog_uploads(session, form)
@@ -401,9 +425,6 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
             self.server.analyze_session(session.session_id, force=True)
         except AnalysisNotReady as error:
             self._error(409, str(error))
-            return
-        except NoCompatibleCohort:
-            self._reference_unavailable()
             return
         except Exception:
             self.server.store.end(session.session_id)
@@ -457,9 +478,6 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
         except AnalysisNotReady as error:
             self._error(409, str(error))
             return
-        except NoCompatibleCohort:
-            self._reference_unavailable()
-            return
         except Exception:
             self.server.store.end(session.session_id)
             self._failed_session_error(
@@ -476,7 +494,13 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
             ideas=session.state.get("idea_choices"),
             profile=profile_payload(session, self.server.store),
             frontal=frontal_payloads(session, self.server.store),
+            appearance_review=session.state.get("appearance_review"),
+            reviewer_state=session.state.get("consultation_reviewer"),
+            question_state=session.state.get("report_questions"),
+            experiment_state=session.state.get("photo_experiment"),
             csrf_token=session.csrf_token,
+            demographics=session.demographics,
+            adult_confirmed=session.adult_confirmed,
             quit_after_end=self.server.shutdown_after_end,
         )
         self._send(200, page.encode("utf-8"), "text/html; charset=utf-8")
@@ -486,9 +510,6 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
             report = self.server.analyze_session(session.session_id)
         except AnalysisNotReady as error:
             self._error(409, str(error))
-            return
-        except NoCompatibleCohort:
-            self._reference_unavailable()
             return
         except Exception:
             self.server.store.end(session.session_id)
@@ -501,10 +522,15 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
         payload = build_export_payload(
             report,
             session.demographics,
+            adult_confirmed=session.adult_confirmed,
             settings=session.state.get("report_preferences"),
             ideas=session.state.get("idea_choices"),
             profile=profile_payload(session, self.server.store),
             frontal=frontal_payloads(session, self.server.store),
+            appearance_review=session.state.get("appearance_review"),
+            reviewer_state=session.state.get("consultation_reviewer"),
+            question_state=session.state.get("report_questions"),
+            experiment_state=session.state.get("photo_experiment"),
         )
         if format_name == "json":
             body = render_json_export(payload)
@@ -518,7 +544,7 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
             security_headers = {
                 "Content-Security-Policy": (
                     "default-src 'none'; style-src 'unsafe-inline'; "
-                    "img-src 'none'; form-action 'none'; base-uri 'none'; "
+                    "img-src data:; form-action 'none'; base-uri 'none'; "
                     "frame-ancestors 'none'"
                 )
             }
@@ -544,6 +570,34 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
                 catalog.add_bytes(filename, content)
             except PhotoRejected:
                 continue
+
+    def _demographics_from_fields(
+        self, fields: dict[str, list[str]]
+    ) -> Demographics | None:
+        age = self._one(fields, "age")
+        sex = self._one(fields, "sex")
+        ethnicities = tuple(fields.get("ethnicity", ()))
+        has_comparison = bool(
+            (age and age.strip()) or (sex and sex.strip()) or ethnicities
+        )
+        if not has_comparison:
+            adult = self._one(fields, "adult_confirmed")
+            if adult != "yes":
+                raise ValueError(
+                    "Confirm you are an adult to continue without comparison demographics."
+                )
+            return None
+        if (
+            not ethnicities
+            or len(ethnicities) > len(ALLOWED_ETHNICITIES)
+            or any(value not in ALLOWED_ETHNICITIES for value in ethnicities)
+        ):
+            raise ValueError("unsupported ethnicity selection")
+        return Demographics(
+            age=int(age or ""),
+            sex=sex or "",
+            ethnicities=ethnicities,
+        )
 
     @staticmethod
     def _bounded_file_bytes(stream: Any, limit: int) -> bytes:
@@ -811,10 +865,12 @@ class LocalAnalysisHandler(BaseHTTPRequestHandler):
         )
 
     def _reference_unavailable(self) -> None:
-        self._error(422,
+        self._error(
+            422,
             "No matching reference is available for these comparison selections. "
             "This public edition currently supports male/female reference labels "
-            "with a single listed ethnicity. No replacement population was inferred.")
+            "with a single listed ethnicity. No replacement population was inferred.",
+        )
 
     def _error(
         self,

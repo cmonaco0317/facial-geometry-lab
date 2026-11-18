@@ -117,8 +117,14 @@ CHAPTERS = (
     (
         "eyes",
         "Eyes and brows",
-        ("eye_spacing", "eye_almondness", "canthal_tilt", "brow_position",
-         "iris_spacing_ratio", "iris_brow_elevation"),
+        (
+            "eye_spacing",
+            "eye_almondness",
+            "canthal_tilt",
+            "brow_position",
+            "iris_spacing_ratio",
+            "iris_brow_elevation",
+        ),
         "Expression, eyelid movement and head roll can change these readings. They do not measure eyesight or personality.",
     ),
     (
@@ -161,6 +167,7 @@ def _finite(value: Any) -> bool:
 
 
 def build_chapters(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    all_rows = {row["id"]: row for row in rows if row.get("id") in DEFINITIONS}
     by_id = {
         row["id"]: row
         for row in rows
@@ -171,40 +178,58 @@ def build_chapters(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
     for key, title, ids, note in CHAPTERS:
         measures = [
-            {**by_id[i], "definition": DEFINITIONS[i]} for i in ids if i in by_id
+            {**by_id[i], "definition": by_id[i].get("definition", DEFINITIONS[i])}
+            for i in ids
+            if i in by_id
         ]
         observations = []
+        observation_refs = []
         for row in measures:
             rank = row.get("percentile")
             if _finite(rank) and 0 <= rank <= 100:
                 placement = (
                     "lower quarter"
                     if rank < 25
-                    else "upper quarter"
-                    if rank > 75
-                    else "middle half"
+                    else "upper quarter" if rank > 75 else "middle half"
                 )
                 observations.append(
                     f"{row.get('label', row['id'])} falls in the {placement} of the comparison distribution ({rank:.0f}th percentile)."
                 )
+                observation_refs.append(row.get("evidence_refs", []))
         if not measures:
             observations = [
                 "No usable measurement for this region in the current photographs."
             ]
+            observation_refs = [[]]
         elif not observations:
             observations = [
                 "Observed values are available; a matching reference comparison is not available for these rows."
+            ]
+            observation_refs = [
+                [ref for row in measures for ref in row.get("evidence_refs", [])]
             ]
         chapters.append(
             dict(
                 id=key,
                 title=title,
                 measurements=measures,
-                unavailable_measurements=[dict(
-                    id=i, label=PROXY_LABELS.get(i, IRIS_LABELS.get(i, i.replace("_", " "))),
-                    definition=DEFINITIONS[i],
-                ) for i in ids if i not in by_id],
+                unavailable_measurements=[
+                    dict(
+                        id=i,
+                        label=PROXY_LABELS.get(
+                            i, IRIS_LABELS.get(i, i.replace("_", " "))
+                        ),
+                        definition=all_rows.get(i, {}).get(
+                            "definition", DEFINITIONS[i]
+                        ),
+                        withheld_reason=all_rows.get(i, {}).get("withheld_reason"),
+                        evidence_refs=all_rows.get(i, {}).get("evidence_refs", []),
+                    )
+                    for i in ids
+                    if i not in by_id
+                ],
                 observations=observations,
+                observation_refs=observation_refs,
                 note=note,
             )
         )
@@ -226,22 +251,59 @@ def consultation_payload(
     frontal: list[dict] | None = None,
     ideas: dict | None = None,
     profile: dict | list[dict] | None = None,
+    observations: list[dict] | None = None,
+    appearance: dict | None = None,
+    context: dict | None = None,
+    reviewer_state: dict | None = None,
 ) -> dict[str, Any]:
     from .idea_choices import normalize
     from .recommendations import RULES, recommendation_rows, select_recommendations
+    from .consultation_findings import (
+        current_rows,
+        priorities,
+        SELECTION_POLICY,
+        coherent_profile_rows,
+    )
+    from .consultation_review import report_binding, public_review
 
     selected = preferences(settings or {})
     choices = normalize(ideas)
-    evidence = recommendation_rows(rows, frontal, profile)
+    interpreted = current_rows(observations) if observations is not None else rows
+    if observations is None:
+        evidence = recommendation_rows(rows, frontal, profile)
+    else:
+        evidence = []
+        for row in interpreted:
+            if row["definition_key"].startswith("reviewed_profile:"):
+                continue
+            key = row["id"]
+            sources = row["current_observation"]["sources"]
+            facing = sources[0]["view"].removeprefix("profile_") if sources else None
+            evidence.append({**row, "id": key, "facing": facing})
+        evidence.extend(coherent_profile_rows(observations))
     recommendations = select_recommendations(
         evidence, selected, dismissed=choices["dismissed"]
     )
+    by_metric = {row["id"]: row for row in evidence}
+    for suggestion in recommendations["suggestions"]:
+        suggestion["evidence_refs"] = sorted(
+            {
+                ref
+                for row in suggestion["observations"]
+                for ref in by_metric.get(row["id"], {}).get("evidence_refs", [])
+            }
+        )
     applicable = {
         r["id"] for r in select_recommendations(evidence, selected)["suggestions"]
     }
     by_id = {r.id: r for r in RULES}
-    return dict(
-        version="consultation-v3",
+    ordered = (
+        priorities(interpreted, selected, recommendations["suggestions"])
+        if observations is not None
+        else []
+    )
+    content = dict(
+        version="consultation-v4",
         preferences=selected,
         idea_choices=choices,
         saved_ideas=[
@@ -251,12 +313,25 @@ def consultation_payload(
         dismissed_ideas=[
             dict(id=key, title=by_id[key].title) for key in choices["dismissed"]
         ],
-        chapters=build_chapters(rows),
+        chapters=build_chapters(interpreted),
+        priorities=ordered,
+        selection_policy=SELECTION_POLICY,
         suggestions=recommendations["suggestions"],
         recommendation_version=recommendations["version"],
         exclusions=recommendations["excluded"],
         selection_note=recommendations["selection_note"],
     )
+    binding = report_binding(
+        observations if observations is not None else rows,
+        selected,
+        appearance or {},
+        dict(report=context or {}, consultation=content),
+    )
+    return {
+        **content,
+        "reviewer_record": public_review(reviewer_state, binding),
+        "reviewer_context_binding": binding,
+    }
 
 
 def preference_form(settings: dict[str, str], action: str, csrf: str) -> str:
@@ -298,6 +373,7 @@ def render_consultation(
     *,
     action: str | None = None,
     csrf: str | None = None,
+    review_action: str | None = None,
 ) -> str:
     esc = html.escape
     diagrams = diagrams or {}
@@ -309,10 +385,18 @@ def render_consultation(
     for chapter in payload["chapters"]:
         rows = "".join(
             f"<tr><th>{esc(str(r['label']))}</th><td>{r['value']:.3f} {esc(r['unit'])}"
-            + (f" · {r['evidence_photo_count']} photo(s)"
-               if type(r.get('evidence_photo_count')) is int
-               and 0 < r['evidence_photo_count'] <= 10000 else "")
-            + f"</td><td>{esc(r['definition'])}</td></tr>"
+            + (
+                f" · {r['evidence_photo_count']} photo(s)"
+                if type(r.get("evidence_photo_count")) is int
+                and 0 < r["evidence_photo_count"] <= 10000
+                else ""
+            )
+            + f"</td><td>{esc(r['definition'])}"
+            + "".join(
+                f'<p><a href="#{esc(ref,quote=True)}">Inspect current source</a> · {esc(r.get("method", ""))}</p>'
+                for ref in r.get("evidence_refs", [])
+            )
+            + "</td></tr>"
             for r in chapter["measurements"]
         )
         table = (
@@ -320,10 +404,25 @@ def render_consultation(
             if rows
             else ""
         )
-        obs = "".join(f"<li>{esc(o)}</li>" for o in chapter["observations"])
+        obs = "".join(
+            f"<li>{esc(o)}"
+            + "".join(
+                f' <a href="#{esc(ref,quote=True)}">Inspect observation evidence</a>'
+                for ref in chapter.get(
+                    "observation_refs", [[]] * len(chapter["observations"])
+                )[i]
+            )
+            + "</li>"
+            for i, o in enumerate(chapter["observations"])
+        )
         unavailable = "".join(
             f'<li><strong>{esc(r["label"])}</strong>: Not available from the current '
-            f'visible/detected geometry. {esc(r["definition"])}</li>'
+            f'visible/detected geometry. {esc(r.get("withheld_reason") or r["definition"])}'
+            + "".join(
+                f' <a href="#{esc(ref,quote=True)}">Inspect missing-input record</a>'
+                for ref in r.get("evidence_refs", [])
+            )
+            + "</li>"
             for r in chapter.get("unavailable_measurements", [])
         )
         sections.append(
@@ -354,7 +453,11 @@ def render_consultation(
         suggestions += (
             f"<article><h3>{esc(s['title'])}</h3><p>{esc(s['action'])}</p>"
             f"<p><strong>Alternative:</strong> {esc(s.get('alternative', 'Keep your current style.'))}</p>"
-            f"<details><summary>Why this was selected</summary><p>{esc(s['basis'])}</p>"
+            + "".join(
+                f'<p><a href="#{esc(ref,quote=True)}">Inspect selection evidence</a></p>'
+                for ref in s.get("evidence_refs", [])
+            )
+            + f"<details><summary>Why this was selected</summary><p>{esc(s['basis'])}</p>"
             f"<p>Cost: {esc(s.get('cost', 'none'))}. Maintenance: {esc(s.get('maintenance', 'low'))}.</p>"
             f"<ul>{source_rows}</ul></details><small>{esc(s['evidence'])}</small>"
             + control(
@@ -381,4 +484,11 @@ def render_consultation(
         else ""
     )
     goal = PREFERENCE_OPTIONS["goal"][payload["preferences"]["goal"]]
-    return f'<p>Regional percentiles describe relative size or shape, not quality.</p><nav class="chapter-nav" aria-label="Report chapters">{nav}<a href="#profile-chapter">Profile</a><a href="#style-chapter">Styling</a></nav>{"".join(sections)}<section class="feature-chapter" id="style-chapter"><h2>Styling experiments</h2><p>Goal: {esc(goal)}. These are reversible choices to try, with no predicted score increase.</p>{suggestions}{collections}<p class="muted">{esc(payload.get("selection_note", ""))}</p></section>'
+    from .consultation_findings import render_priorities
+    from .consultation_review import render_review
+
+    reviewer = render_review(
+        payload.get("reviewer_record", {"status": "not_supplied", "revision": 0}),
+        action=review_action,
+    )
+    return f'{render_priorities(payload)}{reviewer}<p>Regional percentiles describe relative size or shape, not quality.</p><nav class="chapter-nav" aria-label="Report chapters">{nav}<a href="#profile-chapter">Profile</a><a href="#style-chapter">Styling</a></nav>{"".join(sections)}<section class="feature-chapter" id="style-chapter"><h2>Styling experiments</h2><p>Goal: {esc(goal)}. These are reversible choices to try, with no predicted score increase.</p>{suggestions}{collections}<p class="muted">{esc(payload.get("selection_note", ""))}</p></section>'

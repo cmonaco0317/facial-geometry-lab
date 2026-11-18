@@ -96,12 +96,27 @@ def composite_score(axes: Mapping[str, AxisResult]) -> dict[str, Any]:
     )
 
 
+def current_score_axes(axes, frontal=None, profiles=None):
+    """Reviewed geometry has no matched score instrument; withhold stale totals."""
+    return {} if frontal or profiles else axes
+
+
+def current_composite(axes, frontal=None, profiles=None):
+    score = composite_score(current_score_axes(axes, frontal, profiles))
+    if frontal or profiles:
+        score["uncertainty"] = (
+            "Withheld after landmark or visibility review. The original automatic score does not incorporate reviewed points; no compatible reviewed score is calibrated."
+        )
+    return score
+
+
 def public_regions(
     axes: Mapping[str, AxisResult], *, frontal: list[dict] | None = None
 ) -> list[dict[str, Any]]:
     """Allowlisted numerical rows only; no image identifiers or arbitrary details."""
     from .anatomical_observations import PROXY_LABELS, PROXY_NOTE
     from .automatic_forehead import coverage_exclusions, FOREHEAD_METRICS
+
     harmony = axes.get("harmony")
     rows = harmony.details.get("regional_measurements", []) if harmony else []
     covered = coverage_exclusions(axes, frontal)
@@ -111,9 +126,14 @@ def public_regions(
             continue
         if not isinstance(row.get("id"), str):
             continue
-        evidence = row.get("evidence_photo_ids", harmony.details.get("evidence_photo_ids", []))
-        if (row.get("id") in FOREHEAD_METRICS and isinstance(evidence, (list, tuple))
-                and any(isinstance(photo, str) and photo in covered for photo in evidence)):
+        evidence = row.get(
+            "evidence_photo_ids", harmony.details.get("evidence_photo_ids", [])
+        )
+        if (
+            row.get("id") in FOREHEAD_METRICS
+            and isinstance(evidence, (list, tuple))
+            and any(isinstance(photo, str) and photo in covered for photo in evidence)
+        ):
             continue
 
         # Labels and explanations come from the local catalogue but still escape at rendering.
@@ -129,27 +149,40 @@ def public_regions(
 
         percentile = _number(row.get("percentile"))
         if row.get("id") in PROXY_LABELS:
-            row = {**row, "label": PROXY_LABELS[row["id"]],
-                   "note": f"{safe_text(row.get('note', ''))} {PROXY_NOTE}".strip()}
+            row = {
+                **row,
+                "label": PROXY_LABELS[row["id"]],
+                "note": f"{safe_text(row.get('note', ''))} {PROXY_NOTE}".strip(),
+            }
         output.append(
             {
                 **{
                     key: safe_text(row.get(key))
                     for key in ("id", "label", "unit", "note")
                 },
-                "method": row.get("method", "automatic-regional-v1")
-                if isinstance(row.get("method", "automatic-regional-v1"), str)
-                and row.get("method", "automatic-regional-v1") in {
-                    "automatic-regional-v1", "automatic-regional-v2", "automatic-iris-v1"
-                }
-                else "incompatible",
-                **({"evidence_photo_count": row["evidence_photo_count"]}
-                   if type(row.get("evidence_photo_count")) is int
-                   and 0 < row["evidence_photo_count"] <= 10000 else {}),
+                "method": (
+                    row.get("method", "automatic-regional-v1")
+                    if isinstance(row.get("method", "automatic-regional-v1"), str)
+                    and row.get("method", "automatic-regional-v1")
+                    in {
+                        "automatic-regional-v1",
+                        "automatic-regional-v2",
+                        "automatic-iris-v1",
+                    }
+                    else "incompatible"
+                ),
+                **(
+                    {"evidence_photo_count": row["evidence_photo_count"]}
+                    if type(row.get("evidence_photo_count")) is int
+                    and 0 < row["evidence_photo_count"] <= 10000
+                    else {}
+                ),
                 "value": float(row["value"]),
-                "percentile": percentile
-                if percentile is not None and 0 <= percentile <= 100
-                else None,
+                "percentile": (
+                    percentile
+                    if percentile is not None and 0 <= percentile <= 100
+                    else None
+                ),
             }
         )
     return output
@@ -178,9 +211,11 @@ def render_product_summary(
         "Partial score — available components are reweighted. Compare only reports with "
         "the same components and formula."
         if composite["status"] == "partial"
-        else "All three component groups contribute."
-        if value is not None
-        else "No comparison-based score yet. Available measurements remain below."
+        else (
+            "All three component groups contribute."
+            if value is not None
+            else "No comparison-based score yet. Available measurements remain below."
+        )
     )
     rows = "".join(
         f"<tr><th>{esc(c['label'])}</th><td>{c['value']:.1f}</td>"

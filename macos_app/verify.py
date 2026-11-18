@@ -25,7 +25,13 @@ from urllib.parse import quote, urlencode, urlsplit
 import zipfile
 
 from . import bootstrap, inventory
-from .config import APP_VERSION, MEDIAPIPE_VERSION, MINIMUM_MACOS, MODEL_ASSETS
+from .config import (
+    APP_VERSION,
+    MEDIAPIPE_VERSION,
+    MINIMUM_MACOS,
+    MODEL_ASSETS,
+    PYTHON_VERSION,
+)
 
 CommandRunner = Callable[[list[str]], tuple[int, str, str]]
 PRIVATE_REPORT_KEYS = frozenset({"session_id", "photo_fingerprint"})
@@ -1094,6 +1100,7 @@ def verify_embedded_dependencies(
 import importlib.metadata as metadata
 import json
 import re
+import platform
 import cv2, mediapipe, numpy, scipy
 modules = {
     'cv2': cv2.__version__,
@@ -1105,7 +1112,7 @@ distributions = {
     re.sub(r'[-_.]+', '-', item.metadata['Name']).lower(): item.version
     for item in metadata.distributions()
 }
-print(json.dumps({'modules': modules, 'distributions': distributions}, sort_keys=True))
+print(json.dumps({'python': platform.python_version(), 'modules': modules, 'distributions': distributions}, sort_keys=True))
 """
     stdout = _require_success(
         _architecture_command(architecture, [str(python), "-I", "-B", "-c", script]),
@@ -1116,6 +1123,7 @@ print(json.dumps({'modules': modules, 'distributions': distributions}, sort_keys
     except (TypeError, ValueError) as error:
         raise VerificationError("packaged dependency probe was unreadable") from error
     if versions != {
+        "python": PYTHON_VERSION,
         "modules": EXPECTED_DEPENDENCIES,
         "distributions": EXPECTED_DISTRIBUTIONS,
     }:
@@ -1394,14 +1402,10 @@ def verify_axis_outcomes(
         if expected_statuses is None
         else dict(expected_statuses)
     )
-    allowed = {"measured", "estimated", "needs_photo"}
-    if (
-        set(expected) != AXES
-        or any(
-            not isinstance(value, str) or value not in allowed
-            for value in expected.values()
-        )
-        or not any(value in {"measured", "estimated"} for value in expected.values())
+    allowed = {"measured", "estimated", "needs_photo", "unavailable"}
+    if set(expected) != AXES or any(
+        not isinstance(value, str) or value not in allowed
+        for value in expected.values()
     ):
         raise VerificationError("packaged outcome expectations are invalid")
     if not isinstance(axes, dict) or set(axes) != AXES:
@@ -1419,12 +1423,13 @@ def run_packaged_journey(
     app: Path,
     architecture: str,
     photos: Sequence[Path],
-    demographics: tuple[str, str, tuple[str, ...]],
+    demographics: tuple[str, str, tuple[str, ...]] | None,
     *,
     home: Path,
     temp_root: Path,
     expected_archives: Mapping[str, str] | None = None,
     expected_axis_statuses: Mapping[str, str] | None = None,
+    journey_hook: Callable[[Any, str, str, dict], None] | None = None,
 ) -> dict[str, Any]:
     """Run one real packaged browser journey with networking and host-home denied."""
     app = Path(app).resolve()
@@ -1461,7 +1466,15 @@ def run_packaged_journey(
         _expect_status(status, 200)
         landing = landing_bytes.decode("utf-8")
         landing_token = _csrf(landing)
-        age, sex, ethnicities = demographics
+        if demographics is None:
+            comparison_fields = [("adult_confirmed", "yes")]
+        else:
+            age, sex, ethnicities = demographics
+            comparison_fields = [
+                ("age", age),
+                ("sex", sex),
+                *(("ethnicity", e) for e in ethnicities),
+            ]
         candidates = tuple(temp_root.glob(f"{bootstrap.SESSION_PREFIX}*"))
         if len(candidates) != 1:
             raise VerificationError("the packaged session workspace is invalid")
@@ -1469,9 +1482,7 @@ def run_packaged_journey(
 
         invalid_fields = [
             ("csrf_token", "invalid-token"),
-            ("age", age),
-            ("sex", sex),
-            *(("ethnicity", ethnicity) for ethnicity in ethnicities),
+            *comparison_fields,
         ]
         invalid_body, invalid_type = _multipart(invalid_fields, ())
         origin = f"http://127.0.0.1:{parsed.port}"
@@ -1484,9 +1495,7 @@ def run_packaged_journey(
         _expect_status(status, 403)
         hostile_fields = [
             ("csrf_token", landing_token),
-            ("age", age),
-            ("sex", sex),
-            *(("ethnicity", ethnicity) for ethnicity in ethnicities),
+            *comparison_fields,
         ]
         hostile_body, hostile_type = _multipart(hostile_fields, ())
         status, _headers, _body = browser.request(
@@ -1520,8 +1529,7 @@ def run_packaged_journey(
             sensitive_names.append(Path(path).name)
             transmitted_names.append(transmitted_name)
 
-        fields = [("csrf_token", landing_token), ("age", age), ("sex", sex)]
-        fields.extend(("ethnicity", ethnicity) for ethnicity in ethnicities)
+        fields = [("csrf_token", landing_token), *comparison_fields]
         body, content_type = _multipart(fields, upload_files)
         status, headers, _body = browser.request(
             "POST",
@@ -1556,6 +1564,22 @@ def run_packaged_journey(
         if report.get("accepted_photo_count") != len(photos):
             raise VerificationError("the packaged app did not accept every smoke image")
         verify_axis_outcomes(report.get("axes"), expected_axis_statuses)
+        if demographics is None:
+            if (
+                report.get("comparison", {}).get("status") != "not_requested"
+                or report.get("composite", {}).get("value") is not None
+            ):
+                raise VerificationError(
+                    "Reference-free workflow acquired a comparison or score."
+                )
+            for axis in report["axes"].values():
+                if axis.get("percentile") is not None or any(
+                    r.get("percentile") is not None
+                    for r in (axis.get("profile") or {}).values()
+                ):
+                    raise VerificationError(
+                        "Reference-free workflow acquired a percentile."
+                    )
 
         status, _headers, html_bytes = browser.request(
             "GET", f"/sessions/{session_id}/report.html"
@@ -1578,6 +1602,8 @@ def run_packaged_journey(
             sensitive,
             tuple(content for _field, _filename, content in upload_files),
         )
+        if journey_hook is not None:
+            journey_hook(browser, session_id, result_token, report)
 
         end_body = urlencode({"csrf_token": result_token})
         status, _headers, _body = browser.request(

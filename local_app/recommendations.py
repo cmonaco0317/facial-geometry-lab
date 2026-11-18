@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from math import isfinite
 from typing import Any
 
-VERSION = "styling-catalogue-v2"
+VERSION = "styling-catalogue-v3"
 REVIEWED_AT = "2026-10-18"
 SOURCES = {
     "editorial-experiment": {
@@ -277,9 +277,20 @@ def _observations(rows: list[dict]) -> dict[str, dict]:
             value=float(value),
             percentile=float(rank) if rank is not None else None,
             method=method,
-            facing=row.get("facing")
-            if row.get("facing") in ("left", "right")
-            else None,
+            status=(
+                row.get("status")
+                if row.get("status")
+                in {"automatic", "estimated", "proxy", "user_reviewed"}
+                else None
+            ),
+            source_selection=(
+                row.get("source_selection")
+                if row.get("source_selection") == "current-construction"
+                else None
+            ),
+            facing=(
+                row.get("facing") if row.get("facing") in ("left", "right") else None
+            ),
             photo_numbers=[
                 v
                 for v in row.get("photo_numbers", [])
@@ -371,13 +382,23 @@ def select_recommendations(
                 if o["percentile"] is not None
                 else " (reference comparison unavailable)"
             )
+            + f' [{o["method"]}'
+            + (f', {o["status"]}' if o.get("status") else "")
+            + "]"
             for o in facts
         )
         reviewed_photos = sorted({n for o in facts for n in o["photo_numbers"]})
         if reviewed_photos:
-            basis += ". Reviewed-point median from " + ", ".join(
-                f"Photo {n}" for n in reviewed_photos
+            provenance = (
+                ". Reviewed-point median from "
+                if all(
+                    o["method"] == "reviewed-frontal-v1"
+                    and o.get("source_selection") != "current-construction"
+                    for o in facts
+                )
+                else ". Current construction source(s): "
             )
+            basis += provenance + ", ".join(f"Photo {n}" for n in reviewed_photos)
         profile_facing = {o["facing"] for o in facts if o.get("facing")}
         if profile_facing:
             basis += (
@@ -474,9 +495,9 @@ def recommendation_rows(
                     percentile=None,
                     method="manual-profile-v2",
                     facing=view["facing"],
-                    photo_numbers=[view["photo_number"]]
-                    if "photo_number" in view
-                    else [],
+                    photo_numbers=(
+                        [view["photo_number"]] if "photo_number" in view else []
+                    ),
                 )
             )
         break

@@ -11,12 +11,12 @@ from .archive_schema import (
     Short,
     Evidence,
     Annotation,
-    compare,
     freeze_report,
     reference_fingerprint,
 )
 from .history import ArchiveError
-from .cohorts import NoCompatibleCohort
+from .history_context import CaptureContext, SessionContext
+from .session_comparison import compare_records
 
 
 class Request(Strict):
@@ -33,6 +33,7 @@ class Request(Strict):
         "restore",
         "photos",
         "preview",
+        "report",
     ]
     id: Short = ""
     other_id: Short = ""
@@ -41,6 +42,9 @@ class Request(Strict):
     protocol: Literal["unspecified", "casual", "controlled", "mixed"] = "unspecified"
     camera: Short = ""
     captured_at: Short = ""
+    capture: CaptureContext = Field(default_factory=CaptureContext)
+    keep_context: bool = False
+    format: Literal["html", "json"] = "html"
     session: Short = ""
     session_csrf: Short = ""
     photos: list[Short] = Field(default_factory=list, max_length=30)
@@ -66,6 +70,8 @@ ALLOWED = {
         "session",
         "session_csrf",
         "photos",
+        "capture",
+        "keep_context",
     },
     "rename": {"id", "name"},
     "delete": {"id"},
@@ -85,6 +91,7 @@ ALLOWED = {
         "scale",
         "original",
     },
+    "report": {"id", "format"},
 }
 
 
@@ -168,8 +175,6 @@ def handle(handler, path, length):
             result = dispatch(handler, request)
         if result is not None:
             _json(handler, 200, result)
-    except NoCompatibleCohort:
-        handler._reference_unavailable()
     except ArchiveError as error:
         # ArchiveError messages are fixed local implementation text, never imported values.
         handler._error(422, str(error))
@@ -208,6 +213,7 @@ def owned(handler, request):
 
 def evidence_for(session, store, selected, frontal, profiles):
     from .photos import PhotoCatalog
+    from .profile_lineage import proposal_origin
 
     entries = PhotoCatalog(store, session.session_id).entries()
     if len(set(selected)) != len(selected) or set(selected) - {
@@ -229,7 +235,10 @@ def evidence_for(session, store, selected, frontal, profiles):
                         method=row["method"],
                         contract=row.get("contract", ""),
                         revision=row.get("revision", 1),
-                        forehead_visibility=row.get("forehead_visibility", "unassessed"),
+                        proposal_ancestry=proposal_origin(row.get("proposal_ancestry")),
+                        forehead_visibility=row.get(
+                            "forehead_visibility", "unassessed"
+                        ),
                         points=row["diagram"]["points"],
                         facing=row.get("facing", ""),
                         level_degrees=float(
@@ -262,6 +271,39 @@ def dispatch(handler, r):
         )
     if r.operation == "read":
         return archive.read(r.id).model_dump()
+    if r.operation == "report":
+        from .report import render_json_export
+        from .archive_rendering import render_saved_report
+        from .report_questions import _load
+
+        record = archive.read(r.id)
+        if record.context is None or record.context.saved_report is None:
+            raise ArchiveError("No full report context was retained for this archive.")
+        payload = _load(record.context.saved_report)
+        content = (
+            render_json_export(payload)
+            if r.format == "json"
+            else render_saved_report(payload).encode()
+        )
+        handler._send(
+            200,
+            content,
+            (
+                "application/json; charset=utf-8"
+                if r.format == "json"
+                else "text/html; charset=utf-8"
+            ),
+            extra_headers=[
+                (
+                    "Content-Disposition",
+                    f'attachment; filename="saved-report.{r.format}"',
+                )
+            ],
+            security_headers={
+                "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; img-src data:; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"
+            },
+        )
+        return None
     if r.operation == "rename":
         archive.rename(r.id, r.name)
         return dict(saved=True)
@@ -289,12 +331,11 @@ def dispatch(handler, r):
             ).id
         )
     if r.operation == "compare":
+        before, after = archive.read(r.id), archive.read(r.other_id)
         return dict(
-            comparison=compare(
-                archive.read(r.id).snapshot, archive.read(r.other_id).snapshot
-            ),
-            before=archive.read(r.id).model_dump(),
-            after=archive.read(r.other_id).model_dump(),
+            comparison=compare_records(before, after),
+            before=before.model_dump(),
+            after=after.model_dump(),
         )
     if r.operation == "restore":
         return restore(handler, archive.read(r.id))
@@ -304,10 +345,11 @@ def dispatch(handler, r):
     entries = PhotoCatalog(server.store, session.session_id).entries()
     if r.operation == "photos":
         return dict(
+            restored_archive=session.state.get("restored_archive"),
             photos=[
                 dict(id=e.photo_id, ordinal=n, width=e.width, height=e.height)
                 for n, e in enumerate(entries, 1)
-            ]
+            ],
         )
     if r.operation == "preview":
         from .previews import make_preview
@@ -357,6 +399,7 @@ def dispatch(handler, r):
         snap = freeze_report(
             report,
             session.demographics,
+            adult_confirmed=session.adult_confirmed,
             profile=r.profile,
             protocol=r.protocol,
             camera=r.camera,
@@ -368,7 +411,40 @@ def dispatch(handler, r):
             ideas=session.state.get("idea_choices"),
         )
         evidence = evidence_for(session, server.store, r.photos, frontal, profiles)
-        record = archive.save(snap, evidence=evidence, name=r.name or None)
+        from .report import build_export_payload, EXPORT_FORMAT_VERSION
+        from .report_questions import freeze_report as freeze_context
+        from .history_workflow import ArchivedWorkflow
+        from .history_capture import source_contexts
+
+        saved = None
+        if r.keep_context:
+            saved = freeze_context(
+                build_export_payload(
+                    report,
+                    session.demographics,
+                    adult_confirmed=session.adult_confirmed,
+                    settings=session.state.get("report_preferences"),
+                    ideas=session.state.get("idea_choices"),
+                    frontal=frontal,
+                    profile=profiles,
+                    appearance_review=session.state.get("appearance_review"),
+                    reviewer_state=session.state.get("consultation_reviewer"),
+                    question_state=session.state.get("report_questions"),
+                    experiment_state=session.state.get("photo_experiment"),
+                )
+            )
+        context = SessionContext(
+            report_version=str(EXPORT_FORMAT_VERSION),
+            capture=r.capture,
+            saved_report=saved,
+            sources=source_contexts(session, server.store, report, snap),
+            workflow=(
+                ArchivedWorkflow.from_state(session.state) if r.keep_context else None
+            ),
+        )
+        record = archive.save(
+            snap, evidence=evidence, name=r.name or None, context=context
+        )
         return dict(id=record.id, evidence_count=len(evidence))
     raise ValueError("Unsupported operation.")
 
@@ -385,22 +461,37 @@ def restore(handler, record):
         raise ArchiveError("This report has no saved evidence.")
     server = handler.server
     d = record.snapshot.demographics
-    demographics = Demographics(d.age, d.sex, tuple(d.ethnicities))
-    from .cohorts import NoCompatibleCohort
+    demographics = (
+        Demographics(d.age, d.sex, tuple(d.ethnicities)) if d is not None else None
+    )
+    session = server.store.create(
+        demographics,
+        adult_confirmed=(
+            record.snapshot.adult_confirmed if demographics is None else None
+        ),
+    )
+    try:
+        from .history_workflow import SourceContext, restore_workflow
+        from .report_questions import _load
 
-    try:
-        server.analysis.resolver.resolve(demographics)
-    except NoCompatibleCohort as error:
-        raise ArchiveError(
-            "This saved report has no matching comparison reference in the public edition. "
-            "The saved archive is unchanged; no photos were restored."
-        ) from error
-    session = server.store.create(demographics)
-    try:
-        for item in record.evidence:
-            entry = PhotoCatalog(server.store, session.session_id).add_bytes(
+        mapping = {}
+        for number, item in enumerate(
+            sorted(record.evidence, key=lambda e: e.ordinal), 1
+        ):
+            raw = base64.b64decode(item.jpeg_b64, validate=True)
+            entry = PhotoCatalog(server.store, session.session_id).restore_jpeg(
                 f"Saved photo {item.ordinal}.jpg",
-                base64.b64decode(item.jpeg_b64, validate=True),
+                raw,
+                ordinal=item.ordinal,
+            )
+            import hashlib
+
+            mapping[item.ordinal] = SourceContext(
+                photo_id=entry.photo_id,
+                photo_number=number,
+                source_sha256=hashlib.sha256(raw).hexdigest(),
+                width=entry.width,
+                height=entry.height,
             )
             session = server.store.load(session.session_id)
             for annotation in item.annotations:
@@ -413,9 +504,8 @@ def restore(handler, record):
                         **current,
                         "points": annotation.points,
                         "forehead_visibility": annotation.forehead_visibility,
-                        "visibility_pending": annotation.forehead_visibility in {
-                            "hairline_hidden", "forehead_hidden", "uncertain"
-                        },
+                        "visibility_pending": annotation.forehead_visibility
+                        in {"hairline_hidden", "forehead_hidden", "uncertain"},
                         "reviewed": False,
                         "revision": current["revision"] + 1,
                     }
@@ -429,12 +519,46 @@ def restore(handler, record):
                         "points": annotation.points,
                         "facing": annotation.facing,
                         "level_degrees": annotation.level_degrees,
+                        "proposal_ancestry": (
+                            annotation.proposal_ancestry.model_dump(mode="json")
+                            if annotation.proposal_ancestry
+                            else None
+                        ),
+                        "restored_hints": True,
                         "reviewed": False,
                         "revision": current["revision"] + 1,
                     }
             session.state["report_preferences"] = dict(record.snapshot.preferences)
             session.state["restored_archive"] = dict(
-                id=record.id, annotations_unconfirmed=True
+                id=record.id,
+                annotations_unconfirmed=True,
+                context_available=bool(record.context and record.context.saved_report),
+            )
+            server.store.save(session)
+        if record.context is not None and record.context.saved_report is not None:
+            payload = _load(record.context.saved_report)
+            if record.context.workflow is not None:
+                session.state.update(
+                    restore_workflow(
+                        record.context.workflow,
+                        record.context.sources,
+                        mapping,
+                        archive_id=record.id,
+                    )
+                )
+            if "report_questions" in payload:
+                session.state["report_questions"] = payload["report_questions"]
+            if "photo_experiment" in payload:
+                session.state["photo_experiment"] = {
+                    k: payload["photo_experiment"][k] for k in ("revision", "entry")
+                }
+            session.state["restored_archive"].update(
+                workflow_available=record.context.workflow is not None,
+                source_map={str(old): new.photo_number for old, new in mapping.items()},
+                appearance_revision=session.state.get("appearance_review", {}).get(
+                    "revision", 0
+                ),
+                history_source_slots="Original archive numbering and hashes are retained in correction/reviewer journals.",
             )
             server.store.save(session)
         server.analyze_session(session.session_id)

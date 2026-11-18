@@ -57,10 +57,21 @@ def _selection(session: Any, store: Any, photo_id: str | None) -> tuple:
 def _automatic_status(session: Any, photo_id: str) -> str | None:
     from .automatic_forehead import EXPLANATIONS
 
-    rows = session.state.get("analysis_report", {}).get("axes", {}).get(
-        "harmony", {}).get("details", {}).get("automatic_forehead", [])
-    return next((r["status"] for r in rows if r.get("photo_id") == photo_id
-                 and r.get("status") in EXPLANATIONS), None)
+    rows = (
+        session.state.get("analysis_report", {})
+        .get("axes", {})
+        .get("harmony", {})
+        .get("details", {})
+        .get("automatic_forehead", [])
+    )
+    return next(
+        (
+            r["status"]
+            for r in rows
+            if r.get("photo_id") == photo_id and r.get("status") in EXPLANATIONS
+        ),
+        None,
+    )
 
 
 def _record(session: Any, store: Any, entry: Any) -> dict:
@@ -72,8 +83,11 @@ def _record(session: Any, store: Any, entry: Any) -> dict:
     automatic_status = _automatic_status(session, entry.photo_id)
     if current is not None and current.get("binding") == binding:
         if current.get("automatic_forehead_status") != automatic_status:
-            current = {**current, "automatic_forehead_status": automatic_status,
-                       "revision": current["revision"] + 1}
+            current = {
+                **current,
+                "automatic_forehead_status": automatic_status,
+                "revision": current["revision"] + 1,
+            }
             session.state[STATE_KEY][entry.photo_id] = current
             store.save(session)
         return current
@@ -122,7 +136,12 @@ def _display(
     if not ok:
         raise ValueError("This photograph could not be displayed.")
     page = render_frontal(
-        session, entries, entry, encoded.tobytes(), record, draft=draft,
+        session,
+        entries,
+        entry,
+        encoded.tobytes(),
+        record,
+        draft=draft,
         draft_visibility=draft_visibility,
     )
     handler._send(200, page.encode(), "text/html; charset=utf-8")
@@ -171,7 +190,13 @@ def update_frontal(
         allowed = {"csrf_token", "photo", "revision", "binding"}
         if resource == "frontal":
             allowed |= (
-                {"action", "confirmed", "active_anchor", "acknowledged", "forehead_visibility"}
+                {
+                    "action",
+                    "confirmed",
+                    "active_anchor",
+                    "acknowledged",
+                    "forehead_visibility",
+                }
                 | {key + "_" + axis for key in ANCHORS for axis in ("x", "y")}
                 | {"missing_" + key for key in ANCHORS}
             )
@@ -220,15 +245,38 @@ def update_frontal(
             points = validate_points(points)
             visibility = handler._one(fields, "forehead_visibility") or "unassessed"
             if points["hairline"] is not None and visibility == "unassessed":
-                raise ValueError("Confirm that the central hairline is visible before measuring it.")
-            points = forehead_points(points, visibility, record.get("automatic_forehead_status"))
+                raise ValueError(
+                    "Confirm that the central hairline is visible before measuring it."
+                )
+            points = forehead_points(
+                points, visibility, record.get("automatic_forehead_status")
+            )
             if action == "preview":
-                _display(handler, current, entries, entry, record, draft=points,
-                         draft_visibility=visibility)
+                _display(
+                    handler,
+                    current,
+                    entries,
+                    entry,
+                    record,
+                    draft=points,
+                    draft_visibility=visibility,
+                )
                 return
             if fields.get("confirmed") != ["yes"]:
                 raise ValueError(
                     "Check the visible points and confirm review before saving."
+                )
+            from .profile_routes import profile_payloads
+
+            profiles = profile_payloads(current, handler.server.store)
+            profiles = (
+                profiles
+                if isinstance(profiles, list)
+                else [profiles] if profiles else []
+            )
+            if any(p.get("evidence_photo_id") == entry.photo_id for p in profiles):
+                raise ValueError(
+                    "This photo has a profile review. Use a separate frontal photo, or remove its profile review first."
                 )
             current.state[STATE_KEY][entry.photo_id] = save_review(
                 record,
@@ -268,9 +316,22 @@ def frontal_payloads(session: Any, store: Any) -> list[dict]:
                 entry, _instrument() + content
             ):
                 continue
-            payload = public_review({**record, "automatic_forehead_status":
-                                     _automatic_status(session, entry.photo_id)}, entry.width, entry.height)
+            payload = public_review(
+                {
+                    **record,
+                    "automatic_forehead_status": _automatic_status(
+                        session, entry.photo_id
+                    ),
+                },
+                entry.width,
+                entry.height,
+            )
             if payload:
-                result.append({**payload, "photo_number": index,
-                               "evidence_photo_id": entry.photo_id})
+                result.append(
+                    {
+                        **payload,
+                        "photo_number": index,
+                        "evidence_photo_id": entry.photo_id,
+                    }
+                )
     return result

@@ -7,10 +7,18 @@ from math import isfinite
 from typing import Any, Literal
 
 AxisName = Literal["harmony", "dimorphism", "symmetry", "averageness"]
-AxisStatus = Literal["measured", "estimated", "needs_photo", "processing_error"]
+AxisStatus = Literal[
+    "measured",
+    "estimated",
+    "needs_photo",
+    "processing_error",
+    "unavailable",
+]
 
 AXES = frozenset({"harmony", "dimorphism", "symmetry", "averageness"})
-STATUSES = frozenset({"measured", "estimated", "needs_photo", "processing_error"})
+STATUSES = frozenset(
+    {"measured", "estimated", "needs_photo", "processing_error", "unavailable"}
+)
 SEXES = frozenset({"female", "male", "another", "intersex", "prefer_not_to_say"})
 
 # symmetry_population.symmetry_468 divides by the 33/263 outer-canthus span,
@@ -124,6 +132,69 @@ class CohortUse:
 
 
 @dataclass(frozen=True)
+class ReferenceAvailability:
+    """Whether a demographic comparison was requested and usable."""
+
+    status: Literal["available", "not_requested", "unavailable"] | str
+    reason: str = ""
+    requested_id: str = ""
+    requested_label: str = ""
+
+    def __post_init__(self) -> None:
+        if self.status not in {"available", "not_requested", "unavailable"}:
+            raise ValueError(f"unknown reference status: {self.status}")
+        for field_name in ("reason", "requested_id", "requested_label"):
+            if not isinstance(getattr(self, field_name), str):
+                raise ValueError(f"{field_name} must be text")
+
+    @classmethod
+    def available(cls, cohort: CohortUse) -> "ReferenceAvailability":
+        return cls(
+            status="available",
+            requested_id=cohort.requested_id,
+            requested_label=cohort.requested_label,
+        )
+
+    @classmethod
+    def not_requested(cls) -> "ReferenceAvailability":
+        return cls(
+            status="not_requested",
+            reason="Reference comparison was not requested.",
+        )
+
+    @classmethod
+    def unavailable(
+        cls,
+        *,
+        reason: str,
+        requested_id: str = "",
+        requested_label: str = "",
+    ) -> "ReferenceAvailability":
+        return cls(
+            status="unavailable",
+            reason=reason,
+            requested_id=requested_id,
+            requested_label=requested_label,
+        )
+
+    def to_dict(self) -> dict[str, Any]:
+        return _json_safe(asdict(self))
+
+    @classmethod
+    def from_dict(cls, payload: dict[str, Any] | None) -> "ReferenceAvailability":
+        if payload is None:
+            return cls.not_requested()
+        if not isinstance(payload, dict):
+            raise ValueError("reference availability payload must be an object")
+        return cls(
+            status=payload.get("status"),
+            reason=payload.get("reason", ""),
+            requested_id=payload.get("requested_id", ""),
+            requested_label=payload.get("requested_label", ""),
+        )
+
+
+@dataclass(frozen=True)
 class PhotoRequest:
     """One concrete capture instruction that can unlock an axis."""
 
@@ -196,13 +267,27 @@ class AxisResult:
             self._validate_estimated()
         elif self.status == "needs_photo":
             self._validate_needs_photo()
-        else:
+        elif self.status == "processing_error":
             self._validate_processing_error()
+        else:
+            self._validate_unavailable()
 
     def _validate_estimated(self) -> None:
         """Estimates retain observed values without borrowing calibrated intervals."""
-        if not self.summary.strip() or self.cohort is None or self.photo_count < 1:
-            raise ValueError("estimates require a summary, cohort and observed photo")
+        if self.cohort is None and (
+            self.percentile is not None
+            or any(
+                isinstance(row, dict) and row.get("percentile") is not None
+                for row in (
+                    self.details.get("profile", {}).values()
+                    if isinstance(self.details.get("profile", {}), dict)
+                    else ()
+                )
+            )
+        ):
+            raise ValueError("Percentiles require a reference cohort.")
+        if not self.summary.strip() or self.photo_count < 1:
+            raise ValueError("estimates require a summary and observed photo")
         if self.interval is not None:
             raise ValueError("estimates cannot claim a calibrated uncertainty interval")
         if self.photo_request is not None or self.error_code or self.error_message:
@@ -224,7 +309,9 @@ class AxisResult:
                 _finite_number(row.get("value"), "estimated component")
                 self._validate_optional_percentile(row.get("percentile"))
                 if row.get("interval") is not None:
-                    raise ValueError("estimated components cannot claim calibrated intervals")
+                    raise ValueError(
+                        "estimated components cannot claim calibrated intervals"
+                    )
 
     @staticmethod
     def _validate_optional_percentile(value: object) -> None:
@@ -255,10 +342,15 @@ class AxisResult:
         low = _finite_number(self.interval[0], "interval lower bound")
         high = _finite_number(self.interval[1], "interval upper bound")
         if not (0.0 <= low <= percentile <= high <= 100.0):
-            raise ValueError("interval must be ordered around the percentile within 0 to 100")
+            raise ValueError(
+                "interval must be ordered around the percentile within 0 to 100"
+            )
 
     def _validate_profile(self) -> None:
-        if any(item is not None for item in (self.value, self.unit, self.percentile, self.interval)):
+        if any(
+            item is not None
+            for item in (self.value, self.unit, self.percentile, self.interval)
+        ):
             raise ValueError("profile measurements cannot invent a scalar headline")
         profile = self.details.get("profile")
         if not isinstance(profile, dict) or not profile:
@@ -273,11 +365,17 @@ class AxisResult:
             )
             interval = row.get("interval")
             if not 0.0 <= percentile <= 100.0:
-                raise ValueError(f"profile row {name} percentile must be between 0 and 100")
+                raise ValueError(
+                    f"profile row {name} percentile must be between 0 and 100"
+                )
             if not isinstance(interval, (list, tuple)) or len(interval) != 2:
                 raise ValueError(f"profile row {name} requires a two-value interval")
-            low = _finite_number(interval[0], f"profile row {name} interval lower bound")
-            high = _finite_number(interval[1], f"profile row {name} interval upper bound")
+            low = _finite_number(
+                interval[0], f"profile row {name} interval lower bound"
+            )
+            high = _finite_number(
+                interval[1], f"profile row {name} interval upper bound"
+            )
             if not (0.0 <= low <= percentile <= high <= 100.0):
                 raise ValueError(
                     f"profile row {name} interval must surround its percentile"
@@ -286,18 +384,43 @@ class AxisResult:
     def _validate_needs_photo(self) -> None:
         if self.photo_request is None:
             raise ValueError("needs_photo results require a photo request")
-        if any(item is not None for item in (self.value, self.unit, self.percentile, self.interval)):
+        if any(
+            item is not None
+            for item in (self.value, self.unit, self.percentile, self.interval)
+        ):
             raise ValueError("needs_photo results cannot fabricate a measurement")
         if self.error_code or self.error_message:
             raise ValueError("needs_photo results cannot carry processing errors")
 
     def _validate_processing_error(self) -> None:
         if not self.error_code or not self.error_message:
-            raise ValueError("processing_error results require an error code and safe error message")
+            raise ValueError(
+                "processing_error results require an error code and safe error message"
+            )
         if self.photo_request is not None:
             raise ValueError("processing errors cannot masquerade as photo requests")
-        if any(item is not None for item in (self.value, self.unit, self.percentile, self.interval)):
+        if any(
+            item is not None
+            for item in (self.value, self.unit, self.percentile, self.interval)
+        ):
             raise ValueError("processing errors cannot carry a measurement")
+
+    def _validate_unavailable(self) -> None:
+        if not self.summary.strip():
+            raise ValueError("unavailable results require a summary")
+        if self.photo_request is not None:
+            raise ValueError("unavailable results cannot masquerade as photo requests")
+        if any(
+            item is not None
+            for item in (self.value, self.unit, self.percentile, self.interval)
+        ):
+            raise ValueError("unavailable results cannot carry a measurement")
+        if self.headline_available:
+            raise ValueError("unavailable results cannot have a headline")
+        if self.error_message:
+            raise ValueError(
+                "unavailable results should disclose the reason in the summary"
+            )
 
     @classmethod
     def measured(
@@ -393,6 +516,28 @@ class AxisResult:
             retryable=retryable,
         )
 
+    @classmethod
+    def unavailable(
+        cls,
+        *,
+        axis: AxisName | str,
+        summary: str,
+        reason_code: str,
+        photo_count: int,
+        details: dict[str, Any] | None = None,
+        cohort: CohortUse | None = None,
+    ) -> "AxisResult":
+        return cls(
+            axis=axis,
+            status="unavailable",
+            summary=summary,
+            headline_available=False,
+            cohort=cohort,
+            photo_count=photo_count,
+            details={} if details is None else dict(details),
+            error_code=reason_code,
+        )
+
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
         if self.cohort is not None:
@@ -410,7 +555,9 @@ class AxisResult:
         raw_cohort = payload.get("cohort")
         cohort = CohortUse.from_dict(raw_cohort) if raw_cohort is not None else None
         raw_request = payload.get("photo_request")
-        request = PhotoRequest.from_dict(raw_request) if raw_request is not None else None
+        request = (
+            PhotoRequest.from_dict(raw_request) if raw_request is not None else None
+        )
         details = payload.get("details", {})
         if not isinstance(details, dict):
             raise ValueError("axis result details must be an object")

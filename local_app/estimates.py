@@ -46,10 +46,20 @@ def _pool(assessment: Any, cohort: str, metric: str) -> Any:
 def _symmetry_pool(assessment: Any, cohort: str) -> Any:
     """Use the same near-frontal comparison population at every photo count."""
     import public_reference
-    return public_reference.pool(cohort, "_symmetry")
+
+    try:
+        return public_reference.pool(cohort, "_symmetry")
+    except (OSError, KeyError, ValueError):
+        return None
 
 
-def estimate_axis(axis: str, context: Any, photo_ids: tuple[str, ...]) -> AxisResult:
+def estimate_axis(
+    axis: str,
+    context: Any,
+    photo_ids: tuple[str, ...],
+    *,
+    reference_available: bool = True,
+) -> AxisResult:
     """Calculate from real detected landmarks, never from substituted cohort means."""
     import assess_set as assessment
 
@@ -59,7 +69,7 @@ def estimate_axis(axis: str, context: Any, photo_ids: tuple[str, ...]) -> AxisRe
     if not pairs:
         return AxisResult.needs_photo(
             axis=axis,
-            cohort=context.cohort,
+            cohort=context.cohort if reference_available else None,
             request=assessment._generic_photo_request(axis),
             photo_count=0,
         )
@@ -82,7 +92,7 @@ def estimate_axis(axis: str, context: Any, photo_ids: tuple[str, ...]) -> AxisRe
     common = dict(
         axis=axis,
         status="estimated",
-        cohort=context.cohort,
+        cohort=context.cohort if reference_available else None,
         photo_count=len(pairs),
         details=details,
     )
@@ -97,7 +107,12 @@ def estimate_axis(axis: str, context: Any, photo_ids: tuple[str, ...]) -> AxisRe
                 value=round(value, 4),
                 interval=None,
                 percentile=_percentile(
-                    value, _pool(assessment, context.reference_id, "harm__" + name)
+                    value,
+                    (
+                        _pool(assessment, context.reference_id, "harm__" + name)
+                        if reference_available
+                        else None
+                    ),
                 ),
             )
         if profile:
@@ -110,7 +125,13 @@ def estimate_axis(axis: str, context: Any, photo_ids: tuple[str, ...]) -> AxisRe
         value = _median(values, "asymmetry")
         if value is not None:
             percentile = _percentile(
-                value, _symmetry_pool(assessment, context.reference_id), reverse=True
+                value,
+                (
+                    _symmetry_pool(assessment, context.reference_id)
+                    if reference_available
+                    else None
+                ),
+                reverse=True,
             )
             return AxisResult(
                 **common,
@@ -143,9 +164,11 @@ def estimate_axis(axis: str, context: Any, photo_ids: tuple[str, ...]) -> AxisRe
                 **common,
                 value=value,
                 percentile=float(raw["percentile"]),
-                unit="% alignment probability"
-                if axis == "dimorphism"
-                else "typicality percentile",
+                unit=(
+                    "% alignment probability"
+                    if axis == "dimorphism"
+                    else "typicality percentile"
+                ),
                 summary=f"Estimated {axis} from the available photos.",
             )
         if raw.get("cause") == "missing_measurement":
@@ -170,8 +193,11 @@ def estimate_axis(axis: str, context: Any, photo_ids: tuple[str, ...]) -> AxisRe
 
 
 def regional_measurements(
-    context: Any, photo_ids: tuple[str, ...], *,
+    context: Any,
+    photo_ids: tuple[str, ...],
+    *,
     forehead_clear_ids: set[str] | None = None,
+    reference_available: bool = True,
 ) -> list[dict[str, Any]]:
     """Extract the existing instrument's ratios, without importing legacy verdicts."""
     import assess_set as assessment
@@ -184,13 +210,17 @@ def regional_measurements(
             from .automatic_forehead import FOREHEAD_METRICS
 
             if name in FOREHEAD_METRICS:
-                pairs = tuple((p, v) for p, v in pairs if p["photo"] in forehead_clear_ids)
+                pairs = tuple(
+                    (p, v) for p, v in pairs if p["photo"] in forehead_clear_ids
+                )
         values = [v for _, v in pairs]
         value = _median(values, name)
         contributing_ids = [
-            p["photo"] for p, v in pairs
+            p["photo"]
+            for p, v in pairs
             if isinstance(v.get(name), (int, float, np.number))
-            and not isinstance(v[name], bool) and np.isfinite(v[name])
+            and not isinstance(v[name], bool)
+            and np.isfinite(v[name])
         ]
         if name == "canthal_tilt":
             angles = []
@@ -198,8 +228,10 @@ def regional_measurements(
             for photo, _ in pairs:
                 points = photo["landmarks"]
                 # A collapsed eye cannot supply an angle; atan2(0, 0) is not evidence.
-                if any(abs(float(points[a][0] - points[b][0])) < 1e-8
-                       for a, b in ((33, 133), (263, 362))):
+                if any(
+                    abs(float(points[a][0] - points[b][0])) < 1e-8
+                    for a, b in ((33, 133), (263, 362))
+                ):
                     continue
                 angle = facial_catalogue.base(points)["canthal_tilt_deg"]
                 if np.isfinite(angle):
@@ -216,22 +248,32 @@ def regional_measurements(
                 label=label,
                 value=round(value, 4),
                 unit=unit,
-                method=REGIONAL_VERSION if name in {"eye_spacing", "eye_almondness", "canthal_tilt"}
-                else "automatic-regional-v1",
+                method=(
+                    REGIONAL_VERSION
+                    if name in {"eye_spacing", "eye_almondness", "canthal_tilt"}
+                    else "automatic-regional-v1"
+                ),
                 evidence_photo_count=len(contributing_ids),
                 evidence_photo_ids=contributing_ids,
                 percentile=_percentile(
-                    value, _pool(assessment, context.reference_id, name)
+                    value,
+                    (
+                        _pool(assessment, context.reference_id, name)
+                        if reference_available
+                        else None
+                    ),
                 ),
                 note=(
                     "Uses the mesh forehead boundary; not a measured hairline."
                     if proxy
                     else "Image-derived geometry; camera angle and expression can affect this ratio."
-                ) + (
+                )
+                + (
                     " Estimated eye-region geometry combines pose-compatible observations; "
                     "mouth-posture flags remain excluded from mouth-sensitive readings. "
                     "Regional uncertainty is not calibrated."
-                    if {p["photo"] for p, _ in pairs} != set(photo_ids) else ""
+                    if {p["photo"] for p, _ in pairs} != set(photo_ids)
+                    else ""
                 ),
             )
         )

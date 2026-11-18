@@ -148,9 +148,11 @@ def load_manifest(path: Path) -> EvaluationManifest:
         case = _fields(
             raw_case,
             {"id", "sets"} if fixed else {"id", "sets", "demographics"},
-            {"review_annotations", "profile_annotations"}
-            if payload["version"] == 2
-            else set(),
+            (
+                {"review_annotations", "profile_annotations"}
+                if payload["version"] == 2
+                else set()
+            ),
         )
         identity = _text(case["id"], 200)
         if identity in seen:
@@ -274,15 +276,18 @@ def analyze_evaluation_session(service, session_id: str, adapter: Any) -> dict:
             "status": "processing_error",
             "error_type": type(error).__name__,
             "axes": {},
-            "attempted_instrument_fingerprint": attempted
-            if isinstance(attempted, str) and attempted.strip()
-            else None,
+            "attempted_instrument_fingerprint": (
+                attempted if isinstance(attempted, str) and attempted.strip() else None
+            ),
         }
     result = {
         "status": "analyzed",
-        "cohort_id": report.cohort.used_id,
-        "requested_cohort_id": report.cohort.requested_id,
-        "fallback_level": report.cohort.fallback_level,
+        "cohort_id": report.cohort.used_id if report.cohort else None,
+        "requested_cohort_id": report.cohort.requested_id if report.cohort else None,
+        "fallback_level": (
+            report.cohort.fallback_level if report.cohort else report.reference.status
+        ),
+        "reference_status": report.reference.status,
         "instrument_fingerprint": report.instrument_fingerprint,
         "attempted_instrument_fingerprint": attempted,
         "axes": {axis: _snapshot(value) for axis, value in report.axes.items()},

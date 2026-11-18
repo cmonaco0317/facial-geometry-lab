@@ -15,7 +15,7 @@ from .analysis import AXIS_ORDER, AnalysisReport
 from .consultation import DEFINITIONS, consultation_payload
 from .contracts import SYMMETRY_UNIT
 from .landmark_review import safe_review
-from .product_report import composite_score, public_regions
+from .product_report import current_composite, public_regions
 
 VERSION = "consumer-evaluation-v1"
 ISSUES = frozenset(
@@ -158,9 +158,11 @@ def snapshot(
             percentile=number(result.percentile),
             unit=result.unit if result.unit in UNITS else None,
             photo_count=result.photo_count,
-            reported_interval=list(result.interval)
-            if result.status == "measured" and result.interval is not None
-            else None,
+            reported_interval=(
+                list(result.interval)
+                if result.status == "measured" and result.interval is not None
+                else None
+            ),
             capture_issues={
                 k: v
                 for k, v in issues.items()
@@ -175,7 +177,11 @@ def snapshot(
         and number(row.get("percentile")) is not None
         and 0 <= row["percentile"] <= 100
     )
-    composite = composite_score(report.axes)
+    frontal = [raw for raw, _ in reviewed or []]
+    profile_reviews = [raw for raw, _ in profiles or []]
+    composite = current_composite(report.axes, frontal, profile_reviews)
+    if frontal or profile_reviews:
+        ratios = []
     composite["inputs"] = dict(
         harmony_ratios=ratios,
         components=[
@@ -203,7 +209,7 @@ def snapshot(
             percentile=number(r.get("percentile")),
             method=r["method"],
         )
-        for r in public_regions(report.axes)
+        for r in public_regions(report.axes, frontal=frontal)
         if r["id"] in DEFINITIONS
         and r.get("method") in {"automatic-regional-v1", "automatic-regional-v2"}
         and r.get("unit") == ("deg" if r["id"] == "canthal_tilt" else "ratio")
@@ -218,10 +224,15 @@ def snapshot(
         version=VERSION,
         instrument=digest(report.instrument_fingerprint),
         reference=reference,
+        reference_status=report.reference.status,
         cohort=digest(
             {
                 k: v
-                for k, v in report.cohort.to_dict().items()
+                for k, v in (
+                    report.cohort.to_dict()
+                    if report.cohort
+                    else report.reference.to_dict()
+                ).items()
                 if k
                 in {
                     "requested_id",
@@ -270,9 +281,9 @@ def stats(changes: list[float]) -> dict:
         median=float(np.median(absolute)) if changes else None,
         p90=float(np.percentile(absolute, 90)) if changes else None,
         signed_bias=mean,
-        descriptive_agreement_limits=[mean - 1.96 * sd, mean + 1.96 * sd]
-        if sd is not None
-        else None,
+        descriptive_agreement_limits=(
+            [mean - 1.96 * sd, mean + 1.96 * sd] if sd is not None else None
+        ),
     )
 
 
@@ -359,9 +370,9 @@ def _axis_summary(pairs: list[tuple[dict, dict]], axis: str, total: int) -> dict
         scalar_coverage=len(values) / total if total else 0,
         value_movement=stats(values),
         percentile_movement=stats(percentiles),
-        between_identity_percentile_sd=float(np.std(centres, ddof=1))
-        if len(centres) > 1
-        else None,
+        between_identity_percentile_sd=(
+            float(np.std(centres, ddof=1)) if len(centres) > 1 else None
+        ),
         strata={
             key: dict(
                 pairs=g["count"],

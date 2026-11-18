@@ -8,7 +8,7 @@ from typing import Any
 from urllib.parse import quote
 
 from .analysis import AXIS_ORDER, AnalysisReport
-from .contracts import AxisResult, CohortUse
+from .contracts import AxisResult, CohortUse, Demographics, ReferenceAvailability
 from .report import render_capture_summary, source_disclosures
 from .consultation import (
     consultation_payload,
@@ -19,9 +19,12 @@ from .consultation import (
 from .illustrations import render_diagrams
 from .profile_review import render_profile
 from .landmark_review import render_reviewed, render_forehead_warning
-from .product_report import composite_score, public_regions, render_product_summary
+from .product_report import public_regions, render_product_summary
 from .score_audit import audit
 from .automatic_forehead import public_forehead, render_automatic_forehead
+from .current_observations import current_observations, render_observations
+from .observations import public_observations
+from .product_report import current_composite, current_score_axes
 
 AXIS_TITLES = {
     "harmony": "Harmony",
@@ -118,20 +121,14 @@ def render_landing(
     csrf_token: str | None = None,
 ) -> str:
     """Render one form that collects adult demographics and one or more photos together."""
-    sex_controls = "".join(
-        f"""<label class="choice">
-  <input type="radio" name="sex" value="{_escape(value)}" required>
+    sex_controls = "".join(f"""<label class="choice">
+  <input type="radio" name="sex" value="{_escape(value)}">
   <span>{_escape(label)}</span>
-</label>"""
-        for value, label in SEX_OPTIONS
-    )
-    ethnicity_controls = "".join(
-        f"""<label class="choice">
+</label>""" for value, label in SEX_OPTIONS)
+    ethnicity_controls = "".join(f"""<label class="choice">
   <input type="checkbox" name="ethnicity" value="{_escape(value)}">
   <span>{_escape(label)}</span>
-</label>"""
-        for value, label in ETHNICITY_OPTIONS
-    )
+</label>""" for value, label in ETHNICITY_OPTIONS)
     csrf_control = ""
     if csrf_token is not None:
         csrf_control = (
@@ -156,30 +153,35 @@ def render_landing(
 
   <section class="intake-panel" aria-labelledby="intake-title">
     <header class="panel-heading">
-      <p>Adult, local, cohort-matched</p>
+      <p>Adult · local · optional comparison</p>
       <h2 id="intake-title">Create a measurement session</h2>
-      <p>Your age, sex, and ethnicity select the comparison group. They are never
-      guessed from your face.</p>
+      <p>Start with facial geometry. Age, sex and ethnicity are optional comparison
+      settings, never guessed from your face.</p>
     </header>
 
     <form class="intake-form" method="post" action="{_escape(action)}" enctype="multipart/form-data">
       {csrf_control}
       <div class="age-field">
         <label for="age">Age</label>
-        <input id="age" name="age" type="number" min="18" step="1" inputmode="numeric" required>
-        <p>Adults 18 and older.</p>
+        <input id="age" name="age" type="number" min="18" step="1" inputmode="numeric">
+        <p>Optional. Used only if you want demographic comparison.</p>
       </div>
 
+      <label class="adult-confirmation">
+        <input type="checkbox" name="adult_confirmed" value="yes">
+        <span>I confirm I am 18 or older. Required when demographic comparison is skipped.</span>
+      </label>
+
       <fieldset>
-        <legend>Sex</legend>
-        <p class="field-help">Used only to select a comparison group.</p>
+        <legend>Optional comparison sex</legend>
+        <p class="field-help">Leave blank to receive unranked geometry only.</p>
         <div class="choice-grid choice-grid--sex">{sex_controls}</div>
       </fieldset>
 
       <fieldset>
-        <legend>Ethnicity</legend>
+        <legend>Optional comparison ethnicity</legend>
         <p class="field-help">Choose every option that applies. If an exact cohort
-        is unavailable, the result names the closest group actually used.</p>
+        is unavailable, the report still finishes without substituting another population.</p>
         <div class="choice-grid">{ethnicity_controls}</div>
       </fieldset>
 
@@ -194,6 +196,14 @@ def render_landing(
         <p class="file-count" data-file-count aria-live="polite">No photos selected yet.</p>
       </div>
 
+      <details class="capture-guide"><summary>Capture guide: get a useful frontal report</summary>
+        <ol><li>Use an original JPEG or PNG at eye level, with the whole face in frame and even light.</li>
+        <li>Look straight ahead with relaxed eyes and mouth. Avoid portrait filters and strong perspective from a very close camera.</li>
+        <li>If comfortable, move hair clear of the forehead. Keep a hair-down photo too; missing forehead readings do not prevent the rest of the report.</li>
+        <li>Add complementary views rather than copies of the same image. A lateral photo supports a separate profile review.</li>
+        <li>After analysis, open “Review frontal landmarks and hairline” to see the original photo with editable point overlays. Mark hidden points missing; never guess a covered hairline.</li></ol>
+        <p>Geometry is image-based and has no established anatomical accuracy bound. Skip demographic fields and confirm adulthood for geometry without a reference.</p>
+      </details>
       <button class="primary-action" type="submit">Create local analysis</button>
       <p class="form-note">No account, cloud upload, or background network request.</p>
     </form>
@@ -334,13 +344,11 @@ def _profile_list(profile: dict[str, Any]) -> str:
         )
         if interval:
             comparison += f" · {_ordinal(interval[0])}–{_ordinal(interval[1])}"
-        rows.append(
-            f"""<li>
+        rows.append(f"""<li>
   <div><strong>{_escape(label)}</strong><span>{_number(row["value"])}</span></div>
   <p>{comparison}</p>
   {_measurement_track(percentile, interval) if interval and percentile is not None else ""}
-</li>"""
-        )
+</li>""")
     return f'<ul class="profile-list">{"".join(rows)}</ul>'
 
 
@@ -402,6 +410,13 @@ def _render_processing_error(
 {_axis_evidence(result)}"""
 
 
+def _render_unavailable(result: AxisResult) -> str:
+    return f"""
+<p class="axis-status axis-status--unavailable">Reference unavailable</p>
+<p class="axis-summary">{_escape(result.summary)}</p>
+{_axis_evidence(result)}"""
+
+
 def _render_estimate(result: AxisResult) -> str:
     reading = (
         f'<p class="percentile-reading">{_number(result.value)} {_escape(result.unit)}</p>'
@@ -439,6 +454,8 @@ def _render_axis_card(
         )
     elif result.status == "needs_photo":
         content = _render_photo_request(result)
+    elif result.status == "unavailable":
+        content = _render_unavailable(result)
     else:
         content = _render_processing_error(
             result,
@@ -484,6 +501,9 @@ def _overview_item(axis: str, result: AxisResult) -> str:
     elif result.status == "needs_photo":
         reading = "More evidence needed"
         detail = f"{result.photo_count:,} eligible photos so far"
+    elif result.status == "unavailable":
+        reading = "Reference unavailable"
+        detail = "Unranked geometry remains available"
     else:
         reading = "Not completed"
         detail = (
@@ -509,14 +529,46 @@ def _results_overview(report: AnalysisReport) -> str:
 
 
 def _reference_disclosure(
-    cohort: CohortUse,
+    cohort: CohortUse | None,
+    reference: ReferenceAvailability,
     instrument_fingerprint: str,
     harmony: AxisResult,
+    source_inventory: dict[str, Any] | None = None,
 ) -> str:
+    if cohort is None:
+        title = (
+            "Reference comparison unavailable"
+            if reference.status == "unavailable"
+            else "Reference comparison was not requested"
+        )
+        requested = reference.requested_label or "No demographic comparison group"
+        reason = reference.reason or title
+        return f"""<section class="method-and-limits" aria-labelledby="method-title">
+  <div class="method-heading">
+    <p class="report-kicker">Evidence note</p>
+    <h2 id="method-title">Method and limits</h2>
+  </div>
+  <div class="method-grid">
+    <dl class="method-facts">
+      <div><dt>Reference status</dt><dd>{_escape(title)}</dd></div>
+      <div><dt>Requested group</dt><dd>{_escape(requested)}</dd></div>
+    </dl>
+    <div class="method-copy">
+      <h3>How to read the numbers</h3>
+      <p>{_escape(reason)} No replacement population was inferred, so reference
+      percentiles and the composite score are unavailable.</p>
+      <p>Observed proportions, symmetry readings, regional measurements and iris
+      observations are still image-derived geometry. Camera angle and expression can
+      affect them.</p>
+    </div>
+  </div>
+  <p class="instrument-line"><strong>Instrument fingerprint</strong>
+  {_escape(instrument_fingerprint)}</p>
+</section>"""
     items = "".join(
         f"<li><strong>{_escape(item['source'])}</strong>: "
         f"{_escape(item['label_meaning'])}.</li>"
-        for item in source_disclosures(cohort)
+        for item in source_disclosures(cohort, source_inventory)
     )
     requested = cohort.requested_label or cohort.requested_id
     used = cohort.used_label or cohort.used_id
@@ -579,8 +631,27 @@ def render_results(
     profile: dict[str, Any] | list[dict] | None = None,
     ideas: dict | None = None,
     frontal: list[dict] | None = None,
+    source_inventory: dict[str, Any] | None = None,
+    appearance_review: dict | None = None,
+    reviewer_state: dict | None = None,
+    question_state: dict | None = None,
+    experiment_state: dict | None = None,
+    demographics: Demographics | None = None,
+    adult_confirmed: bool = False,
 ) -> str:
     """Render the same typed four-axis payload used by persisted/exported reports."""
+    from .appearance import appearance_payload, render_appearance
+    from .consultation_review import analysis_context
+    from .question_session import render_questions
+    from .photo_experiments import render_experiment, public_experiment, report_basis
+
+    experiment = None
+    if experiment_state:
+        from .report import build_export_payload
+
+        baseline = build_export_payload(report,demographics,adult_confirmed=adult_confirmed,settings=settings,ideas=ideas,profile=profile,frontal=frontal,source_inventory=source_inventory,appearance_review=appearance_review,reviewer_state=reviewer_state)
+        experiment = public_experiment(experiment_state,report_basis(baseline))
+
     session = quote(report.session_id, safe="")
     base = f"/sessions/{session}"
     upload_action = f"{base}/photos"
@@ -590,6 +661,10 @@ def render_results(
     html_export_action = f"{base}/report.html"
     end_label = (
         "End session and quit" if quit_after_end else "End session and delete files"
+    )
+    current = public_observations(current_observations(report.axes, frontal, profile))
+    appearance = appearance_payload(
+        report.axes["harmony"].details.get("appearance_sources"), appearance_review
     )
     cards = "".join(
         _render_axis_card(
@@ -614,18 +689,20 @@ def render_results(
         _escape(html_export_action)
     }" download>Save printable report</a>
     <a class="save-link" href="{_escape(json_export_action)}" download>Save JSON</a>
+    <p>Both exports include appearance photo crops, which can identify you.</p>
   </nav>
 </header>
 
 <main class="results-shell">
   {render_automatic_forehead(public_forehead(report.axes))}
   {render_forehead_warning(frontal)}
+  {render_observations(current)}
   {
         render_product_summary(
-            composite_score(report.axes),
+            current_composite(report.axes, frontal, profile),
             public_regions(report.axes, frontal=frontal),
             show_regions=False,
-            score_audit=audit(report.axes),
+            score_audit=audit(current_score_axes(report.axes, frontal, profile)),
         )
     }
   {preference_form(preferences(settings or {}), base + "/preferences", csrf_token)}
@@ -643,13 +720,21 @@ def render_results(
                 frontal=frontal,
                 ideas=ideas,
                 profile=profile,
+                observations=current,
+                appearance=appearance,
+                context=analysis_context(report,experiment_state),
+                reviewer_state=reviewer_state,
             ),
             render_diagrams(report.axes["harmony"].details.get("illustration")),
             action=base + "/ideas",
             csrf=csrf_token,
+            review_action=base + "/consultation-review",
         )
     }
   {render_profile(profile)}
+  {render_appearance(appearance, action=base + "/appearance")}
+  {render_questions(question_state, action=base + "/questions")}
+  {render_experiment(experiment, action=base + "/experiments")}
   {_results_overview(report)}
 
   <section class="axis-grid" aria-label="Facial measurement results">{cards}</section>
@@ -657,8 +742,10 @@ def render_results(
   {
         _reference_disclosure(
             report.cohort,
+            report.reference,
             report.instrument_fingerprint,
             report.axes["harmony"],
+            source_inventory=source_inventory,
         )
     }
 

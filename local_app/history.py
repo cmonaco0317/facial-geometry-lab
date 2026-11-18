@@ -118,10 +118,12 @@ class ArchiveStore:
                             name=r.name,
                             profile=r.snapshot.profile,
                             created_at=r.snapshot.created_at,
+                            captured_at=r.snapshot.captured_at,
                             archived_at=r.archived_at,
                             imported_at=r.imported_at,
                             score=r.snapshot.score,
                             evidence_count=len(r.evidence),
+                            context_saved=bool(r.context and r.context.saved_report),
                             bytes=path.lstat().st_size,
                         )
                     )
@@ -180,9 +182,11 @@ class ArchiveStore:
                 else "The encrypted archive could not be written; existing files were preserved."
             ) from error
 
-    def save(self, snapshot: Snapshot, *, evidence=None, name=None):
+    def save(self, snapshot: Snapshot, *, evidence=None, name=None, context=None):
         snapshot = Snapshot.model_validate(snapshot.model_dump())
         record = Record(
+            version=2 if context is not None else 1,
+            context=context,
             id=uuid4().hex,
             name=name or snapshot.profile,
             archived_at=now(),
@@ -204,7 +208,45 @@ class ArchiveStore:
     def remove_evidence(self, rid):
         with self._locked():
             record = self._read(rid)
-            self._write(record.model_copy(update={"evidence": []}))
+            snapshot = record.snapshot
+            if any(s.points for r in snapshot.observations for s in r.sources):
+                # Imported historical schemas may contain geometry inside the snapshot.
+                # This explicit removal changes only retention flags/points and their hash.
+                from .observations import Observation
+
+                rows = []
+                for row in snapshot.observations:
+                    if any(s.points for s in row.sources):
+                        data = row.model_dump()
+                        data.update(
+                            geometry_retained=False,
+                            score_eligible=False,
+                            score_exclusion_reason=row.score_exclusion_reason
+                            or "Point geometry explicitly removed from this saved archive.",
+                        )
+                        for source in data["sources"]:
+                            source["points"] = ()
+                        row = Observation.model_validate(data)
+                    rows.append(row)
+                snapshot = Snapshot.model_validate(
+                    {**snapshot.model_dump(), "observations": tuple(rows)}
+                )
+            self._write(
+                record.model_copy(
+                    update={
+                        "evidence": [],
+                        "snapshot": snapshot,
+                        "snapshot_hash": (
+                            snapshot_hash(snapshot)
+                            if snapshot is not record.snapshot
+                            else record.snapshot_hash
+                        ),
+                        "context": (
+                            record.context.without_images() if record.context else None
+                        ),
+                    }
+                )
+            )
 
     def delete(self, rid):
         with self._locked():

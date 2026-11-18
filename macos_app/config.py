@@ -2,9 +2,8 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from types import MappingProxyType
 
-
-APP_VERSION = "0.4.7"
-RELEASE_TAG = "v0.4.7"
+APP_VERSION = "0.6.0"
+RELEASE_TAG = "v0.6.0-local.1"
 MINIMUM_MACOS = "13.0"
 PYTHON_VERSION = "3.11.15"
 MEDIAPIPE_VERSION = "0.10.35"
@@ -44,8 +43,10 @@ MODEL_ASSETS: Mapping[str, Download] = MappingProxyType(
     {
         "forehead_context.bin": Download(
             name="forehead_context.bin",
-            url=("https://storage.googleapis.com/mediapipe-models/image_segmenter/"
-                 "selfie_multiclass_256x256/float32/1/selfie_multiclass_256x256.tflite"),
+            url=(
+                "https://storage.googleapis.com/mediapipe-models/image_segmenter/"
+                "selfie_multiclass_256x256/float32/1/selfie_multiclass_256x256.tflite"
+            ),
             sha256="c6748b1253a99067ef71f7e26ca71096cd449baefa8f101900ea23016507e0e0",
         ),
         "face_landmarker.task": Download(
@@ -60,14 +61,14 @@ MODEL_ASSETS: Mapping[str, Download] = MappingProxyType(
             name="selfie_segmenter.tflite",
             url=(
                 "https://storage.googleapis.com/mediapipe-models/image_segmenter/"
-                "selfie_segmenter/float16/latest/selfie_segmenter.tflite"
+                "selfie_segmenter/float16/1/selfie_segmenter.tflite"
             ),
             sha256="191ac9529ae506ee0beefa6b2c945a172dab9d07d1e802a290a4e4038226658b",
         ),
         "canonical_face_model.obj": Download(
             name="canonical_face_model.obj",
             url=(
-                "https://raw.githubusercontent.com/google-ai-edge/mediapipe/master/"
+                f"https://raw.githubusercontent.com/google-ai-edge/mediapipe/{MEDIAPIPE_COMMIT}/"
                 "mediapipe/modules/face_geometry/data/canonical_face_model.obj"
             ),
             sha256="8bac80443397e113f41a8b565ea72c59390bc031d9defab289dba7bc0c54e618",

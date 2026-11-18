@@ -97,14 +97,37 @@ class PhotoCatalog:
         self.limits = limits or PhotoLimits()
 
     def add_bytes(self, original_name: str, content: bytes) -> PhotoEntry:
+        return self._add_bytes(original_name, content)
+
+    def restore_jpeg(
+        self, original_name: str, content: bytes, *, ordinal: int
+    ) -> PhotoEntry:
+        """Restore bounded archived JPEG bytes without another lossy normalization.
+
+        Archive slots remain distinct even when two original inputs normalized to
+        identical pixels. Ordinary intake continues to reject duplicate bytes.
+        """
+        if type(ordinal) is not int or not 1 <= ordinal <= 10000:
+            raise ValueError("Invalid archived source slot.")
+        if not isinstance(content, bytes) or self._sniff_format(content) != "jpeg":
+            raise ValueError("An archived source must be a normalized JPEG.")
+        return self._add_bytes(original_name, content, archive_ordinal=ordinal)
+
+    def _add_bytes(
+        self, original_name: str, content: bytes, *, archive_ordinal: int | None = None
+    ) -> PhotoEntry:
         display_name = self._display_name(original_name)
         try:
             raw = bytes(content)
         except (TypeError, ValueError) as error:
-            return self._reject(display_name, "malformed", "file data is not readable", error)
+            return self._reject(
+                display_name, "malformed", "file data is not readable", error
+            )
 
         if not raw:
-            return self._reject(display_name, "empty", "could not decode an empty image file")
+            return self._reject(
+                display_name, "empty", "could not decode an empty image file"
+            )
         if len(raw) > self.limits.max_file_bytes:
             return self._reject(
                 display_name,
@@ -124,7 +147,7 @@ class PhotoCatalog:
             )
 
         digest = hashlib.sha256(raw).hexdigest()
-        if any(item["sha256"] == digest for item in photos):
+        if archive_ordinal is None and any(item["sha256"] == digest for item in photos):
             return self._reject(
                 display_name,
                 "duplicate",
@@ -161,6 +184,8 @@ class PhotoCatalog:
             )
 
         height, width = (int(value) for value in image.shape[:2])
+        if archive_ordinal is not None and (width, height) != dimensions:
+            raise ValueError("Archived source frame changed during decoding.")
         if height <= 0 or width <= 0:
             return self._reject(
                 display_name,
@@ -176,11 +201,13 @@ class PhotoCatalog:
                 session=session,
             )
 
-        ok, normalized = cv2.imencode(
-            ".jpg",
-            image,
-            [int(cv2.IMWRITE_JPEG_QUALITY), 95],
-        )
+        if archive_ordinal is None:
+            ok, normalized = cv2.imencode(
+                ".jpg", image, [int(cv2.IMWRITE_JPEG_QUALITY), 95]
+            )
+            normalized_bytes = normalized.tobytes() if ok else b""
+        else:
+            ok, normalized_bytes = True, raw
         if not ok:
             return self._reject(
                 display_name,
@@ -189,7 +216,13 @@ class PhotoCatalog:
                 session=session,
             )
 
-        photo_id = digest[:16]
+        photo_id = (
+            hashlib.sha256(
+                raw + b"\0archived-slot\0" + str(archive_ordinal).encode()
+            ).hexdigest()[:16]
+            if archive_ordinal is not None
+            else digest[:16]
+        )
         stored_name = f"photo-{photo_id}.jpg"
         stored_path = self.store.path_for(self.session_id, "uploads", stored_name)
         if stored_path.exists():
@@ -200,7 +233,6 @@ class PhotoCatalog:
                 session=session,
             )
 
-        normalized_bytes = normalized.tobytes()
         self._write_private(stored_path, normalized_bytes)
         entry = PhotoEntry(
             photo_id=photo_id,
@@ -224,7 +256,9 @@ class PhotoCatalog:
 
     def entries(self) -> tuple[PhotoEntry, ...]:
         session = self.store.load(self.session_id)
-        return tuple(PhotoEntry.from_dict(item) for item in self._photo_payloads(session))
+        return tuple(
+            PhotoEntry.from_dict(item) for item in self._photo_payloads(session)
+        )
 
     def rejections(self) -> tuple[PhotoRejection, ...]:
         session = self.store.load(self.session_id)
@@ -299,7 +333,9 @@ class PhotoCatalog:
         return "unknown"
 
     @classmethod
-    def _declared_dimensions(cls, raw: bytes, source_format: str) -> tuple[int, int] | None:
+    def _declared_dimensions(
+        cls, raw: bytes, source_format: str
+    ) -> tuple[int, int] | None:
         if source_format == "png":
             if len(raw) < 24 or raw[12:16] != b"IHDR":
                 return None

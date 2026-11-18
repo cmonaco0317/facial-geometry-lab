@@ -28,7 +28,8 @@ class Session:
     session_id: str
     csrf_token: str
     root: Path
-    demographics: Demographics
+    demographics: Demographics | None
+    adult_confirmed: bool
     created_at: float
     last_activity: float
     state: dict[str, Any] = field(default_factory=dict)
@@ -53,7 +54,20 @@ class SessionStore:
         self.base_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
         os.chmod(self.base_dir, 0o700)
 
-    def create(self, demographics: Demographics) -> Session:
+    def create(
+        self,
+        demographics: Demographics | None,
+        *,
+        adult_confirmed: bool | None = None,
+    ) -> Session:
+        if demographics is None:
+            if adult_confirmed is not True:
+                raise ValueError("adult confirmation is required without demographics")
+            confirmed = True
+        else:
+            confirmed = True if adult_confirmed is None else bool(adult_confirmed)
+            if not confirmed:
+                raise ValueError("adult confirmation is required")
         while True:
             session_id = secrets.token_urlsafe(32)
             root = self.base_dir / session_id
@@ -72,6 +86,7 @@ class SessionStore:
             csrf_token=secrets.token_urlsafe(24),
             root=root,
             demographics=demographics,
+            adult_confirmed=confirmed,
             created_at=now,
             last_activity=now,
         )
@@ -91,12 +106,19 @@ class SessionStore:
             "version": 1,
             "session_id": session.session_id,
             "csrf_token": session.csrf_token,
-            "demographics": session.demographics.to_dict(),
+            "demographics": (
+                session.demographics.to_dict()
+                if session.demographics is not None
+                else None
+            ),
+            "adult_confirmed": session.adult_confirmed,
             "created_at": session.created_at,
             "last_activity": session.last_activity,
             "state": session.state,
         }
-        encoded = json.dumps(payload, sort_keys=True, separators=(",", ":"), allow_nan=False)
+        encoded = json.dumps(
+            payload, sort_keys=True, separators=(",", ":"), allow_nan=False
+        )
         state_path = root / "state.json"
         temporary = root / f".state-{secrets.token_hex(8)}.tmp"
         descriptor = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
@@ -122,11 +144,17 @@ class SessionStore:
             raise ValueError("session state is invalid")
 
         raw_demographics = payload.get("demographics", {})
-        demographics = Demographics(
-            age=raw_demographics.get("age"),
-            sex=raw_demographics.get("sex"),
-            ethnicities=tuple(raw_demographics.get("ethnicities", ())),
-        )
+        if raw_demographics is None:
+            if payload.get("adult_confirmed") is not True:
+                raise ValueError("adult confirmation is required without demographics")
+            demographics = None
+        else:
+            demographics = Demographics(
+                age=raw_demographics.get("age"),
+                sex=raw_demographics.get("sex"),
+                ethnicities=tuple(raw_demographics.get("ethnicities", ())),
+            )
+        adult_confirmed = bool(payload.get("adult_confirmed", demographics is not None))
         state = payload.get("state", {})
         if not isinstance(state, dict):
             raise ValueError("session state payload must be an object")
@@ -136,6 +164,7 @@ class SessionStore:
             csrf_token=self._required_text(payload, "csrf_token"),
             root=root,
             demographics=demographics,
+            adult_confirmed=adult_confirmed,
             created_at=self._required_timestamp(payload, "created_at"),
             last_activity=self._required_timestamp(payload, "last_activity"),
             state=state,
@@ -223,14 +252,20 @@ class SessionStore:
                 continue
             if existed:
                 removed += 1
-        LOGGER.info("session_cleanup event=shutdown count=%d failures=%d", removed, failures)
+        LOGGER.info(
+            "session_cleanup event=shutdown count=%d failures=%d", removed, failures
+        )
         return removed
 
     def expire_stale(self) -> list[str]:
         now = float(self._clock())
         expired: list[str] = []
         for root in sorted(self.base_dir.iterdir(), key=lambda path: path.name):
-            if root.is_symlink() or not root.is_dir() or not SESSION_ID_PATTERN.fullmatch(root.name):
+            if (
+                root.is_symlink()
+                or not root.is_dir()
+                or not SESSION_ID_PATTERN.fullmatch(root.name)
+            ):
                 continue
             try:
                 session = self.load(root.name)
@@ -244,7 +279,9 @@ class SessionStore:
         return expired
 
     def _session_root(self, session_id: str) -> Path:
-        if not isinstance(session_id, str) or not SESSION_ID_PATTERN.fullmatch(session_id):
+        if not isinstance(session_id, str) or not SESSION_ID_PATTERN.fullmatch(
+            session_id
+        ):
             raise ValueError("invalid session identifier")
         return self.base_dir / session_id
 

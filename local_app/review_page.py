@@ -7,6 +7,8 @@ import html
 
 from .profile_review import ANCHORS, render_profile
 from .profile_v2 import METHOD, ROWS, measure
+from .current_observations import render_observations
+from .profile_lineage import proposal_origin
 
 
 def render_review(session, entries, selected, image_bytes, record, *, draft=None):
@@ -57,10 +59,13 @@ def render_review(session, entries, selected, image_bytes, record, *, draft=None
         for v in ("left", "right")
     )
     preview = ""
-    if facing:
+    if facing and (record.get("reviewed") or draft):
         payload = measure(points, selected.width, selected.height, facing=facing)
         payload["revision"] = record["revision"]
         preview = render_profile(payload)
+    automatic = record.get("automatic_proposal")
+    if not draft and not record.get("reviewed") and automatic:
+        preview = render_observations(automatic["observations"])
     warning = (
         '<p class="draft-note">Draft preview — the saved report has not changed.</p>'
         if draft
@@ -68,15 +73,21 @@ def render_review(session, entries, selected, image_bytes, record, *, draft=None
     )
     if record.get("migrated"):
         warning += "<p>Legacy v1 point positions loaded. Confirm the view and review them to save a separate v2 revision; no new points were fabricated.</p>"
-    body = f'''<main class="review-shell"><p class="local-mark">Private session · manual profile v2</p><h1>Review your profile landmarks</h1>
+    if automatic and not record.get("reviewed"):
+        warning += '<p class="draft-note">Automatic turned-view mesh proposals, not observed anatomical landmarks. The chin proposal is fixed mesh point 200, not verified pogonion. Correct visible points or mark them missing. Pose routing does not establish accuracy.</p>'
+    origin = proposal_origin(record.get("proposal_ancestry"))
+    if origin:
+        warning += "<p>These points started from model proposals. A saved review is not independent placement or anatomical accuracy evidence.</p>"
+    body = f"""<main class="review-shell"><p class="local-mark">Private session · editable profile evidence</p><h1>Review your profile landmarks</h1>
 <p>Choose a true lateral photo with a level head, relaxed lips and a visible nose/chin contour. Facing describes the nose direction on this image, not anatomical left/right. A frontal image cannot establish profile readings.</p><p><a href="{base}/results">Back to report</a></p>
 <form method="get" action="{base}/profile" class="photo-selector"><label>Photograph<select name="photo">{options}</select></label><button>Load photograph</button></form>{warning}
 <form method="post" action="{base}/profile" id="profile-review-form" data-draft="{"true" if draft else "false"}">{hidden}
 <div class="frontal-toolbar"><label>Facing<select name="facing" required>{facing_options}</select></label><label>Zoom<select id="profile-zoom"><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></label><label>Visual leveling, degrees<input type="number" name="level_degrees" id="profile-level" min="-45" max="45" step="0.5" value="{level}"></label><label>Measurement lines<select name="metric" id="profile-metric">{metrics}</select></label><button type="button" id="profile-undo">Undo point edit</button><button type="button" id="profile-reset">Mark all unavailable</button></div>
+<button name="action" value="propose" formnovalidate>Replace this review with automatic suggestions</button>
 <p>The leveling aid rotates only the display. Coordinates map back to the original normalized image; line-to-line readings do not need a vertical reference and gain no 3D accuracy from leveling.</p>
 <div class="review-grid"><div><div class="profile-viewport"><img id="profile-source" src="data:image/jpeg;base64,{base64.b64encode(image_bytes).decode()}" alt="Selected photograph for manual profile review"><canvas id="profile-canvas" data-width="{selected.width}" data-height="{selected.height}" tabindex="0" aria-label="Profile landmarks. Select a point, then click, drag or use arrow keys; numeric fields are also available."></canvas></div><p id="profile-status" role="status">Select a point, then place it. Missing points exclude only dependent readings. Use arrows for one image pixel, Shift and arrows for ten.</p></div><div>{controls}</div></div>
 <label class="review-confirm"><input type="checkbox" name="lateral_confirmed" value="yes" required> This is a lateral photograph with a visible profile contour.</label><label class="review-confirm"><input type="checkbox" name="confirmed" value="yes" required> I reviewed the visible points and marked obscured points unavailable.</label><label class="review-confirm"><input type="checkbox" name="acknowledged" value="yes"> I checked and accept any displayed facing, point-order or detail warnings.</label><button name="action" value="preview" formnovalidate>Preview readings</button><button name="action" value="save">Save profile measurements</button></form>
-{preview}<form method="post" action="{base}/profile-clear">{clear_hidden}<button>Remove this photo’s profile review</button></form><p>Each photo has its own revision. Opposite-facing views are not averaged or used as anatomical asymmetry evidence. These readings do not change the frontal score. Ending the session deletes them.</p></main><script src="/static/review.js" defer></script>'''
+{preview}<form method="post" action="{base}/profile-clear">{clear_hidden}<button>Remove this photo’s profile readings and proposals</button></form><p>The photo stays in this temporary session. Each photo has its own revision. Opposite-facing views are separate observations, not anatomical asymmetry evidence. Proxies do not affect the frontal score; saved manual reviews withhold the unmatched composite. Ending the session deletes temporary data.</p></main><script src="/static/review.js" defer></script>"""
     return _document(
         title="Review profile landmarks", body=body, page_class="review-page"
     )
