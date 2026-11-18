@@ -3,6 +3,13 @@
 A local facial-photo analysis app with inspectable measurements, illustrated
 reports, optional landmark review and encrypted history.
 
+## Latest source
+
+The [checkpoint 10 source preview](https://github.com/cmonaco0317/facial-geometry-lab/tree/checkpoint-10-source)
+contains the application code for the local 0.6.0 build. The downloadable Mac
+beta below is version 0.4.7. The 0.6.0 installer and legacy calibration summaries
+remain local pending a redistribution and notice review.
+
 ## Download and open
 
 **[Download the Mac app,0.4.7](https://github.com/cmonaco0317/facial-geometry-lab/releases/tag/v0.4.7)**
